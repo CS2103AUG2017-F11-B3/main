@@ -1757,9 +1757,27 @@ contact</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user with many persons in the address book</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sort persons by name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">locate a person easily</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">add remarks to contact</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">store additional information about the contact</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">add profile picture to contact</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I can easily find the contact visually</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">add birthday of contact</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I can be more conscious of my contact&#8217;s birthday</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
@@ -1820,15 +1838,14 @@ increasing security</p></td>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">user with many persons in the address book</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">sort persons by name</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">locate a person easily</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">have <a href="#autocomplete">autocomplete</a> search in the find command</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">locate a contact without their full names</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">user with many persons in the address book</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">have <a href="#autocomplete">autocomplete</a> search in the find command</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">locate a contact
-without their full names</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">see list of upcoming birthdays</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I can see at a glance if there are upcoming birthdays</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
@@ -1903,8 +1920,10 @@ without their full names</p></td>
 <li>
 <p>1b1. AddressBook shows an error message.</p>
 <div class="paragraph">
-<p>Use case resumes at step 2.
-Use case ends.</p>
+<p>Use case resumes at step 2.</p>
+</div>
+<div class="paragraph">
+<p>Use case ends.</p>
 </div>
 </li>
 </ul>
@@ -1996,8 +2015,10 @@ Use case ends.</p>
 <li>
 <p>3a1. AddressBook shows an error message.</p>
 <div class="paragraph">
-<p>Use case resumes at step 2.
-Use case ends.</p>
+<p>Use case resumes at step 2.</p>
+</div>
+<div class="paragraph">
+<p>Use case ends.</p>
 </div>
 </li>
 </ul>
@@ -2053,8 +2074,42 @@ Use case ends.</p>
 <li>
 <p>3a1. AddressBook shows an error message.</p>
 <div class="paragraph">
-<p>Use case resumes at step 2.
-Use case ends.</p>
+<p>Use case resumes at step 2.</p>
+</div>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>3b.  User types <code>/t</code> to delete tags.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>3b1. Tags are removed from the contact.</p>
+<div class="paragraph">
+<p>Use case resumes at step 4.</p>
+</div>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>3c. User types <code>/h</code> to reset homepage.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>3c1. Homepage is set back to the default (A Google Search of contact name).</p>
+<div class="paragraph">
+<p>Use case resumes at step 4.</p>
+</div>
+<div class="paragraph">
+<p>Use case ends.</p>
 </div>
 </li>
 </ul>
@@ -2110,8 +2165,10 @@ Use case ends.</p>
 <li>
 <p>3a1. AddressBook shows an error message.</p>
 <div class="paragraph">
-<p>Use case resumes at step 2.
-Use case ends.</p>
+<p>Use case resumes at step 2.</p>
+</div>
+<div class="paragraph">
+<p>Use case ends.</p>
 </div>
 </li>
 </ul>
@@ -2736,7 +2793,7 @@ Use case ends.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-10-12 06:29:03 +00:00
+Last updated 2017-10-13 03:59:59 +00:00
 </div>
 </div>
 </body>
