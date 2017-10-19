@@ -2117,6 +2117,77 @@ increasing security</p></td>
 </li>
 </ul>
 </div>
+<h3 id="use-case-sort-contacts" class="discrete">Use case: Sort contacts</h3>
+<div class="paragraph">
+<p><strong>Preconditions:</strong> User is logged in.</p>
+</div>
+<div class="paragraph">
+<p><strong>Guarentees:</strong> List will be sorted in alphabetical order.</p>
+</div>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User request to sort contacts</p>
+</li>
+<li>
+<p>AddressBook shows a list of contacts sorted in ascending order according to alphabetical order of the contact&#8217;s name.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a. The sort parameter is invalid</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a1. AddressBook shows an error message.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1b. The sort parameter is <code>d</code></p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1b1. AddressBook shows a list of contacts sorted in descending order.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1c. The sort parameter is <code>a</code></p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1c1. AddressBook shows a list of contacts sorted in ascending order.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
 <h3 id="use-case-find-contacts" class="discrete">Use case: Find contacts</h3>
 <div class="paragraph">
 <p><strong>Preconditions:</strong> User is logged in.
@@ -2793,7 +2864,7 @@ Use case ends.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-10-17 16:04:33 +00:00
+Last updated 2017-10-19 03:12:21 +00:00
 </div>
 </div>
 </body>
