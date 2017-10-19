@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.3">
+<title>Lau Kar Rui - Project Portfolio</title>
+<link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>Lau Kar Rui - Project Portfolio</h1>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="project-iungo"><a class="link" href="#project-iungo">Project: iungo</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>iungo is a desktop address book application used for learning Software Engineering principles. The user interacts with
+it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 6 kLoC.</p>
+</div>
+<div class="paragraph">
+<p><strong>Code contributed</strong>: [<a href="https://github.com">Functional code</a>] [<a href="https://github.com">Test code</a>] {give links to collated code files}</p>
+</div>
+<div class="sect2">
+<h3 id="enhancement-added-setting-of-homepage"><a class="link" href="#enhancement-added-setting-of-homepage">Enhancement Added: Setting of homepage</a></h3>
+<div class="sect3">
+<h4 id="external-behavior"><a class="link" href="#external-behavior">External behavior</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: User Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="editing-a-person-code-edit-code"><a class="link" href="#editing-a-person-code-edit-code">Editing a person : <code>edit</code></a></h3>
+<div class="paragraph">
+<p>Edits an existing person in the address book.<br>
+Format: <code>edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [h/HOMEPAGE] [t/TAG]&#8230;&#8203;</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Edits the person at the specified <code>INDEX</code>. The index refers to the index number shown in the last person listing. The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+<li>
+<p>At least one of the optional fields must be provided.</p>
+</li>
+<li>
+<p>Existing values will be updated to the input values.</p>
+</li>
+<li>
+<p>When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.</p>
+</li>
+<li>
+<p>You can remove all the person&#8217;s tags by typing <code>t/</code> without specifying any tags after it.</p>
+</li>
+<li>
+<p>You can reset the homepage to the default homepage by typing <code>h/</code> without specifying any URL after it.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the name is edited and the contact did not previously have a custom homepage set, the default homepage will switch
+ to a Google search of the new name. If there was a custom homepage set, the homepage will not change
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>edit 1 p/91234567 e/johndoe@example.com</code><br>
+Edits the phone number and email address of the 1st person to be <code>91234567</code> and <code>johndoe@example.com</code> respectively.</p>
+</li>
+<li>
+<p><code>edit 2 n/Betsy Crower t/</code><br>
+Edits the name of the 2nd person to be <code>Betsy Crower</code> and clears all existing tags.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="adding-a-person-code-add-code"><a class="link" href="#adding-a-person-code-add-code">Adding a person: <code>add</code></a></h3>
+<div class="paragraph">
+<p>Adds a person to the address book<br>
+Format: <code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS h/HOMEPAGE [t/TAG]&#8230;&#8203;</code></p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+A person can have any number of tags (including 0)<br>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+A person will have a default homepage of a Google search of his/her name, if <code>/h</code> was not included in the add command
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 h/http://www.johndoe.com</code></p>
+</li>
+<li>
+<p><code>add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+<div class="sect3">
+<h4 id="justification"><a class="link" href="#justification">Justification</a></h4>
+<div class="paragraph">
+<p>Previous behaviour of both add and edit did not allow the user to set their homepage to something more useful.</p>
+</div>
+<div class="paragraph">
+<p>This implementation now enhances the usability of the application by allowing the user to set relevant homepages for
+each individual contact, such as their Facebook or LinkedIn profiles.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation"><a class="link" href="#implementation">Implementation</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="setting-of-homepage-for-a-code-person-code"><a class="link" href="#setting-of-homepage-for-a-code-person-code">Setting of homepage for a <code>Person</code></a></h3>
+<div class="paragraph">
+<p>The mechanism to set a homepage for a specified <code>Person</code> relies on <code>AddCommand</code> and <code>EditCommand</code>.<br>
+It supports both the setting and resetting of a homepage. Resetting a homepage returns the homepage to the
+default homepage of a Google search of the Person&#8217;s full name.<br></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Care is also given to make sure the homepage is changed when the name is edited if the current homepage is the default
+homepage (i.e. not manually set).
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the homepage has been set before, it will not change until it is reset by <code>h/</code> or a new homepage is manually set.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><code>AddCommand</code> and <code>EditCommand</code> both checks for the <code>h/</code> parameter that indicates whether the current homepage is to
+be modified.<br>
+If <code>h/</code> is parsed to be empty (<code>""</code> by <code>AddCommandParser</code> or <code>EditCommandParser</code>, a <code>Person</code> constructor is used to create
+the person with the default homepage.<br>
+If <code>h/</code> is a non-empty valid URL (determined by <code>Homepage.isValidHomepage</code>, a different <code>Person</code> constructor is invoked
+to create a person with the set homepage.<br>
+<code>AddCommandParser</code> code snippet to determine if user&#8217;s <code>AddCommand</code> contains <code>h/</code> parameter:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="keyword">if</span> (arePrefixesPresent(argMultimap, PREFIX_HOMEPAGE)) {
+    Homepage homepage = ParserUtil.parseHomepage(argMultimap.getValue(PREFIX_HOMEPAGE)).get();
+    person = <span class="keyword">new</span> Person(name, phone, email, address, tagList, homepage);
+} <span class="keyword">else</span> {
+    person = <span class="keyword">new</span> Person(name, phone, email, address, tagList);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>EditCommand</code> will create an <code>EditPersonDescriptor</code> with the arguments entered, and pass the resulting
+<code>EditPersonDescriptor</code> into a method to create the updated <code>Person</code>.<br>
+<code>EditCommand.createEditedPerson</code> code snippet to check if homepage has been manually set before:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">private</span> <span class="directive">static</span> Person createEditedPerson(ReadOnlyPerson personToEdit, EditPersonDescriptor editPersonDescriptor) {
+    Homepage originalHomepage = personToEdit.getHomepage();
+
+    Homepage updatedHomepage = editPersonDescriptor.getHomepage().orElse(personToEdit.getHomepage());
+
+    <span class="comment">// ... other logic...</span>
+
+    <span class="keyword">if</span> (updatedHomepage.value.equals(RESET_HOMEPAGE)) {
+        <span class="keyword">return</span> <span class="keyword">new</span> Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+    }
+    <span class="keyword">if</span> (personToEdit.isHomepageManuallySet() || !(originalHomepage.toString().equals(updatedHomepage.toString()))) {
+        <span class="keyword">return</span> <span class="keyword">new</span> Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedHomepage);
+    } <span class="keyword">else</span> {
+        <span class="keyword">return</span> <span class="keyword">new</span> Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+    }
+}</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Implementation of homepage changing when name of contact is changed<br>
+<strong>Alternative 1 (Current choice):</strong> Change homepage to a Google search of the name name when name is changed if homepage
+has not been manually set prior<br>
+<strong>Pros:</strong> Consistent behaviour - if name changes but the default homepage was still referring to the old name, user
+will be confused.<br>
+<strong>Cons:</strong> New developers will have to take note of the extra <code>Homepage</code> check when enhancing or refactoring <code>AddCommand</code> or
+<code>EditCommand</code><br>
+<strong>Alternative 2:</strong> <code>Homepage</code> will not be changed after creation.<br>
+<strong>Pros:</strong> Less complexity in the code, easier for new developers to handle.<br>
+<strong>Cons:</strong> Results in a less user friendly application.</p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+</div>
+<div class="sect2">
+<h3 id="enhancement-added-sort"><a class="link" href="#enhancement-added-sort">Enhancement Added: Sort</a></h3>
+<div class="sect3">
+<h4 id="external-behavior-2"><a class="link" href="#external-behavior-2">External behavior</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: User Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sorting-the-contact-list-code-sort-code"><a class="link" href="#sorting-the-contact-list-code-sort-code">Sorting the contact list : <code>sort</code></a></h3>
+<div class="paragraph">
+<p>{since v1.2}</p>
+</div>
+<div class="paragraph">
+<p>Sorts the contact list in either [a]scending or [d]escending order and shows the list.<br>
+Format: <code>sort [a / d]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The parameters are OPTIONAL. <code>sort</code> on its own will default to a sort in ascending order.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+<div class="sect3">
+<h4 id="justification-2"><a class="link" href="#justification-2">Justification</a></h4>
+<div class="paragraph">
+<p>Previously, the <code>list</code> view of the application would show contacts in the order they were added. For an address book
+with many contacts added, sorting would allow the user (who, for some reason, does not want to use the <code>find</code> command)
+to be able to view the contact list in alphabetical ascending/ descending order.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation-2"><a class="link" href="#implementation-2">Implementation</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sort-mechanism"><a class="link" href="#sort-mechanism">Sort mechanism</a></h3>
+<div class="paragraph">
+<p>The sort mechanism is facilitated by the <code>SortCommand</code>, which is an <code>UndoableCommand</code>.<br>
+<code>SortCommandParser</code> checks for the OPTIONAL <code>a</code> or <code>d</code> parameters, and calls the relevant <code>SortCommand</code>
+to sort the <code>internalList</code> backing the address book.</p>
+</div>
+<div class="paragraph">
+<p>The <code>internalList</code> is sorted using the full name of the contact using Java&#8217;s <code>sort</code>.<br>
+The following sequence diagrams shows how the sort mechanism works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/SortCommandParserSequenceDiagram.png" alt="SortCommandParserSequenceDiagram">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/SortSequenceDiagram.png" alt="SortSequenceDiagram">
+</div>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark>
+---</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="other-contributions"><a class="link" href="#other-contributions">Other contributions</a></h3>
+<div class="paragraph">
+<p>{To be included in the future}</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2017-10-19 15:33:20 +00:00
+</div>
+</div>
+</body>
+</html>
