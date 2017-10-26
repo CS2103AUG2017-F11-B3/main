@@ -1996,9 +1996,6 @@ increasing security</p></td>
 </div>
 <h3 id="use-case-add-contacts" class="discrete">Use case: Add contacts</h3>
 <div class="paragraph">
-<p><strong>Preconditions:</strong> User is logged in.</p>
-</div>
-<div class="paragraph">
 <p><strong>Guarantees:</strong> Adds a contact to AddressBook.</p>
 </div>
 <div class="paragraph">
@@ -2068,9 +2065,6 @@ increasing security</p></td>
 </div>
 <h3 id="use-case-clear-contacts" class="discrete">Use case: Clear contacts</h3>
 <div class="paragraph">
-<p><strong>Preconditions:</strong> User is logged in.</p>
-</div>
-<div class="paragraph">
 <p><strong>Guarantees:</strong> Clears all entries from AddressBook.</p>
 </div>
 <div class="paragraph">
@@ -2091,8 +2085,7 @@ increasing security</p></td>
 </div>
 <h3 id="use-case-delete-contacts" class="discrete">Use case: Delete contacts</h3>
 <div class="paragraph">
-<p><strong>Preconditions:</strong> User is logged in.
-                 AddressBook is not empty.</p>
+<p><strong>Preconditions:</strong> AddressBook is not empty.</p>
 </div>
 <div class="paragraph">
 <p><strong>Guarantees:</strong> Specified contact will be removed from the AddressBook.</p>
@@ -2150,8 +2143,7 @@ increasing security</p></td>
 </div>
 <h3 id="use-case-edit-contacts" class="discrete">Use case: Edit contacts</h3>
 <div class="paragraph">
-<p><strong>Preconditions:</strong> User is logged in.
-                 AddressBook is not empty.</p>
+<p><strong>Preconditions:</strong> AddressBook is not empty.</p>
 </div>
 <div class="paragraph">
 <p><strong>Guarantees:</strong> Existing contact will be updated.</p>
@@ -2241,9 +2233,6 @@ increasing security</p></td>
 </div>
 <h3 id="use-case-sort-contacts" class="discrete">Use case: Sort contacts</h3>
 <div class="paragraph">
-<p><strong>Preconditions:</strong> User is logged in.</p>
-</div>
-<div class="paragraph">
 <p><strong>Guarentees:</strong> List will be sorted in alphabetical order.</p>
 </div>
 <div class="paragraph">
@@ -2312,8 +2301,7 @@ increasing security</p></td>
 </div>
 <h3 id="use-case-find-contacts" class="discrete">Use case: Find contacts</h3>
 <div class="paragraph">
-<p><strong>Preconditions:</strong> User is logged in.
-                 AddressBook is not empty.</p>
+<p><strong>Preconditions:</strong> AddressBook is not empty.</p>
 </div>
 <div class="paragraph">
 <p><strong>Guarantees:</strong> Specified contact will be listed.</p>
@@ -2371,8 +2359,7 @@ increasing security</p></td>
 </div>
 <h3 id="use-case-findany-contacts" class="discrete">Use case: Findany contacts</h3>
 <div class="paragraph">
-<p><strong>Preconditions:</strong> User is logged in.
-                 AddressBook is not empty.</p>
+<p><strong>Preconditions:</strong> AddressBook is not empty.</p>
 </div>
 <div class="paragraph">
 <p><strong>Guarantees:</strong> Specified contact will be listed.</p>
@@ -2430,9 +2417,6 @@ increasing security</p></td>
 </div>
 <h3 id="use-case-list-contacts" class="discrete">Use case: List contacts</h3>
 <div class="paragraph">
-<p><strong>Preconditions:</strong> User is logged in.</p>
-</div>
-<div class="paragraph">
 <p><strong>Guarantees:</strong> All entries will be listed.</p>
 </div>
 <div class="paragraph">
@@ -2466,9 +2450,6 @@ increasing security</p></td>
 </div>
 <h3 id="use-case-help" class="discrete">Use case: Help</h3>
 <div class="paragraph">
-<p><strong>Preconditions:</strong> User is logged in.</p>
-</div>
-<div class="paragraph">
 <p><strong>Guarantees:</strong> User guide will be displayed.</p>
 </div>
 <div class="paragraph">
@@ -2489,8 +2470,7 @@ increasing security</p></td>
 </div>
 <h3 id="use-case-select-contacts" class="discrete">Use case: Select contacts</h3>
 <div class="paragraph">
-<p><strong>Preconditions:</strong> User is logged in.
-                 AddressBook is not empty.</p>
+<p><strong>Preconditions:</strong> AddressBook is not empty.</p>
 </div>
 <div class="paragraph">
 <p><strong>Guarantees:</strong> Specified index of contact will be selected.</p>
@@ -2546,8 +2526,7 @@ Use case ends.</p>
 </div>
 <h3 id="use-case-give-a-contact-remark" class="discrete">Use case: Give a contact Remark</h3>
 <div class="paragraph">
-<p><strong>Preconditions:</strong> User is logged in.
-                 AddressBook is not empty.</p>
+<p><strong>Preconditions:</strong> AddressBook is not empty.</p>
 </div>
 <div class="paragraph">
 <p><strong>Guarantees:</strong> Specified index of contact will be selected.</p>
@@ -2603,9 +2582,6 @@ Use case ends.</p>
 </div>
 <h3 id="use-case-history" class="discrete">Use case: History</h3>
 <div class="paragraph">
-<p><strong>Preconditions:</strong> User is logged in.</p>
-</div>
-<div class="paragraph">
 <p><strong>Guarantees:</strong> List all entered commands.</p>
 </div>
 <div class="paragraph">
@@ -2638,9 +2614,6 @@ Use case ends.</p>
 </ul>
 </div>
 <h3 id="use-case-undo" class="discrete">Use case: Undo</h3>
-<div class="paragraph">
-<p><strong>Preconditions:</strong> User is logged in.</p>
-</div>
 <div class="paragraph">
 <p><strong>Guarantees:</strong> Restores AddressBook to the previous state.</p>
 </div>
@@ -2732,9 +2705,6 @@ Use case ends.</p>
 </ul>
 </div>
 <h3 id="use-case-redo" class="discrete">Use case: Redo</h3>
-<div class="paragraph">
-<p><strong>Preconditions:</strong> User is logged in.</p>
-</div>
 <div class="paragraph">
 <p><strong>Guarantees:</strong> Reverse the most recent undo command.</p>
 </div>
@@ -3102,7 +3072,7 @@ Use case ends.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-10-20 14:45:37 +00:00
+Last updated 2017-10-26 02:11:20 +00:00
 </div>
 </div>
 </body>
