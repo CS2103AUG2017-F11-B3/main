@@ -183,19 +183,13 @@ for single/multiple contact details or a portion of details.</p>
 <div class="sect2">
 <h3 id="find-mechanism"><a class="link" href="#find-mechanism">Find mechanism</a></h3>
 <div class="paragraph">
-<p>The find mechanism is facilitated by the <code>FindCommand</code>. <code>FindCommandParser</code> utilizes <code>ArgumentTokenizer</code> to tokenize<br>
-arguments string and returns an <code>ArgumentMultimap</code> object that maps prefixes to their respective argument values whereby<br>
-only the given prefixes (e.g. p/, e/) will be recognized in the arguments string. After which, <code>FindCommandParser</code><br>
-utilizes <code>arePrefixesPresent</code> method to retrieve the string which utilizes <code>ParserUtil</code> to check the validity of string<br>
-expression.</p>
+<p>The find mechanism is facilitated by the <code>FindCommand</code>. <code>FindCommandParser</code> utilizes <code>ArgumentTokenizer</code> to tokenize arguments string and returns an <code>ArgumentMultimap</code> object that maps prefixes to their respective argument values whereby only the given prefixes (e.g. p/, e/) will be recognized in the arguments string. After which, <code>FindCommandParser</code> utilizes <code>arePrefixesPresent</code> method to retrieve the string which utilizes <code>ParserUtil</code> to check the validity of string expression.</p>
 </div>
 <div class="paragraph">
-<p>Finally, <code>PersonContainsKeyWordsPredicate</code> will retrieve any matching string by the given command and prefixes residing in<br>
-the address book in which <code>FindCommand</code> will execute and return the results base on the matched string.</p>
+<p>Finally, <code>PersonContainsKeyWordsPredicate</code> will retrieve any matching string by the given command and prefixes residing in the address book in which <code>FindCommand</code> will execute and return the results base on the matched string.</p>
 </div>
 <div class="paragraph">
-<p>The find mechanism support both <code>find</code> and <code>findany</code> command in which enables the search of single/multiple <code>Person</code> at once<br>
-and lists their details (e.g. find john mary brook).</p>
+<p>The find mechanism support both <code>find</code> and <code>findany</code> command in which enables the search of single/multiple <code>Person</code> at once and lists their details (e.g. find john mary brook).</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -217,8 +211,7 @@ If no prefixes are present, <code>find</code> command will search for the name o
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>findany</code> command is able to search a portion of the <code>Person</code> details (e.g. <code>findany</code> ohn, returns a list of <code>Person</code><br>
-whose contains ohn. Result: John, Fohnny, Johnny).
+<code>findany</code> command is able to search a portion of the <code>Person</code> details (e.g. <code>findany</code> ohn, returns a list of <code>Person</code> whose contains ohn. Result: John, Fohnny, Johnny).
 </td>
 </tr>
 </table>
@@ -285,14 +278,11 @@ whose contains ohn. Result: John, Fohnny, Johnny).
 <h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Implementation of FindCommandParser<br>
-<strong>Alternative 1 (Current choice):</strong> Utilize ArgumentMultimap and ArgumentTokenizer to store all usable prefixes. Uses<br>
-if-else statement to check if any prefixes are present when user execute the find operation.<br>
+<strong>Alternative 1 (Current choice):</strong> Utilize ArgumentMultimap and ArgumentTokenizer to store all usable prefixes. Uses if-else statement to check if any prefixes are present when user execute the find operation.<br>
 <strong>Pros:</strong> If user entered invalid command, the application will not crash but will instead return an invalid command message.<br>
-<strong>Cons:</strong> New developers will have to take note to include new prefixes in ArgumentMultimap when adding new prefixes.<br>
-Program will have to loop through if-else statement before determine which to execute.<br>
+<strong>Cons:</strong> New developers will have to take note to include new prefixes in ArgumentMultimap when adding new prefixes. Program will have to loop through if-else statement before determine which to execute.<br>
 <strong>Alternative 2:</strong> Create multiple find command (e.g. findaddress, findphone) with different prefixes.<br>
-<strong>Pros:</strong> Less complexity in the code and slightly quicker execution, easier for new developers to handle.<br>
-New developers will not miss out certain prefixes to add in unlike Alternative 1.<br>
+<strong>Pros:</strong> Less complexity in the code and slightly quicker execution, easier for new developers to handle. New developers will not miss out certain prefixes to add in unlike Alternative 1.<br>
 <strong>Cons:</strong> Duplicated find command with similar functionality which is unnecessary.</p>
 </div>
 <div class="paragraph">
@@ -330,10 +320,9 @@ user under certain circumstances (e.g. At certain time or day, user might opt fo
 </div>
 </div>
 <div class="sect2">
-<h3 id="theme-selector-mechanism"><a class="link" href="#theme-selector-mechanism">Theme selector mechanism</a></h3>
+<h3 id="theme-mechanism"><a class="link" href="#theme-mechanism">Theme mechanism</a></h3>
 <div class="paragraph">
-<p>The theme mechanism is facilitated by the <code>ThemeCommand</code>. <code>ThemeCommandParser</code> checks for the input index <code>1</code> to <code>3</code>, validate<br>
-through <code>ParserUtil</code> and calls the relevant <code>ThemeCommand</code> to switch the application <code>theme</code>.</p>
+<p>The theme mechanism is facilitated by the <code>ThemeCommand</code>. <code>ThemeCommandParser</code> checks for the input index <code>1</code> to <code>3</code>, validate through <code>ParserUtil</code> and calls the relevant <code>ThemeCommand</code> to switch the application <code>theme</code>.</p>
 </div>
 <div class="paragraph">
 <p>When the application run, <code>MainWindow</code> will execute <code>ThemeCommand.setRegion</code> in allowing ThemeCommand to retrieve the application root.</p>
@@ -358,8 +347,7 @@ By default if no index are present, theme command will return an invalid message
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-When the application is first initialize, <code>BrowserPanel</code> will <code>.setOpacity</code> to 0% and when <code>handlePersonPanelSelectionChangedEvent</code><br>
-is triggered, <code>BrowserPanel</code> will <code>.setOpacity</code> to 100% (this is done to prevent <code>WebView</code> from displaying the default background color).
+When the application is first initialize, <code>BrowserPanel</code> will <code>.setOpacity</code> to 0% and when <code>handlePersonPanelSelectionChangedEvent</code> is triggered, <code>BrowserPanel</code> will <code>.setOpacity</code> to 100% (this is done to prevent <code>WebView</code> from displaying the default background color).
 </td>
 </tr>
 </table>
@@ -403,10 +391,9 @@ is triggered, <code>BrowserPanel</code> will <code>.setOpacity</code> to 100% (t
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> MainWindow(Stage primaryStage, Config config, UserPrefs prefs, Logic logic) {
-...
-ThemeCommand.setRegion(getRoot());
-}
-----</code></pre>
+    ...
+    ThemeCommand.setRegion(getRoot());
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -415,53 +402,66 @@ ThemeCommand.setRegion(getRoot());
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> BrowserPanel() {
-...
-browser.setOpacity(<span class="integer">0</span>);
+    ...
+    browser.setOpacity(<span class="integer">0</span>);
+}
+
+<span class="directive">private</span> <span class="type">void</span> handlePersonPanelSelectionChangedEvent(PersonPanelSelectionChangedEvent event) {
+    ...
+    browser.setOpacity(<span class="integer">100</span>);
 }</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>private void handlePersonPanelSelectionChangedEvent(PersonPanelSelectionChangedEvent event) {
-&#8230;&#8203;
-browser.setOpacity(100);
-}</p>
+<p>The following sequence diagram shows how the theme (ThemeCommandParser) operation works:</p>
 </div>
-<div class="listingblock">
+<div class="imageblock">
 <div class="content">
-<pre>The following sequence diagram shows how the theme (ThemeCommandParser) operation works:
-
-image::ThemeCommandParser.png[]
-
-The following sequence diagram shows how the theme (ThemeCommand) operation works:
-
-image::ThemeCommand.png[]
-
-==== Design Considerations
-*Aspect:* Implementation of ThemeCommand +
-*Alternative 1 (Current choice):* Enable `MainWindow` at start to set/give ThemeCommand its `Region` before utilizing setTheme +
-method to switch stylesheet. +
-*Pros:* Prevent unnecessary re-access to retrieve application `Region` or access to other `class` file. +
-Check if file exist and clear current stylesheet before changing the new style. +
-*Cons:* There are many other ways to change the styling of application (e.g. Utilizing `ChangeThemeRequestEvent` and call +
-methods in MainWindow) +
-*Alternative 2:* Utilizing `ChangeThemeRequestEvent` and allow `MainWindow` to handle the RequestEvent and call method to +
-change theme. +
-*Pros:* ThemeCommand will have lesser responsibility and checks to validate. +
-*Cons:* A class should follow `Single Responsibility Principle`. Method that is not supposed to be called through `MainWindow` +
-should be avoided.
-
-
-#End of Extract#
----
-
-=== Other contributions
-
-* Updated the GUI layout and color scheme, logo (Pull requests https://github.com[#7], https://github.com[#15], https://github.com[#10], https://github.com[#33])
-* Wrote default functionality for developer guide 'Use case' (textual form) (Pull requests https://github.com[#10])
-* Wrote additional tests to increase coverage (Pull requests all)
-
-{To be included in the future}</pre>
+<img src="../images/ThemeCommandParser.png" alt="ThemeCommandParser">
 </div>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the theme (ThemeCommand) operation works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ThemeCommand.png" alt="ThemeCommand">
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Implementation of ThemeCommand<br>
+<strong>Alternative 1 (Current choice):</strong> Enable <code>MainWindow</code> at start to set/give ThemeCommand its <code>Region</code> before utilizing setTheme method to switch stylesheet.<br>
+<strong>Pros:</strong> Prevent unnecessary re-access to retrieve application <code>Region</code> or access to other <code>class</code> file. Check if file exist and clear current stylesheet before changing the new style.<br>
+<strong>Cons:</strong> There are many other ways to change the styling of application (e.g. Utilizing <code>ChangeThemeRequestEvent</code> and call methods in <code>MainWindow</code>)<br>
+<strong>Alternative 2:</strong> Utilizing <code>ChangeThemeRequestEvent</code> and allow <code>MainWindow</code> to handle the RequestEvent and call method to change theme.<br>
+<strong>Pros:</strong> ThemeCommand will have lesser responsibility and checks to validate.<br>
+<strong>Cons:</strong> A class should follow <code>Single Responsibility Principle</code>. Method that is not supposed to be called through <code>MainWindow</code> should be avoided.</p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark>
+---</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="other-contributions"><a class="link" href="#other-contributions">Other contributions</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Updated the GUI layout and color scheme, logo (Pull requests <a href="https://github.com">#7</a>, <a href="https://github.com">#15</a>, <a href="https://github.com">#10</a>, <a href="https://github.com">#33</a>)</p>
+</li>
+<li>
+<p>Wrote default functionality for developer guide 'Use case' (textual form) (Pull requests <a href="https://github.com">#10</a>)</p>
+</li>
+<li>
+<p>Wrote additional tests to increase coverage (Pull requests all)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>{To be included in the future}</p>
 </div>
 </div>
 </div>
@@ -469,7 +469,7 @@ should be avoided.
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-10-26 16:41:11 +00:00
+Last updated 2017-10-26 18:14:53 +00:00
 </div>
 </div>
 </body>
