@@ -49,6 +49,7 @@
 <li><a href="#configuration">3.3. Configuration</a></li>
 <li><a href="#setting-of-homepage-for-a-code-person-code">3.4. Setting of homepage for a <code>Person</code></a></li>
 <li><a href="#sort-mechanism">3.5. Sort mechanism</a></li>
+<li><a href="#avatar-mechanism">3.6. Avatar mechanism</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -923,6 +924,181 @@ The following sequence diagrams shows how the sort mechanism works:</p>
 <div class="imageblock">
 <div class="content">
 <img src="images/SortSequenceDiagram.png" alt="SortSequenceDiagram">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="avatar-mechanism"><a class="link" href="#avatar-mechanism">3.6. Avatar mechanism</a></h3>
+<div class="sect3">
+<h4 id="logic-and-model-implementation"><a class="link" href="#logic-and-model-implementation">3.6.1. Logic and Model implementation</a></h4>
+<div class="paragraph">
+<p>The avatar mechanism is facilitated by the using <code>ImageView</code> in <code>JavaFX</code> to display the avatar in the UI.<br>
+The main driver to create an <code>Avatar</code> is handled by <code>SetAvatarCommandParser</code>, which is invoked after <code>AddressBookParser</code>
+parses the arguments provided by the user.</p>
+</div>
+<div class="paragraph">
+<p>The following sequence diagrams shows how the setting of avatar is achieved:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SetAvatarCommandParserSequenceDiagram.png" alt="SetAvatarCommandParserSequenceDiagram">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SetAvatarCommandSequenceDiagram.png" alt="SetAvatarCommandSequenceDiagram" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>The arguments needed are <code>INDEX</code> and <code>AVATAR_URL</code>.<br>
+An <code>Avatar</code> object is created using <code>AVATAR_URL</code> before being passed as a parameter into the creation of the <code>SetAvatarCommand</code>
+object.</p>
+</div>
+<div class="paragraph">
+<p>The <code>Avatar</code> class performs a series of validity checks to ensure the URL provided is valid. Validity is defined by having:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>A valid URL OR is empty</p>
+</li>
+<li>
+<p>The image must not be larger than 20KB (due to application slowdowns if the file is too big)</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><code>SetAvatarCommand</code> also performs a series of checks in order to decide the steps to take before editing the <code>Person</code> referenced.<br>
+Below is the code snippet of <code>SetAvatarCommand</code> for the various checks:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"> <span class="directive">public</span> CommandResult executeUndoableCommand() <span class="directive">throws</span> CommandException {
+     <span class="comment">// ... irrelevent logic ...</span>
+
+     <span class="comment">// avatar refers to the avatar object created during the construction of SetAvatarCommand</span>
+     <span class="keyword">if</span> (<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>.equals(avatar.path) &amp;&amp; !<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>.equals(personToSetAvatarPath)) { <span class="comment">// delete image from storage</span>
+            ProcessImageFromUrlToFileForAvatar.removeImageFromStorage(personToSetAvatarPath);
+         } <span class="keyword">else</span> {
+             <span class="keyword">if</span> (!<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>.equals(personToSetAvatarPath)) {   <span class="comment">// has a previously set avatar, remove first before processing</span>
+                ProcessImageFromUrlToFileForAvatar.removeImageFromStorage(personToSetAvatarPath);
+             }
+         }
+     }
+ }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The utility class <code>ProcessImageFromUrlToFileForAvatar</code> is used to process images retrieved from the Internet. It contains
+two methods&#8201;&#8212;&#8201;<code>writeImageToFile(&#8230;&#8203;)</code> and <code>removeImageFromStorage(&#8230;&#8203;)</code> which stores the image into the
+<code>DEFAULT_AVATAR_FILE_LOCATION</code> and removes the image respectively.<br>
+Below is the code snippet of the write method:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="type">void</span> writeImageToFile(<span class="predefined-type">String</span> path) {
+    <span class="comment">// ... irrelevant ...</span>
+
+    <span class="comment">// Using hashCode() + checking if file exists assures uniqueness of name of created file</span>
+    <span class="predefined-type">File</span> file = <span class="keyword">new</span> <span class="predefined-type">File</span>(DEFAULT_AVATAR_FILE_LOCATION + path.hashCode() + <span class="string"><span class="delimiter">&quot;</span><span class="content">.jpg</span><span class="delimiter">&quot;</span></span>);
+    <span class="keyword">while</span> (file.exists()) {
+        file = <span class="keyword">new</span> <span class="predefined-type">File</span>(DEFAULT_AVATAR_FILE_LOCATION + (path.hashCode() + ++i) + <span class="string"><span class="delimiter">&quot;</span><span class="content">.jpg</span><span class="delimiter">&quot;</span></span>);
+    }
+    <span class="predefined-type">ImageIO</span>.write(image, <span class="string"><span class="delimiter">&quot;</span><span class="content">jpg</span><span class="delimiter">&quot;</span></span>, file);
+    <span class="keyword">return</span> file.getPath().replace(<span class="string"><span class="delimiter">'</span><span class="char">\\</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">/</span><span class="delimiter">'</span></span>);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As <code>SetAvatarCommand</code> is an <code>UndoableCommand</code>, <code>removeImageFromStorage(&#8230;&#8203;)</code> only deletes the image when the application exits,
+in order to allow the user to undo the command.<br>
+Below is the code snipper of the remove method:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="type">void</span> removeImageFromStorage(<span class="predefined-type">String</span> path) {
+    <span class="predefined-type">File</span> file = <span class="keyword">new</span> <span class="predefined-type">File</span>(path);
+    file.deleteOnExit();    <span class="comment">// so as to allow undoable command</span>
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="storage-implementation"><a class="link" href="#storage-implementation">3.6.2. Storage implementation</a></h4>
+<div class="paragraph">
+<p><code>AvatarStorage</code> is called during <code>Model</code> initialization to check for the existence of an <code>avatar</code> folder.
+If the folder does not exist, the folder will be created to store the avatar images.<br>
+Below is the code snippet for the relevant code flow:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">private</span> Model initModelManager(Storage storage, UserPrefs userPrefs, AvatarStorage avatarStorage) {
+    <span class="comment">// ... other logic ...</span>
+
+    avatarDirectoryPath = userPrefs.getAvatarFileDirectoryPath();
+    <span class="keyword">if</span> (!<span class="keyword">new</span> <span class="predefined-type">File</span>(avatarDirectoryPath).exists()) {
+        logger.info(<span class="string"><span class="delimiter">&quot;</span><span class="content">Directory not found. Will be attempting to create new directory</span><span class="delimiter">&quot;</span></span>);
+        avatarStorage.createDirectory(avatarDirectoryPath);
+    }
+    <span class="comment">// ... other logic ...</span>
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="ui-implementation"><a class="link" href="#ui-implementation">3.6.3. Ui implementation</a></h4>
+<div class="paragraph">
+<p>The <code>PersonCard</code> is updated via the <code>bindListeners()</code>. The loose sequence diagram is displayed below:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SetAvatarUISequenceDiagram.png" alt="SetAvatarUISequenceDiagram">
+</div>
+</div>
+<div class="paragraph">
+<p>Below is a more in-depth look at <code>initImage()</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="comment">/**
+ * Binds the correct image to the person.
+ * If url is &quot;&quot;, default display picture will be assigned, else image from URL will be assigned
+ */</span>
+<span class="directive">private</span> <span class="type">void</span> initImage(ReadOnlyPerson person) {
+    <span class="predefined-type">String</span> path = person.getAvatar().toString();
+    <span class="predefined-type">Image</span> image;
+    <span class="keyword">if</span> (!<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>.equals(path)) {   <span class="comment">// not default image</span>
+        <span class="predefined-type">File</span> file = <span class="keyword">new</span> <span class="predefined-type">File</span>(path);
+        image = <span class="keyword">new</span> <span class="predefined-type">Image</span>(file.toURI().toString());
+        avatar.setImage(image);
+        avatar.setFitHeight(<span class="integer">90</span>);
+        avatar.setPreserveRatio(<span class="predefined-constant">true</span>);
+        avatar.setCache(<span class="predefined-constant">true</span>);
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.6.4. Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Saving of image from URL to local disk<br>
+<strong>Alternative 1 (Current choice):</strong> File is saved during construction of <code>Avatar</code> in <code>SetAvatarCommand</code>, before the Avatar is set to a <code>Person</code><br>
+<strong>Pros:</strong> Filepath (not URL) of avatar class will be ascertained during binding to <code>editedPerson</code><br>
+<strong>Cons:</strong> New developers might find it hard to follow the sequence<br>
+<strong>Alternative 2:</strong> Only save file after <code>Avatar</code> has been assigned to <code>Person</code>, assign URL as path when assigning before file is saved.<br>
+<strong>Pros:</strong> Easier for developers to follow the sequence flow<br>
+<strong>Cons:</strong> Possibility of program crashing (<code>NullPointerException</code>) if URL is added and Internet connection is disrupted before file creation is invoked.<br></p>
+</div>
+<hr>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Image source<br>
+<strong>Alternative 1 (Current choice):</strong> Only accept image URL from the Internet<br>
+<strong>Pros:</strong> Easy for user to input source; Check guarantees validity of image from "HEAD" request<br>
+<strong>Cons:</strong> Requires internet connection.<br>
+<strong>Alternative 2:</strong> Accept images from user&#8217;s local disk in addition from the Internet<br>
+<strong>Pros:</strong> Natural extension of a function to set avatar.<br>
+<strong>Cons:</strong> Difficult for user to input source; difficulty in writing code to ascertain if file entered is entered.</p>
 </div>
 </div>
 </div>
@@ -3072,7 +3248,7 @@ Use case ends.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-10-26 02:11:20 +00:00
+Last updated 2017-10-26 07:34:19 +00:00
 </div>
 </div>
 </body>
