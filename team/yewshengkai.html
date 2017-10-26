@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.3">
+<title>Yew Sheng Kai - Project Portfolio</title>
+<link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>Yew Sheng Kai - Project Portfolio</h1>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="project-iungo"><a class="link" href="#project-iungo">Project: iungo</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>iungo is a desktop address book application used for learning Software Engineering principles. The user interacts with
+it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 6 kLoC.</p>
+</div>
+<div class="paragraph">
+<p><strong>Code contributed</strong>: [<a href="https://github.com">Functional code</a>] [<a href="https://github.com">Test code</a>] {give links to collated code files}</p>
+</div>
+<div class="sect2">
+<h3 id="enhancement-added-find-findany-feature-with-prefixes"><a class="link" href="#enhancement-added-find-findany-feature-with-prefixes">Enhancement Added: Find/Findany feature with prefixes</a></h3>
+<div class="sect3">
+<h4 id="external-behavior"><a class="link" href="#external-behavior">External behavior</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: User Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="locating-persons-by-name-code-find-code"><a class="link" href="#locating-persons-by-name-code-find-code">Locating persons by name: <code>find</code></a></h3>
+<div class="paragraph">
+<p>Finds persons whose details contain any of the given specified keywords.<br>
+Format: <code>find or findany KEYWORD [MORE_KEYWORDS]</code><br>
+<code>[p/PHONE] KEYWORD [MORE_KEYWORDS]</code><br>
+<code>[e/EMAIL] KEYWORD [MORE_KEYWORDS]</code><br>
+<code>[a/ADDRESS] KEYWORD [MORE_KEYWORDS]</code><br>
+<code>[h/HOMEPAGE] KEYWORD [MORE_KEYWORDS]</code><br>
+<code>[t/TAG] KEYWORD [MORE_KEYWORDS]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The search is case insensitive. e.g <code>hans</code> will match <code>Hans</code></p>
+</li>
+<li>
+<p>The order of the keywords does not matter. e.g. <code>Hans Bo</code> will match <code>Bo Hans</code></p>
+</li>
+<li>
+<p>Fields are optional (having no options default to finding name).</p>
+</li>
+<li>
+<p>Either full words or partial words can be matched e.g. <code>Han</code> will not match <code>Hannons</code> or <code>non</code> will match <code>Hannons</code></p>
+</li>
+<li>
+<p>Persons matching at least one keyword will be returned (i.e. <code>OR</code> search). e.g. <code>Hans Bo</code> will return <code>Hans Gruber</code>, <code>Bo Yang</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="paragraph">
+<p>Find by <code>Name</code>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>find John</code><br>
+Returns <code>john</code> and <code>John Doe</code> but does not return <code>Johnson</code></p>
+</li>
+<li>
+<p><code>find Betsy Tim John</code><br>
+Returns any person having names <code>Betsy</code>, <code>Tim</code>, or <code>John</code> but does not return <code>Johnson</code></p>
+</li>
+<li>
+<p><code>findany john</code><br>
+Returns <code>Johnson</code> and <code>John Doe</code></p>
+</li>
+<li>
+<p><code>findany Betsy Tim John</code><br>
+Returns any person having names <code>Betsy</code>, <code>Timothy</code>, or <code>Johnson</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Find by <code>Phone</code>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>find p/9123456</code><br>
+Returns any person having phone <code>9123456</code></p>
+</li>
+<li>
+<p><code>find p/9123456 8123456</code><br>
+Returns any person having phone <code>9123456</code>, <code>8123456</code></p>
+</li>
+<li>
+<p><code>findany p/9123</code><br>
+Returns <code>9123456</code>, <code>91234888</code></p>
+</li>
+<li>
+<p><code>findany p/123 777 888</code><br>
+Returns any person having phone <code>9123456</code>, <code>8123456</code>, <code>8777666</code>, or <code>9888555</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+<div class="sect3">
+<h4 id="justification"><a class="link" href="#justification">Justification</a></h4>
+<div class="paragraph">
+<p>Previous behaviour of find operation did not allow the user to search for other details except for their name.</p>
+</div>
+<div class="paragraph">
+<p>This implementation now enhances the usability of the application by allowing the user to utilizes different prefixes to search
+for single/multiple contact details or a portion of details.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation"><a class="link" href="#implementation">Implementation</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="find-mechanism"><a class="link" href="#find-mechanism">Find mechanism</a></h3>
+<div class="paragraph">
+<p>The find mechanism is facilitated by the <code>FindCommand</code>. <code>FindCommandParser</code> utilizes <code>ArgumentTokenizer</code> to tokenize<br>
+arguments string and returns an <code>ArgumentMultimap</code> object that maps prefixes to their respective argument values whereby<br>
+only the given prefixes (e.g. p/, e/) will be recognized in the arguments string. After which, <code>FindCommandParser</code><br>
+utilizes <code>arePrefixesPresent</code> method to retrieve the string which utilizes <code>ParserUtil</code> to check the validity of string<br>
+expression.</p>
+</div>
+<div class="paragraph">
+<p>Finally, <code>PersonContainsKeyWordsPredicate</code> will retrieve any matching string by the given command and prefixes residing in<br>
+the address book in which <code>FindCommand</code> will execute and return the results base on the matched string.</p>
+</div>
+<div class="paragraph">
+<p>The find mechanism support both <code>find</code> and <code>findany</code> command in which enables the search of single/multiple <code>Person</code> at once<br>
+and lists their details (e.g. find john mary brook).</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If no prefixes are present, <code>find</code> command will search for the name of <code>Person</code> in the address book by default.
+(e.g find [NAME]).
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>findany</code> command is able to search a portion of the <code>Person</code> details (e.g. <code>findany</code> ohn, returns a list of <code>Person</code><br>
+whose contains ohn. Result: John, Fohnny, Johnny).
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><code>FindCommandParser</code> code snippet to determine if user&#8217;s input contains any parameter:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="keyword">if</span> (arePrefixesPresent(argMultimap, PREFIX_ADDRESS)) {
+    <span class="predefined-type">ArrayList</span>&lt;<span class="predefined-type">String</span>&gt; keywordsList = ParserUtil.parseAllDetail(argMultimap.getAllValues(PREFIX_ADDRESS),
+            FindCommand.COMMAND_WORD_ADDRESS);
+    <span class="keyword">return</span> <span class="keyword">new</span> FindCommand(<span class="keyword">new</span> PersonContainsKeywordsPredicate(
+            FindCommand.COMMAND_WORD_ADDRESS, keywordsList, isCaseIgnored));
+} <span class="keyword">else</span> <span class="keyword">if</span> (arePrefixesPresent(argMultimap, PREFIX_EMAIL)) {
+    <span class="predefined-type">ArrayList</span>&lt;<span class="predefined-type">String</span>&gt; keywordsList = ParserUtil.parseAllDetail(argMultimap.getAllValues(PREFIX_EMAIL),
+            FindCommand.COMMAND_WORD_EMAIL);
+    <span class="keyword">return</span> <span class="keyword">new</span> FindCommand(<span class="keyword">new</span> PersonContainsKeywordsPredicate(
+            FindCommand.COMMAND_WORD_EMAIL, keywordsList, isCaseIgnored));
+}
+...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>PersonContainsKeywordsPredicate</code> code snippet to determine if address book contains the matched string:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="keyword">switch</span> (commandWord) {
+
+<span class="keyword">case</span> FindCommand.COMMAND_WORD:
+    <span class="keyword">return</span> keywords.stream()
+            .anyMatch(keyword -&gt; StringUtil.containsWordIgnoreCase(
+                    person.getName().fullName, keyword, isCaseIgnored));
+<span class="keyword">case</span> FindCommand.COMMAND_WORD_ADDRESS:
+    <span class="keyword">return</span> keywords.stream()
+            .anyMatch(keyword -&gt; StringUtil.containsWordIgnoreCase(
+                    person.getAddress().value, keyword, isCaseIgnored));
+...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the find (FindCommandParser) operation works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/FindCommandParserArgumentTokenizer.png" alt="FindCommandParserArgumentTokenizer">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/FindCommandParserArePrefixesPresent.png" alt="FindCommandParserArePrefixesPresent">
+</div>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the find (FindCommand) operation works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/FindCommand.png" alt="FindCommand">
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Implementation of FindCommandParser<br>
+<strong>Alternative 1 (Current choice):</strong> Utilize ArgumentMultimap and ArgumentTokenizer to store all usable prefixes. Uses<br>
+if-else statement to check if any prefixes are present when user execute the find operation.<br>
+<strong>Pros:</strong> If user entered invalid command, the application will not crash but will instead return an invalid command message.<br>
+<strong>Cons:</strong> New developers will have to take note to include new prefixes in ArgumentMultimap when adding new prefixes.<br>
+Program will have to loop through if-else statement before determine which to execute.<br>
+<strong>Alternative 2:</strong> Create multiple find command (e.g. findaddress, findphone) with different prefixes.<br>
+<strong>Pros:</strong> Less complexity in the code and slightly quicker execution, easier for new developers to handle.<br>
+New developers will not miss out certain prefixes to add in unlike Alternative 1.<br>
+<strong>Cons:</strong> Duplicated find command with similar functionality which is unnecessary.</p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+</div>
+<div class="sect2">
+<h3 id="enhancement-added-theme"><a class="link" href="#enhancement-added-theme">Enhancement Added: Theme</a></h3>
+<div class="sect3">
+<h4 id="external-behavior-2"><a class="link" href="#external-behavior-2">External behavior</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: User Guide]</mark></p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+<div class="sect3">
+<h4 id="justification-2"><a class="link" href="#justification-2">Justification</a></h4>
+<div class="paragraph">
+<p>Previously, the application only support one theme which makes the address book looks dull and may not be suitable to be viewed by
+user under certain circumstances (e.g. At certain time or day, user might opt for brighter look and feel on the address book)</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation-2"><a class="link" href="#implementation-2">Implementation</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="theme-selector-mechanism"><a class="link" href="#theme-selector-mechanism">Theme selector mechanism</a></h3>
+<div class="paragraph">
+<p>The theme mechanism is facilitated by the <code>ThemeCommand</code>. <code>ThemeCommandParser</code> checks for the input index <code>1</code> to <code>3</code>, validate<br>
+through <code>ParserUtil</code> and calls the relevant <code>ThemeCommand</code> to switch the application <code>theme</code>.</p>
+</div>
+<div class="paragraph">
+<p>When the application run, <code>MainWindow</code> will execute <code>ThemeCommand.setRegion</code> in allowing ThemeCommand to retrieve the application root.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+By default if no index are present, theme command will return an invalid message.
+(e.g theme "").
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+When the application is first initialize, <code>BrowserPanel</code> will <code>.setOpacity</code> to 0% and when <code>handlePersonPanelSelectionChangedEvent</code><br>
+is triggered, <code>BrowserPanel</code> will <code>.setOpacity</code> to 100% (this is done to prevent <code>WebView</code> from displaying the default background color).
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><code>ThemeCommandParser</code> code snippet to determine if user&#8217;s input contains any index:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="keyword">try</span> {
+    Index index = ParserUtil.parseIndex(args);
+    <span class="keyword">return</span> <span class="keyword">new</span> ThemeCommand(index);
+} <span class="keyword">catch</span> (IllegalValueException ive) {
+    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="exception">ParseException</span>(
+            <span class="predefined-type">String</span>.format(MESSAGE_INVALID_COMMAND_FORMAT, ThemeCommand.MESSAGE_USAGE));
+}
+...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>ThemeCommand</code> code snippet to determine the existence of CSS file and clear the current layout before using the new CSS file:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">void</span> setTheme(<span class="predefined-type">String</span> args) <span class="directive">throws</span> CommandException {
+    <span class="keyword">if</span> (MainApp.class.getResource(<span class="string"><span class="delimiter">&quot;</span><span class="content">/view/</span><span class="delimiter">&quot;</span></span> + args + <span class="string"><span class="delimiter">&quot;</span><span class="content">.css</span><span class="delimiter">&quot;</span></span>) == <span class="predefined-constant">null</span>) {
+        <span class="keyword">throw</span> <span class="keyword">new</span> CommandException(Messages.MESSAGE_UNKNOWN_FILEPATH);
+    }
+    region.getStylesheets().clear();
+    region.getStylesheets().add(<span class="string"><span class="delimiter">&quot;</span><span class="content">/view/</span><span class="delimiter">&quot;</span></span> + args + <span class="string"><span class="delimiter">&quot;</span><span class="content">.css</span><span class="delimiter">&quot;</span></span>);
+}
+
+<span class="directive">public</span> <span class="directive">static</span> <span class="type">void</span> setRegion(<span class="predefined-type">Region</span> region) {
+    ThemeCommand.region = region;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>MainWindow</code> code snippet to give/set ThemeCommand <code>Region</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> MainWindow(Stage primaryStage, Config config, UserPrefs prefs, Logic logic) {
+...
+ThemeCommand.setRegion(getRoot());
+}
+----</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>BrowserPanel</code> code snippet to change the opacity of <code>WebView</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> BrowserPanel() {
+...
+browser.setOpacity(<span class="integer">0</span>);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>private void handlePersonPanelSelectionChangedEvent(PersonPanelSelectionChangedEvent event) {
+&#8230;&#8203;
+browser.setOpacity(100);
+}</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>The following sequence diagram shows how the theme (ThemeCommandParser) operation works:
+
+image::ThemeCommandParser.png[]
+
+The following sequence diagram shows how the theme (ThemeCommand) operation works:
+
+image::ThemeCommand.png[]
+
+==== Design Considerations
+*Aspect:* Implementation of ThemeCommand +
+*Alternative 1 (Current choice):* Enable `MainWindow` at start to set/give ThemeCommand its `Region` before utilizing setTheme +
+method to switch stylesheet. +
+*Pros:* Prevent unnecessary re-access to retrieve application `Region` or access to other `class` file. +
+Check if file exist and clear current stylesheet before changing the new style. +
+*Cons:* There are many other ways to change the styling of application (e.g. Utilizing `ChangeThemeRequestEvent` and call +
+methods in MainWindow) +
+*Alternative 2:* Utilizing `ChangeThemeRequestEvent` and allow `MainWindow` to handle the RequestEvent and call method to +
+change theme. +
+*Pros:* ThemeCommand will have lesser responsibility and checks to validate. +
+*Cons:* A class should follow `Single Responsibility Principle`. Method that is not supposed to be called through `MainWindow` +
+should be avoided.
+
+
+#End of Extract#
+---
+
+=== Other contributions
+
+* Updated the GUI layout and color scheme, logo (Pull requests https://github.com[#7], https://github.com[#15], https://github.com[#10], https://github.com[#33])
+* Wrote default functionality for developer guide 'Use case' (textual form) (Pull requests https://github.com[#10])
+* Wrote additional tests to increase coverage (Pull requests all)
+
+{To be included in the future}</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2017-10-26 16:10:43 +00:00
+</div>
+</div>
+</body>
+</html>
