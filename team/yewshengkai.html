@@ -325,7 +325,7 @@ user under certain circumstances (e.g. At certain time or day, user might opt fo
 <p>The theme mechanism is facilitated by the <code>ThemeCommand</code>. <code>ThemeCommandParser</code> checks for the input index <code>1</code> to <code>3</code>, validate through <code>ParserUtil</code> and calls the relevant <code>ThemeCommand</code> to switch the application <code>theme</code>.</p>
 </div>
 <div class="paragraph">
-<p>When the application run, <code>MainWindow</code> will execute <code>ThemeCommand.setRegion</code> in allowing ThemeCommand to retrieve the application root.</p>
+<p><code>ThemeCommand</code> relies on <code>ChangeThemeRequestEvent</code> which is handled by <code>MainWindow</code> in allowing the application to set theme.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -353,7 +353,24 @@ When the application is first initialize, <code>BrowserPanel</code> will <code>.
 </table>
 </div>
 <div class="paragraph">
-<p><code>ThemeCommandParser</code> code snippet to determine if user&#8217;s input contains any index:</p>
+<p><code>ThemeCommand</code> code snippet to ensure input index is not more than the specified theme list and calls the relevant <code>ChangeThemeRequestEvent</code> handler to switch theme based on the input index:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> CommandResult execute() <span class="directive">throws</span> CommandException {
+    <span class="predefined-type">String</span><span class="type">[]</span> themeList = {<span class="string"><span class="delimiter">&quot;</span><span class="content">NoTheme</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">BlueTheme</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">DarkTheme</span><span class="delimiter">&quot;</span></span>};
+
+    <span class="keyword">if</span> (targetIndex.getZeroBased() &gt;= themeList.length) {
+        <span class="keyword">throw</span> <span class="keyword">new</span> CommandException(Messages.MESSAGE_INVALID_THEME_INDEX);
+    }
+
+    EventsCenter.getInstance().post(<span class="keyword">new</span> ChangeThemeRequestEvent(targetIndex));
+    <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(<span class="predefined-type">String</span>.format(MESSAGE_THEME_SUCCESS, targetIndex.getOneBased()));
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>ThemeCommandParser</code> code snippet to determine if user&#8217;s input contains any index and returns message for invalid input or format:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -368,31 +385,56 @@ When the application is first initialize, <code>BrowserPanel</code> will <code>.
 </div>
 </div>
 <div class="paragraph">
-<p><code>ThemeCommand</code> code snippet to determine the existence of CSS file and clear the current layout before using the new CSS file:</p>
+<p><code>ChangeThemeRequestEvent</code> code snippet that receive and convert the Index parse from <code>ThemeCommand</code> and set to integer targetIndex:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">void</span> setTheme(<span class="predefined-type">String</span> args) <span class="directive">throws</span> CommandException {
-    <span class="keyword">if</span> (MainApp.class.getResource(<span class="string"><span class="delimiter">&quot;</span><span class="content">/view/</span><span class="delimiter">&quot;</span></span> + args + <span class="string"><span class="delimiter">&quot;</span><span class="content">.css</span><span class="delimiter">&quot;</span></span>) == <span class="predefined-constant">null</span>) {
-        <span class="keyword">throw</span> <span class="keyword">new</span> CommandException(Messages.MESSAGE_UNKNOWN_FILEPATH);
-    }
-    region.getStylesheets().clear();
-    region.getStylesheets().add(<span class="string"><span class="delimiter">&quot;</span><span class="content">/view/</span><span class="delimiter">&quot;</span></span> + args + <span class="string"><span class="delimiter">&quot;</span><span class="content">.css</span><span class="delimiter">&quot;</span></span>);
-}
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="directive">final</span> <span class="type">int</span> targetIndex;
 
-<span class="directive">public</span> <span class="directive">static</span> <span class="type">void</span> setRegion(<span class="predefined-type">Region</span> region) {
-    ThemeCommand.region = region;
+<span class="directive">public</span> ChangeThemeRequestEvent(Index targetIndex) {
+    <span class="local-variable">this</span>.targetIndex = targetIndex.getOneBased();
 }</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>MainWindow</code> code snippet to give/set ThemeCommand <code>Region</code>:</p>
+<p><code>MainWindow</code> code snippet that handles <code>ChangeThemeRequestEvent</code> and call the method <code>setWindowTheme</code> to switch theme:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> MainWindow(Stage primaryStage, Config config, UserPrefs prefs, Logic logic) {
-    ...
-    ThemeCommand.setRegion(getRoot());
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">private</span> <span class="type">void</span> handleChangeThemeRequestEvent(ChangeThemeRequestEvent event) <span class="directive">throws</span> CommandException {
+    logger.info(LogsCenter.getEventHandlingLogMessage(event));
+    setWindowTheme(event.targetIndex);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>setWindowTheme</code> method code snippet that check for file existence before clearing the current style and applying the newly selected style :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">private</span> <span class="type">void</span> setWindowTheme(<span class="type">int</span> targetIndex) <span class="directive">throws</span> CommandException  {
+    <span class="predefined-type">String</span><span class="type">[]</span> themeList = {<span class="string"><span class="delimiter">&quot;</span><span class="content">NoTheme</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">BlueTheme</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">DarkTheme</span><span class="delimiter">&quot;</span></span>};
+    <span class="predefined-type">String</span> selectedTheme = <span class="keyword">new</span> <span class="predefined-type">String</span>();
+
+    <span class="keyword">switch</span> (targetIndex) {
+    <span class="keyword">case</span> <span class="integer">1</span>:
+        selectedTheme = themeList[<span class="integer">0</span>];
+        <span class="keyword">break</span>;
+    <span class="keyword">case</span> <span class="integer">2</span>:
+        selectedTheme = themeList[<span class="integer">1</span>];
+        <span class="keyword">break</span>;
+    <span class="keyword">case</span> <span class="integer">3</span>:
+        selectedTheme = themeList[<span class="integer">2</span>];
+        <span class="keyword">break</span>;
+    <span class="keyword">default</span>:
+        <span class="keyword">break</span>;
+    }
+
+    <span class="keyword">if</span> (MainApp.class.getResource(<span class="string"><span class="delimiter">&quot;</span><span class="content">/view/</span><span class="delimiter">&quot;</span></span> + selectedTheme + <span class="string"><span class="delimiter">&quot;</span><span class="content">.css</span><span class="delimiter">&quot;</span></span>) == <span class="predefined-constant">null</span>) {
+        <span class="keyword">throw</span> <span class="keyword">new</span> CommandException(Messages.MESSAGE_UNKNOWN_FILEPATH);
+    }
+    getRoot().getStylesheets().clear();
+    getRoot().getStylesheets().add(<span class="string"><span class="delimiter">&quot;</span><span class="content">/view/</span><span class="delimiter">&quot;</span></span> + selectedTheme + <span class="string"><span class="delimiter">&quot;</span><span class="content">.css</span><span class="delimiter">&quot;</span></span>);
 }</code></pre>
 </div>
 </div>
@@ -413,14 +455,6 @@ When the application is first initialize, <code>BrowserPanel</code> will <code>.
 </div>
 </div>
 <div class="paragraph">
-<p>The following sequence diagram shows how the theme (ThemeCommandParser) operation works:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/ThemeCommandParser.png" alt="ThemeCommandParser">
-</div>
-</div>
-<div class="paragraph">
 <p>The following sequence diagram shows how the theme (ThemeCommand) operation works:</p>
 </div>
 <div class="imageblock">
@@ -428,16 +462,24 @@ When the application is first initialize, <code>BrowserPanel</code> will <code>.
 <img src="../images/ThemeCommand.png" alt="ThemeCommand">
 </div>
 </div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the theme (ThemeCommandParser) operation works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ThemeCommandParser.png" alt="ThemeCommandParser">
+</div>
+</div>
 <div class="sect3">
 <h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">Design Considerations</a></h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Implementation of ThemeCommand<br>
-<strong>Alternative 1 (Current choice):</strong> Enable <code>MainWindow</code> at start to set/give ThemeCommand its <code>Region</code> before utilizing setTheme method to switch stylesheet.<br>
-<strong>Pros:</strong> Prevent unnecessary re-access to retrieve application <code>Region</code> or access to other <code>class</code> file. Check if file exist and clear current stylesheet before changing the new style.<br>
-<strong>Cons:</strong> There are many other ways to change the styling of application (e.g. Utilizing <code>ChangeThemeRequestEvent</code> and call methods in <code>MainWindow</code>)<br>
-<strong>Alternative 2:</strong> Utilizing <code>ChangeThemeRequestEvent</code> and allow <code>MainWindow</code> to handle the RequestEvent and call method to change theme.<br>
-<strong>Pros:</strong> ThemeCommand will have lesser responsibility and checks to validate.<br>
-<strong>Cons:</strong> A class should follow <code>Single Responsibility Principle</code>. Method that is not supposed to be called through <code>MainWindow</code> should be avoided.</p>
+<strong>Alternative 1 (Current choice):</strong> Utilizing <code>ChangeThemeRequestEvent</code> and allow <code>MainWindow</code> to handle the RequestEvent and call method to change application theme.<br>
+<strong>Pros:</strong> ThemeCommand will have lesser responsibility and checks to validate (efficiency).<br>
+<strong>Cons:</strong> There are other effective way in changing the application theme without the process of parsing and event handling whereby new programmer may find it difficult to understand the behavior.<br>
+<strong>Alternative 2:</strong> Allow <code>MainWindow</code> at start to instantiate ThemeCommand and pass/set its <code>Region</code> to ThemeCommand, allowing accessibility from within. After which, utilize setTheme method in ThemeCommand to switch application theme.<br>
+<strong>Pros:</strong> Straight forward, easier for new programmer to understand.<br>
+<strong>Cons:</strong> There could be a breach in security as <code>ThemeCommand</code> should not be allowed to obtain <code>MainWindow</code> <code>Region</code> and hold it indefinitely.</p>
 </div>
 <div class="paragraph">
 <p><mark>End of Extract</mark>
@@ -469,7 +511,7 @@ When the application is first initialize, <code>BrowserPanel</code> will <code>.
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-02 07:27:34 +00:00
+Last updated 2017-11-02 08:37:24 +00:00
 </div>
 </div>
 </body>
