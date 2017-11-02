@@ -52,6 +52,9 @@
 <li><a href="#avatar-mechanism">3.6. Avatar mechanism</a></li>
 <li><a href="#find-mechanism">3.7. Find mechanism</a></li>
 <li><a href="#theme-mechanism">3.8. Theme mechanism</a></li>
+<li><a href="#gmap-mechanism">3.9. Gmap mechanism</a></li>
+<li><a href="#about-mechanism">3.10. About mechanism</a></li>
+<li><a href="#remark-mechanism">3.11. Remark mechanism</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -1375,6 +1378,282 @@ When the application is first initialize, <code>BrowserPanel</code> will <code>.
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="gmap-mechanism"><a class="link" href="#gmap-mechanism">3.9. Gmap mechanism</a></h3>
+<div class="paragraph">
+<p>The gmap mechanism is facilitated by the <code>GmapCommand</code>. <code>GmapCommandParser</code> checks for input index and validate through <code>ParserUtil</code> and calls the relevant <code>GmapCommand</code> to search for <code>Person</code> address using Google Map.</p>
+</div>
+<div class="paragraph">
+<p><code>GmapCommand</code> relies on <code>MapToListRequestEvent</code> which is handled by <code>BrowserPanel</code> to call the appropriate method for loading <code>Person</code> address using Google Map.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+By default if no index are present, gmap command will return an invalid message.
+(e.g gmap "").
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Events which triggers <code>PersonSideCardRequestEvent</code> handler, set the visibility of <code>Person</code> side panel card (Allow more display and exposure to the Web Browser).
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><code>GmapCommand</code> code snippet to ensure input index is within the PersonList, and calls the relevant <code>MapToListRequestevent</code> handler to search <code>Person</code> address on Google Map:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="keyword">try</span> {
+<span class="directive">public</span> CommandResult execute() <span class="directive">throws</span> CommandException {
+    <span class="predefined-type">List</span>&lt;ReadOnlyPerson&gt; lastShownList = model.getFilteredPersonList();
+    <span class="keyword">if</span> (targetIndex.getZeroBased() &gt;= lastShownList.size()) {
+        <span class="keyword">throw</span> <span class="keyword">new</span> CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+    EventsCenter.getInstance().post(<span class="keyword">new</span> MapToListRequestEvent(lastShownList.get(targetIndex.getZeroBased())));
+    <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(<span class="predefined-type">String</span>.format(MESSAGE_SELECT_PERSON_SUCCESS, targetIndex.getOneBased()));
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>GmapCommandParser</code> code snippet to check if user&#8217;s input contains any index and returns message if there exist invalid input:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> GmapCommand parse(<span class="predefined-type">String</span> args) <span class="directive">throws</span> <span class="exception">ParseException</span> {
+    <span class="keyword">try</span> {
+        Index index = ParserUtil.parseIndex(args);
+        <span class="keyword">return</span> <span class="keyword">new</span> GmapCommand(index);
+    } <span class="keyword">catch</span> (IllegalValueException ive) {
+        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="exception">ParseException</span>(
+                <span class="predefined-type">String</span>.format(MESSAGE_INVALID_COMMAND_FORMAT, GmapCommand.MESSAGE_USAGE));
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>BrowserPanel</code> code snippet that handle <code>MapToListRequestEvent</code> and load the method to search on Google Map:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">private</span> <span class="type">void</span> loadPersonMap(ReadOnlyPerson targetPerson) {
+    loadPage(GOOGLE_MAP_SEARCH_URL_PREFIX + targetPerson.getAddress().value
+            .replaceAll(<span class="string"><span class="delimiter">&quot;</span><span class="content">,</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>));
+}
+<span class="directive">private</span> <span class="type">void</span> handlePersonPanelGmapChangedEvent(MapToListRequestEvent event) {
+    logger.info(LogsCenter.getEventHandlingLogMessage(event));
+    loadPersonMap(event.targetPerson);
+    browser.setOpacity(<span class="integer">100</span>);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>PersonSideCard</code> code snippet that handles <code>PersonSideCardRequestEvent</code> and set Person card side panel visibility:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">private</span> <span class="type">void</span> showSidePanel(<span class="type">boolean</span> isVisible) {
+    getRoot().setManaged(isVisible);
+    <span class="type">int</span> opacityLevel;
+    <span class="keyword">if</span> (isVisible) {
+        opacityLevel =  <span class="integer">100</span>;
+    } <span class="keyword">else</span> {
+        opacityLevel = <span class="integer">0</span>;
+    }
+    getRoot().setOpacity(opacityLevel);
+}
+<span class="annotation">@Subscribe</span>
+<span class="directive">private</span> <span class="type">void</span> handlePersonSideCardPanelChangedEvent(PersonSideCardRequestEvent event) {
+    logger.info(LogsCenter.getEventHandlingLogMessage(event));
+    showSidePanel(event.isVisible);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the (GmapCommand) operation works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/GmapCommand.png" alt="GmapCommand">
+</div>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the (GmapCommandParser) operation works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/GmapCommandParser.png" alt="GmapCommandParser">
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">3.9.1. Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Implementation of GmapCommand<br>
+<strong>Alternative 1 (Current choice):</strong> Utilizes event handler to call and load the person address on Google Map. <br>
+<strong>Pros:</strong> Better user experience. And ensures that the web browser won&#8217;t be obstruct by <code>PersonSideCard</code> panel with another event handler that controls the visibility.<br>
+<strong>Cons:</strong> We could always utilizes library and implement the <code>PersonSideCard</code> panel.<br>
+<strong>Alternative 2:</strong> Load the person address on Google Map on <code>select</code> command. <br>
+<strong>Pros:</strong> Reduce the need of having extra command to load person address<br>
+<strong>Cons:</strong> Only able to do one search feature using the web browser<br></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="about-mechanism"><a class="link" href="#about-mechanism">3.10. About mechanism</a></h3>
+<div class="paragraph">
+<p>The about mechanism is facilitated by the <code>AboutCommand</code>.</p>
+</div>
+<div class="paragraph">
+<p><code>AboutCommand</code> relies on <code>ShowAboutRequestEvent</code> which is handled by <code>MainWindow</code> to call the appropriate method to load the <code>AboutWindow</code>.</p>
+</div>
+<div class="paragraph">
+<p><code>AboutCommand</code> code snippet that calls the relevant <code>ShowAboutRequestEvent</code> handler to open <code>AboutWindow</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">    <span class="directive">public</span> CommandResult execute() {
+        EventsCenter.getInstance().post(<span class="keyword">new</span> ShowAboutRequestEvent());
+        <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(SHOWING_ABOUT_MESSAGE);
+    }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>MainWindow</code> code snippet that handle <code>ShowAboutRequestEvent</code> and call the method to display <code>AboutWindow</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@FXML</span>
+<span class="directive">public</span> <span class="type">void</span> handleAbout() {
+    AboutWindow aboutWindow = <span class="keyword">new</span> AboutWindow();
+    aboutWindow.show();
+}
+<span class="annotation">@Subscribe</span>
+<span class="directive">private</span> <span class="type">void</span> handleShowAboutEvent(ShowAboutRequestEvent event) {
+    logger.info(LogsCenter.getEventHandlingLogMessage(event));
+    handleAbout();
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the (AboutCommand) operation works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/AboutCommand.png" alt="AboutCommand">
+</div>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the <code>MainWindow</code> that handles ShowAboutRequestEvent operation and call <code>AboutWindow</code>:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/MainWindowHandleAbout.png" alt="MainWindowHandleAbout">
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-7"><a class="link" href="#design-considerations-7">3.10.1. Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Implementation of AboutCommand<br>
+<strong>Alternative 1 (Current choice):</strong> Utilizes event handler and ensure that method that open <code>AboutWindow</code> will be called.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="remark-mechanism"><a class="link" href="#remark-mechanism">3.11. Remark mechanism</a></h3>
+<div class="paragraph">
+<p>The remark mechanism is facilitated by the <code>RemarkCommand</code> and <code>RemarkCommandParser</code>.</p>
+</div>
+<div class="paragraph">
+<p><code>RemarkCommandParser</code> utilizes <code>ArgumentTokenizer</code> to tokenize arguments string and returns an <code>ArgumentMultimap</code> object that maps the
+ remark prefixes to its argument values.</p>
+</div>
+<div class="paragraph">
+<p><code>RemarkCommand</code> will then execute the UndoableCommand to update the person with the input string.</p>
+</div>
+<div class="paragraph">
+<p><code>RemarkCommand</code> code snippet that calls the relevant <code>UndoableCommand</code> and update the <code>Person</code> remark:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> CommandResult executeUndoableCommand() <span class="directive">throws</span> CommandException {
+    <span class="predefined-type">List</span>&lt;ReadOnlyPerson&gt; lastShownList = model.getFilteredPersonList();
+    <span class="keyword">if</span> (index.getZeroBased() &gt;= lastShownList.size()) {
+        <span class="keyword">throw</span> <span class="keyword">new</span> CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+    ReadOnlyPerson personToEdit = lastShownList.get(index.getZeroBased());
+    Person editedPerson = <span class="keyword">new</span> Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
+            personToEdit.getAddress(), remark, personToEdit.getAvatar(), personToEdit.getTags());
+    <span class="keyword">try</span> {
+        model.updatePerson(personToEdit, editedPerson);
+    ...
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>RemarkCommand</code> utilizes <code>model.getFilteredPersonList()</code> and <code>lastShownList.get(index.getZeroBased()</code> to get the selection of
+the person and add the string of remark to existing person via <code>model.updatePerson(personToEdit, editedPerson);</code>.</p>
+</div>
+<div class="paragraph">
+<p><code>RemarkCommandParser</code> code snippet that handle <code>ArgumentMultimap</code>, check if prefixes exist and get the input string:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> RemarkCommand parse(<span class="predefined-type">String</span> args) <span class="directive">throws</span> <span class="exception">ParseException</span> {
+    requireNonNull(args);
+    ArgumentMultimap argMultimap =
+            ArgumentTokenizer.tokenize(args, PREFIX_REMARK);
+    Index index;
+    <span class="keyword">try</span> {
+        index = ParserUtil.parseIndex(argMultimap.getPreamble());
+    } <span class="keyword">catch</span> (IllegalValueException ive) {
+        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="exception">ParseException</span>(<span class="predefined-type">String</span>.format(MESSAGE_INVALID_COMMAND_FORMAT, RemarkCommand.MESSAGE_USAGE));
+    }
+    <span class="predefined-type">String</span> remark = argMultimap.getValue(PREFIX_REMARK).orElse(<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>);
+    <span class="keyword">return</span> <span class="keyword">new</span> RemarkCommand(index, <span class="keyword">new</span> Remark(remark));
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the (RemarkCommand) operation works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/RemarkCommand.png" alt="RemarkCommand">
+</div>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the (RemarkCommandParser) operation works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/RemarkCommandParser.png" alt="RemarkCommandParser">
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-8"><a class="link" href="#design-considerations-8">3.11.1. Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Implementation of RemarkCommand<br>
+<strong>Alternative 1 (Current choice):</strong> Utilize ArgumentMultimap and ArgumentTokenizer to set usable prefixes and get input string value.<br>
+<strong>Pros:</strong> Allow user to add and set remark to contact anytime without the add parameter.<br>
+<strong>Cons:</strong> User who wish to add remark during the <code>AddCommand</code> process will not be possible.<br>
+<strong>Alternative 2:</strong> Include another prefixes that set remark for user during the <code>AddCommand</code> process<br>
+<strong>Pros:</strong> New user can immediately give a person remark during the <code>AddCommand</code> phase.<br>
+<strong>Cons:</strong> Can be troublesome for user to view their own input during the <code>AddCommand</code> phase as remark is usually lengthy.</p>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -2389,6 +2668,12 @@ favourite contacts easily</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">search contact address on google map</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">see the address of contact</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">user with many persons in the address book</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">view my recently searched contacts</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">refer to who I searched recently</p></td>
@@ -2429,6 +2714,12 @@ increasing security</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">user who likes customization</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">change the theme of the application</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">customize the theme to my liking</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">see who create the addressbook</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">let the developer know bugs that I found</p></td>
 </tr>
 </tbody>
 </table>
@@ -3411,6 +3702,82 @@ Use case ends.</p>
 </li>
 </ul>
 </div>
+<h3 id="use-case-gmap-a-contacts-address" class="discrete">Use case: gmap a contacts address</h3>
+<div class="paragraph">
+<p><strong>Preconditions:</strong> AddressBook is not empty.</p>
+</div>
+<div class="paragraph">
+<p><strong>Guarantees:</strong> Specified index of contact will be selected and address will be search on Google Map.</p>
+</div>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User request to list contacts.</p>
+</li>
+<li>
+<p>AddressBook shows a list of contacts.</p>
+</li>
+<li>
+<p>User request and gmap to search a contact address.</p>
+</li>
+<li>
+<p>AddressBook select the contact and search its address on Google Map.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a. The list is empty.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+<li>
+<p>3a. The given index is invalid.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>3a1. AddressBook shows an error message.</p>
+<div class="paragraph">
+<p>Use case resumes at step 2.
+Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-about" class="discrete">Use case: About</h3>
+<div class="paragraph">
+<p><strong>Guarantees:</strong> About Us will be displayed.</p>
+</div>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User request about.</p>
+</li>
+<li>
+<p>AddressBook open about us in a new window.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
 <div class="paragraph">
 <p>{More to be added}</p>
 </div>
@@ -3662,7 +4029,7 @@ Use case ends.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-02 08:37:24 +00:00
+Last updated 2017-11-02 12:25:54 +00:00
 </div>
 </div>
 </body>
