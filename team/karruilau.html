@@ -590,9 +590,120 @@ Below is the code snippet for the relevant code flow:</p>
 <strong>Cons:</strong> Difficult for user to input source; difficulty in writing code to ascertain if file entered is entered.</p>
 </div>
 <div class="paragraph">
-<p><mark>End of Extract</mark>
----</p>
+<p><mark>End of Extract</mark></p>
 </div>
+<hr>
+</div>
+</div>
+<div class="sect2">
+<h3 id="enhancement-added-recent-contacts"><a class="link" href="#enhancement-added-recent-contacts">Enhancement Added: Recent contacts</a></h3>
+<div class="sect3">
+<h4 id="external-behavior-4"><a class="link" href="#external-behavior-4">External behavior</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: User Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="display-recently-searched-contacts-code-recent-code-code-rc-code"><a class="link" href="#display-recently-searched-contacts-code-recent-code-code-rc-code">Display recently searched contacts : <code>recent</code>, <code>rc</code></a></h3>
+<div class="paragraph">
+<p>Shows a list of all contacts that was returned by <code>find</code> command since application was started.<br>
+Format: <code>recent</code></p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+<div class="sect3">
+<h4 id="justification-4"><a class="link" href="#justification-4">Justification</a></h4>
+<div class="paragraph">
+<p>Finding recently searched for contacts is a natural extension of an address book application, provides convenience to user.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation-4"><a class="link" href="#implementation-4">Implementation</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="recent-command-mechanism"><a class="link" href="#recent-command-mechanism">Recent command mechanism</a></h3>
+<div class="paragraph">
+<p><code>RecentCommand</code> uses a backing list from the <code>FindHistory</code> class to create predicates on which the <code>Model</code> will filter on and display to the user.<br>
+<code>FindHistory</code> is implemented with a LinkedList which is updated when relevant commands change persons returned by <code>FindCommand</code>.</p>
+</div>
+<div class="paragraph">
+<p>When <code>FindCommand</code> is invoked, the <code>LogicManager</code> adds the entired <code>FilteredList</code> into the LinkedList in <code>FindHistory</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/RecentCommandLogicManagerSequenceDiagram.png" alt="RecentCommandLogicManagerSequenceDiagram">
+</div>
+</div>
+<div class="paragraph">
+<p>When <code>EditCommand</code> is invoked, the <code>set</code> method in <code>FindHistory</code> is invoked to replace the old <code>Person</code> with the edited <code>Person</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/RecentCommandEditCommandSequenceDiagram.png" alt="RecentCommandEditCommandSequenceDiagram">
+</div>
+</div>
+<div class="paragraph">
+<p>The code snippet for the <code>set</code> method follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="comment">/**
+* Changes {@code person} to {@code newPerson}
+*/</span>
+<span class="directive">public</span> <span class="type">void</span> set(ReadOnlyPerson person, ReadOnlyPerson newPerson) {
+    <span class="keyword">if</span> (userFindHistory.contains(person)) {
+        userFindHistory.set(userFindHistory.indexOf(person), newPerson);
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When <code>DeleteCommand</code> is invoked, the <code>deletePerson</code> method in <code>FindHistory</code> is invoked to remove the person from the LinkedList.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/RecentCommandDeleteCommandSequenceDiagram.png" alt="RecentCommandDeleteCommandSequenceDiagram">
+</div>
+</div>
+<div class="paragraph">
+<p>A snapshot of the the LinkedList is also saved into <code>previousFindHistory</code> when an <code>UndoableCommand</code> is invoked, to preserve the
+changes in the backing list.</p>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Order of list view to show to user<br>
+<strong>Alternative 1:</strong> Shows the list reverse order of persons returned by FindCommand (similar to HistoryCommand)<br>
+<strong>Pros:</strong> Intuitive for user, better UX<br>
+<strong>Cons:</strong> Requires an additional hook to <code>Model</code> to swap between two lists (addressbook and findhistory), additional complexity and chance of regressions<br>
+<strong>Alternative 2 (Current choice):</strong> Shows the list in current order of addressbook backing list.<br>
+<strong>Pros:</strong> Follows design logic of all commands that shows the list to user, allowing new developers to easily understand implementation.<br>
+<strong>Cons:</strong> Worse UX.</p>
+</div>
+<hr>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Data structure to store <code>FindHistory</code> backing list<br>
+<strong>Alternative 1 (Current choice):</strong> LinkedList<br>
+<strong>Pros:</strong> Preserves order, fast add, able to use set to preserve ordering when mutating elements. Good for future implementations (if any) of
+returning the list in order user searched for contacts.<br>
+<strong>Cons:</strong> Slightly slower than competition when traversing and deleting.<br>
+<strong>Alternative 2:</strong> LinkedHashMap or LinkedHashSet<br>
+<strong>Pros:</strong> Keeps order, faster than LinkedList<br>
+<strong>Cons:</strong> Unable to use set, which is used when user edits a person.</p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
 </div>
 </div>
 <div class="sect2">
@@ -606,7 +717,7 @@ Below is the code snippet for the relevant code flow:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-02 13:48:02 +00:00
+Last updated 2017-11-02 14:01:23 +00:00
 </div>
 </div>
 </body>
