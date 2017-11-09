@@ -100,7 +100,7 @@ Edits the name of the 2nd person to be <code>Betsy Crower</code> and clears all 
 <h3 id="adding-a-person-code-add-code-code-a-code"><a class="link" href="#adding-a-person-code-add-code-code-a-code">Adding a person: <code>add</code>, <code>a</code></a></h3>
 <div class="paragraph">
 <p>Adds a person to the address book<br>
-Format: <code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS h/HOMEPAGE [t/TAG]&#8230;&#8203;</code></p>
+Format: <code>add n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [h/HOMEPAGE] [t/TAG]&#8230;&#8203;</code></p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -110,6 +110,18 @@ Format: <code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS h/HOMEPAGE [t/TAG]&#82
 </td>
 <td class="content">
 A person can have any number of tags (including 0)<br>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+The <code>EMAIL</code>, <code>ADDRESS</code>, <code>HOMEPAGE</code>, and <code>TAG</code> parameters are OPTIONAL
 </td>
 </tr>
 </table>
@@ -135,10 +147,10 @@ A person will have a default homepage of a Google search of his/her name, if <co
 <p><code>add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 h/http://www.johndoe.com</code></p>
 </li>
 <li>
-<p><code>add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal</code></p>
+<p><code>add n/Betsy Crowe t/friend a/Newgate Prison p/1234567 t/criminal</code></p>
 </li>
 <li>
-<p><code>a n/Jane Doe p/87654321 e/janede@example.com a/2 Jane Ave</code></p>
+<p><code>a n/Jane Doe p/87654321 e/janede@example.com</code></p>
 </li>
 </ul>
 </div>
@@ -717,7 +729,7 @@ returning the list in order user searched for contacts.<br>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-03 09:37:28 +00:00
+Last updated 2017-11-09 04:29:36 +00:00
 </div>
 </div>
 </body>
