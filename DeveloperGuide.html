@@ -56,6 +56,7 @@
 <li><a href="#gmap-mechanism">3.10. Gmap mechanism</a></li>
 <li><a href="#about-mechanism">3.11. About mechanism</a></li>
 <li><a href="#remark-mechanism">3.12. Remark mechanism</a></li>
+<li><a href="#optional-add-mechanism">3.13. Optional Add mechanism</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -1726,6 +1727,51 @@ the person and add the string of remark to existing person via <code>model.updat
 <strong>Pros:</strong> New user can immediately give a person remark during the <code>AddCommand</code> phase.<br>
 <strong>Cons:</strong> Can be troublesome for user to view their own input during the <code>AddCommand</code> phase as remark is usually lengthy.</p>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="optional-add-mechanism"><a class="link" href="#optional-add-mechanism">3.13. Optional Add mechanism</a></h3>
+<div class="paragraph">
+<p>The enhancement is based on the existing <code>AddCommandParser</code>, with a more relaxed restriction of only the <code>Name</code> and <code>Phone</code> fields being
+mandatory.</p>
+</div>
+<div class="paragraph">
+<p>The relevant modifications are as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> AddCommand parse(<span class="predefined-type">String</span> args) <span class="directive">throws</span> <span class="exception">ParseException</span> {
+    <span class="comment">// ... other logic ...</span>
+    <span class="comment">// only name and phone are compulsory</span>
+    <span class="keyword">if</span> (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE)) {
+        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="exception">ParseException</span>(<span class="predefined-type">String</span>.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+    }
+    <span class="keyword">try</span> {
+        <span class="predefined-type">Name</span> name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME)).get();
+        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE)).get();
+        Email email = ParserUtil.parseEmail(ParserUtil.parseValues(argMultimap.getValue(PREFIX_EMAIL))).get();
+        Address address = ParserUtil.parseAddress(ParserUtil.parseValues(argMultimap.getValue(PREFIX_ADDRESS))).get();
+        <span class="predefined-type">Set</span>&lt;Tag&gt; tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        <span class="comment">// ... other logic ...</span>
+        <span class="keyword">return</span> <span class="keyword">new</span> AddCommand(person);
+    } <span class="keyword">catch</span> (IllegalValueException ive) {
+        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="exception">ParseException</span>(ive.getMessage(), ive);
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>parse()</code> utilizes <code>ParserUtil.parseValues(&#8230;&#8203;)</code> to return an empty string if no such parameters were entered by the user, as seen below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="directive">static</span> Optional&lt;<span class="predefined-type">String</span>&gt; parseValues(Optional&lt;<span class="predefined-type">String</span>&gt; value) {
+    <span class="keyword">return</span> Optional.of(value.orElse(STRING_IF_EMPTY));
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The relevant parameters are then passed to create a <code>Person</code> object.</p>
 </div>
 </div>
 </div>
@@ -4169,7 +4215,7 @@ Use case ends.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-09 15:03:45 +00:00
+Last updated 2017-11-09 15:48:09 +00:00
 </div>
 </div>
 </body>

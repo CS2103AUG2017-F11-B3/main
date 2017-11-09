@@ -31,7 +31,7 @@ it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and
 <h4 id="external-behavior"><a class="link" href="#external-behavior">External behavior</a></h4>
 <hr>
 <div class="paragraph">
-<p><mark>Start of Extract [from: User Guide]</mark></p>
+<p><mark>Start of Extract [from: User Guide] written primarily by original author, with relevant homepage information by me</mark></p>
 </div>
 </div>
 </div>
@@ -393,7 +393,7 @@ This requires an active Internet connection to work, as the application requires
 <p>If <code>AVATAR_URL</code> is empty; i.e <code>""</code>, the avatar will be removed and the default avatar will be shown</p>
 </li>
 <li>
-<p>The image size <strong>must not be bigger than 20KB</strong>.</p>
+<p>The image size <strong>must not be bigger than 50KB</strong>.</p>
 </li>
 </ul>
 </div>
@@ -620,6 +620,9 @@ Below is the code snippet for the relevant code flow:</p>
 <div class="sect2">
 <h3 id="display-recently-searched-contacts-code-recent-code-code-rc-code"><a class="link" href="#display-recently-searched-contacts-code-recent-code-code-rc-code">Display recently searched contacts : <code>recent</code>, <code>rc</code></a></h3>
 <div class="paragraph">
+<p>{since v1.4)</p>
+</div>
+<div class="paragraph">
 <p>Shows a list of all contacts that was returned by <code>find</code> command since application was started.<br>
 Format: <code>recent</code></p>
 </div>
@@ -719,7 +722,166 @@ returning the list in order user searched for contacts.<br>
 </div>
 </div>
 <div class="sect2">
+<h3 id="enhancement-added-optional-add-command"><a class="link" href="#enhancement-added-optional-add-command">Enhancement Added: Optional add command</a></h3>
+<div class="sect3">
+<h4 id="external-behavior-5"><a class="link" href="#external-behavior-5">External behavior</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: User Guide] written by original author as my enhancement is just a modification of the method</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="adding-a-person-code-add-code-code-a-code-2"><a class="link" href="#adding-a-person-code-add-code-code-a-code-2">Adding a person: <code>add</code>, <code>a</code></a></h3>
+<div class="paragraph">
+<p>Adds a person to the address book<br>
+Format: <code>add n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [h/HOMEPAGE] [t/TAG]&#8230;&#8203;</code></p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+A person can have any number of tags (including 0)<br>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+The <code>EMAIL</code>, <code>ADDRESS</code>, <code>HOMEPAGE</code>, and <code>TAG</code> parameters are OPTIONAL
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+A person will have a default homepage of a Google search of his/her name, if <code>/h</code> was not included in the add command
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 h/http://www.johndoe.com</code></p>
+</li>
+<li>
+<p><code>add n/Betsy Crowe t/friend a/Newgate Prison p/1234567 t/criminal</code></p>
+</li>
+<li>
+<p><code>a n/Jane Doe p/87654321 e/janede@example.com</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+<div class="sect3">
+<h4 id="justification-5"><a class="link" href="#justification-5">Justification</a></h4>
+<div class="paragraph">
+<p>User might not always have all the details of the contact he/she wants to add. Only the name and phone number is compulsory.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation-5"><a class="link" href="#implementation-5">Implementation</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="optional-add-mechanism"><a class="link" href="#optional-add-mechanism">Optional Add mechanism</a></h3>
+<div class="paragraph">
+<p>The enhancement is based on the existing <code>AddCommandParser</code>, with a more relaxed restriction of only the <code>Name</code> and <code>Phone</code> fields being
+mandatory.</p>
+</div>
+<div class="paragraph">
+<p>The relevant modifications are as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> AddCommand parse(<span class="predefined-type">String</span> args) <span class="directive">throws</span> <span class="exception">ParseException</span> {
+    <span class="comment">// ... other logic ...</span>
+    <span class="comment">// only name and phone are compulsory</span>
+    <span class="keyword">if</span> (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE)) {
+        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="exception">ParseException</span>(<span class="predefined-type">String</span>.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+    }
+    <span class="keyword">try</span> {
+        <span class="predefined-type">Name</span> name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME)).get();
+        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE)).get();
+        Email email = ParserUtil.parseEmail(ParserUtil.parseValues(argMultimap.getValue(PREFIX_EMAIL))).get();
+        Address address = ParserUtil.parseAddress(ParserUtil.parseValues(argMultimap.getValue(PREFIX_ADDRESS))).get();
+        <span class="predefined-type">Set</span>&lt;Tag&gt; tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        <span class="comment">// ... other logic ...</span>
+        <span class="keyword">return</span> <span class="keyword">new</span> AddCommand(person);
+    } <span class="keyword">catch</span> (IllegalValueException ive) {
+        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="exception">ParseException</span>(ive.getMessage(), ive);
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>parse()</code> utilizes <code>ParserUtil.parseValues(&#8230;&#8203;)</code> to return an empty string if no such parameters were entered by the user, as seen below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="directive">static</span> Optional&lt;<span class="predefined-type">String</span>&gt; parseValues(Optional&lt;<span class="predefined-type">String</span>&gt; value) {
+    <span class="keyword">return</span> Optional.of(value.orElse(STRING_IF_EMPTY));
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The relevant parameters are then passed to create a <code>Person</code> object.</p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+<div class="sect2">
 <h3 id="other-contributions"><a class="link" href="#other-contributions">Other contributions</a></h3>
+<div class="sect3">
+<h4 id="wrote-user-stories-for-iungo"><a class="link" href="#wrote-user-stories-for-iungo">Wrote user stories for iungo</a></h4>
+
+</div>
+<div class="sect3">
+<h4 id="volunteering-own-features-for-reuse"><a class="link" href="#volunteering-own-features-for-reuse">Volunteering own features for reuse</a></h4>
+<div class="paragraph">
+<p><strong>Recent command:</strong> [<a href="https://github.com/nus-cs2103-AY1718S1/forum/issues/168">forum post</a>]<br>
+<strong>Sort functionality:</strong> [<a href="https://github.com/nus-cs2103-AY1718S1/forum/issues/117">forum post</a>]<br>
+<strong>Avatar command:</strong> [<a href="https://github.com/nus-cs2103-AY1718S1/forum/issues/120#issuecomment-339020868">forum post</a>]</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="helped-in-finding-bugs"><a class="link" href="#helped-in-finding-bugs">Helped in finding bugs</a></h4>
+<div class="paragraph">
+<p>Bug discovered in AB4: [<a href="https://github.com/se-edu/addressbook-level4/issues/727">forum post</a>]<br>
+Bugs discovered in Planno: [<a href="https://github.com/CS2103AUG2017-W14-B4/main/issues/created_by/karrui">issues page</a>]</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="helping-others-with-issues"><a class="link" href="#helping-others-with-issues">Helping others with issues</a></h4>
+<div class="paragraph">
+<p>Posts: [<a href="https://github.com/nus-cs2103-AY1718S1/forum/issues?utf8=%E2%9C%93&amp;q=is%3Aissue%20commenter%3Akarrui">issues page</a>]</p>
+</div>
 <div class="paragraph">
 <p>{To be included in the future}</p>
 </div>
@@ -727,9 +889,10 @@ returning the list in order user searched for contacts.<br>
 </div>
 </div>
 </div>
+</div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-09 15:03:45 +00:00
+Last updated 2017-11-09 15:48:09 +00:00
 </div>
 </div>
 </body>
