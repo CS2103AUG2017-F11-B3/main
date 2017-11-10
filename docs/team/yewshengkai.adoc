@@ -7,7 +7,8 @@ ifdef::env-github,env-browser[:outfilesuffix: .adoc]
 iungo is a desktop address book application used for learning Software Engineering principles. The user interacts with
 it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 6 kLoC.
 
-*Code contributed*: [https://github.com[Functional code]] [https://github.com[Test code]] {give links to collated code files}
+*Code contributed*: [https://github.com/CS2103AUG2017-F11-B3/main/blob/master/collated/main/yewshengkai.md[Functional code]]
+[https://github.com/CS2103AUG2017-F11-B3/main/blob/master/collated/main/yewshengkai-reused.md[Reused code]] [https://github.com/CS2103AUG2017-F11-B3/main/blob/master/collated/main/generated.md[Generated code]] +[https://github.com/CS2103AUG2017-F11-B3/main/blob/master/collated/test/yewshengkai.md[Test code]] + [https://github.com/CS2103AUG2017-F11-B3/main/blob/master/collated/unused/yewshengkai-unused.md[Unused code]] +
 
 === Enhancement Added: Find/Findany feature with prefixes
 
