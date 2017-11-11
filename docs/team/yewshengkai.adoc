@@ -28,7 +28,7 @@ include::../UserGuide.adoc[tag=find]
 Previous behaviour of find operation does not allow user to search for other details except for their name.
 
 This implementation enhances the usability of the application by allowing the user to utilizes different prefixes to search
-for single/multiple contact details or a portion of details.
+for single/multiple contact or a portion of the details.
 
 ==== Implementation
 
