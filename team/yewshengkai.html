@@ -38,7 +38,8 @@ it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and
 <div class="sect2">
 <h3 id="locating-persons-by-full-keyword-code-find-code-code-f-code"><a class="link" href="#locating-persons-by-full-keyword-code-find-code-code-f-code">Locating persons by full keyword: <code>find</code>, <code>f</code></a></h3>
 <div class="paragraph">
-<p>Finds persons whose details contain any of the given specified keywords. <strong>Keyword must be exact</strong><br>
+<p>{find by parameters available since v1.2}<br>
+Finds persons whose details contain any of the given specified keywords. <strong>Keyword must be exact</strong><br>
 Format: <code>find KEYWORD [MORE_KEYWORDS]</code><br>
 <code>[p/PHONE] KEYWORD [MORE_KEYWORDS]</code><br>
 <code>[e/EMAIL] KEYWORD [MORE_KEYWORDS]</code><br>
@@ -106,7 +107,8 @@ Returns any person having phone <code>9123456</code>, <code>8123456</code></p>
 <div class="sect2">
 <h3 id="locating-persons-by-partial-keyword-code-findany-code-code-fa-code"><a class="link" href="#locating-persons-by-partial-keyword-code-findany-code-code-fa-code">Locating persons by partial keyword: <code>findany</code>, <code>fa</code></a></h3>
 <div class="paragraph">
-<p>Finds persons whose details contain any of the given specified keywords. <strong>Keyword can be partial.</strong><br>
+<p>{since v1.2}<br>
+Finds persons whose details contain any of the given specified keywords. <strong>Keyword can be partial.</strong><br>
 Format: <code>findany KEYWORD [MORE_KEYWORDS]</code><br>
 <code>[p/PHONE] KEYWORD [MORE_KEYWORDS]</code><br>
 <code>[e/EMAIL] KEYWORD [MORE_KEYWORDS]</code><br>
@@ -135,11 +137,11 @@ Format: <code>findany KEYWORD [MORE_KEYWORDS]</code><br>
 <ul>
 <li>
 <p><code>findany john</code><br>
-Returns <code>Johnson</code> and <code>John Doe</code></p>
+Can return <code>Johnson</code> and <code>John Doe</code></p>
 </li>
 <li>
-<p><code>fa Betsy Tim John</code><br>
-Returns any person having names <code>Betsy</code>, <code>Timothy</code>, or <code>Johnson</code></p>
+<p><code>fa Bets Tim John</code><br>
+Returns any person having names containing <code>Bets</code>, <code>Tim</code>, or <code>John</code>, i.e. <code>Betsy</code>, <code>Timothy</code>, or <code>Johnson</code>.</p>
 </li>
 </ul>
 </div>
@@ -304,7 +306,8 @@ If no prefixes are present, <code>find</code> command will search for the name o
 <div class="sect2">
 <h3 id="selecting-a-theme-code-theme-code-code-t-code"><a class="link" href="#selecting-a-theme-code-theme-code-code-t-code">Selecting a theme : <code>theme</code>, <code>t</code></a></h3>
 <div class="paragraph">
-<p>Selects the theme identified by the index number.<br>
+<p>{since v1.3}<br>
+Selects the theme identified by the index number.<br>
 Format: <code>theme INDEX</code></p>
 </div>
 <div class="sidebarblock">
@@ -539,9 +542,10 @@ When the application is first initialize, <code>BrowserPanel</code> will <code>.
 </div>
 </div>
 <div class="sect2">
-<h3 id="selecting-a-person-code-gmap-code-code-gm-code"><a class="link" href="#selecting-a-person-code-gmap-code-code-gm-code">Selecting a person : <code>gmap</code>, <code>gm</code></a></h3>
+<h3 id="viewing-the-address-of-a-contact-code-gmap-code-code-gm-code"><a class="link" href="#viewing-the-address-of-a-contact-code-gmap-code-code-gm-code">Viewing the address of a contact : <code>gmap</code>, <code>gm</code></a></h3>
 <div class="paragraph">
-<p>Selects the person identified by the index number used in the last person listing and map the address to Google Map.<br>
+<p>{since v1.4}<br>
+Selects the person identified by the index number used in the last person listing and displays the address found in a webpage using Google Map.<br>
 Format: <code>gmap INDEX</code></p>
 </div>
 <div class="sidebarblock">
@@ -557,6 +561,9 @@ Format: <code>gmap INDEX</code></p>
 <li>
 <p>The index <strong>must be a positive integer</strong> <code>1, 2, 3, &#8230;&#8203;</code></p>
 </li>
+<li>
+<p>If the address was not inputted correctly, Google Maps may display an incorrect listing as this command supplies the address field as an input to Google Maps.</p>
+</li>
 </ul>
 </div>
 </div>
@@ -569,12 +576,12 @@ Format: <code>gmap INDEX</code></p>
 <li>
 <p><code>list</code><br>
 <code>gmap 2</code><br>
-Selects the 2nd person in the address book and map its address to Google Map.</p>
+Selects the 2nd person in the address book and displays the address in a webpage using Google Maps.</p>
 </li>
 <li>
 <p><code>find Betsy</code><br>
 <code>gm 1</code><br>
-Selects the 1st person in the results of the <code>find</code> command and map its address to Google Map.</p>
+Selects the 1st person in the results of the <code>find</code> command and displays the address in a webpage using Google Maps.</p>
 </li>
 </ul>
 </div>
@@ -841,9 +848,11 @@ Events which triggers <code>PersonSideCardRequestEvent</code> handler, set the v
 </div>
 </div>
 <div class="sect2">
-<h3 id="making-a-remark-to-a-person-code-remark-code-code-re-code"><a class="link" href="#making-a-remark-to-a-person-code-remark-code-code-re-code">Making a Remark to a person : <code>remark</code>, <code>re</code></a></h3>
+<h3 id="adding-a-remark-to-a-person-code-remark-code-code-re-code"><a class="link" href="#adding-a-remark-to-a-person-code-remark-code-code-re-code">Adding a Remark to a person : <code>remark</code>, <code>re</code></a></h3>
 <div class="paragraph">
-<p>Give a person a remark by the index number used in the last person listing.<br>
+<p><code>UNDOABLE</code><br>
+{since v1.1}<br>
+Give a person a remark by the index number used in the last person listing.<br>
 Format: <code>remark INDEX re/REMARK</code></p>
 </div>
 <div class="sidebarblock">
@@ -1046,7 +1055,7 @@ the person and add the string of remark to existing person via <code>model.updat
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-09 16:09:20 +00:00
+Last updated 2017-11-11 17:13:39 +00:00
 </div>
 </div>
 </body>

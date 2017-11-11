@@ -91,7 +91,6 @@
 <li><a href="#use-cases">Appendix C: Use Cases</a></li>
 <li><a href="#non-functional-requirements">Appendix D: Non Functional Requirements</a></li>
 <li><a href="#glossary">Appendix E: Glossary</a></li>
-<li><a href="#product-survey">Appendix F: Product Survey</a></li>
 </ul>
 </div>
 </div>
@@ -229,7 +228,7 @@ This will generate all resources required by the application and tests.</p>
 <div class="sect3">
 <h4 id="updating-documentation-to-match-your-fork"><a class="link" href="#updating-documentation-to-match-your-fork">1.4.2. Updating documentation to match your fork</a></h4>
 <div class="paragraph">
-<p>After forking the repo, links in the documentation will still point to the <code>se-edu/addressbook-level4</code> repo. If you plan to develop this as a separate product (i.e. instead of contributing to the <code>se-edu/addressbook-level4</code>) , you should replace the URL in the variable <code>repoURL</code> in <code>DeveloperGuide.adoc</code> and <code>UserGuide.adoc</code> with the URL of your fork.</p>
+<p>After forking the repo, links in the documentation will still point to the <code>CS2103AUG2017-F11-B3/main</code> repo. If you plan to develop this as a separate product (i.e. instead of contributing to <code>CS2103AUG2017-F11-B3/main</code>) , you should replace the URL in the variable <code>repoURL</code> in <code>DeveloperGuide.adoc</code> and <code>UserGuide.adoc</code> with the URL of your fork.</p>
 </div>
 </div>
 <div class="sect3">
@@ -295,13 +294,13 @@ Having both Travis and AppVeyor ensures your App works on both Unix-based platfo
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-The <code>.pptx</code> files used to create diagrams in this document can be found in the <a href="https://github.com/CS2103AUG2017-F11-B3/iungo/tree/master/docs/diagrams/">diagrams</a> folder. To update a diagram, modify the diagram in the pptx file, select the objects of the diagram, and choose <code>Save as picture</code>.
+The <code>.pptx</code> files used to create diagrams in this document can be found in the <a href="https://github.com/CS2103AUG2017-F11-B3/main/tree/master/docs/diagrams/">diagrams</a> folder. To update a diagram, modify the diagram in the pptx file, select the objects of the diagram, and choose <code>Save as picture</code>.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p><code>Main</code> has only one class called <a href="https://github.com/CS2103AUG2017-F11-B3/iungo/tree/master/src/main/java/seedu/address/MainApp.java"><code>MainApp</code></a>. It is responsible for,</p>
+<p><code>Main</code> has only one class called <a href="https://github.com/CS2103AUG2017-F11-B3/main/tree/master/src/main/java/seedu/address/MainApp.java"><code>MainApp</code></a>. It is responsible for,</p>
 </div>
 <div class="ulist">
 <ul>
@@ -431,13 +430,13 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <p><em>Figure 2.2.1 : Structure of the UI Component</em></p>
 </div>
 <div class="paragraph">
-<p><strong>API</strong> : <a href="https://github.com/CS2103AUG2017-F11-B3/iungo/tree/master/src/main/java/seedu/address/ui/Ui.java"><code>Ui.java</code></a></p>
+<p><strong>API</strong> : <a href="https://github.com/CS2103AUG2017-F11-B3/main/tree/master/src/main/java/seedu/address/ui/Ui.java"><code>Ui.java</code></a></p>
 </div>
 <div class="paragraph">
 <p>The UI consists of a <code>MainWindow</code> that is made up of parts e.g.<code>CommandBox</code>, <code>ResultDisplay</code>, <code>PersonListPanel</code>, <code>StatusBarFooter</code>, <code>BrowserPanel</code> etc. All these, including the <code>MainWindow</code>, inherit from the abstract <code>UiPart</code> class.</p>
 </div>
 <div class="paragraph">
-<p>The <code>UI</code> component uses JavaFx UI framework. The layout of these UI parts are defined in matching <code>.fxml</code> files that are in the <code>src/main/resources/view</code> folder. For example, the layout of the <a href="https://github.com/CS2103AUG2017-F11-B3/iungo/tree/master/src/main/java/seedu/address/ui/MainWindow.java"><code>MainWindow</code></a> is specified in <a href="https://github.com/CS2103AUG2017-F11-B3/iungo/tree/master/src/main/resources/view/MainWindow.fxml"><code>MainWindow.fxml</code></a></p>
+<p>The <code>UI</code> component uses JavaFx UI framework. The layout of these UI parts are defined in matching <code>.fxml</code> files that are in the <code>src/main/resources/view</code> folder. For example, the layout of the <a href="https://github.com/CS2103AUG2017-F11-B3/main/tree/master/src/main/java/seedu/address/ui/MainWindow.java"><code>MainWindow</code></a> is specified in <a href="https://github.com/CS2103AUG2017-F11-B3/main/tree/master/src/main/resources/view/MainWindow.fxml"><code>MainWindow.fxml</code></a></p>
 </div>
 <div class="paragraph">
 <p>The <code>UI</code> component,</p>
@@ -476,7 +475,7 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 </div>
 <div class="paragraph">
 <p><strong>API</strong> :
-<a href="https://github.com/CS2103AUG2017-F11-B3/iungo/tree/master/src/main/java/seedu/address/logic/Logic.java"><code>Logic.java</code></a></p>
+<a href="https://github.com/CS2103AUG2017-F11-B3/main/tree/master/src/main/java/seedu/address/logic/Logic.java"><code>Logic.java</code></a></p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -517,7 +516,7 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <p><em>Figure 2.4.1 : Structure of the Model Component</em></p>
 </div>
 <div class="paragraph">
-<p><strong>API</strong> : <a href="https://github.com/CS2103AUG2017-F11-B3/iungo/tree/master/src/main/java/seedu/address/model/Model.java"><code>Model.java</code></a></p>
+<p><strong>API</strong> : <a href="https://github.com/CS2103AUG2017-F11-B3/main/tree/master/src/main/java/seedu/address/model/Model.java"><code>Model.java</code></a></p>
 </div>
 <div class="paragraph">
 <p>The <code>Model</code>,</p>
@@ -550,7 +549,7 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <p><em>Figure 2.5.1 : Structure of the Storage Component</em></p>
 </div>
 <div class="paragraph">
-<p><strong>API</strong> : <a href="https://github.com/CS2103AUG2017-F11-B3/iungo/tree/master/src/main/java/seedu/address/storage/Storage.java"><code>Storage.java</code></a></p>
+<p><strong>API</strong> : <a href="https://github.com/CS2103AUG2017-F11-B3/main/tree/master/src/main/java/seedu/address/storage/Storage.java"><code>Storage.java</code></a></p>
 </div>
 <div class="paragraph">
 <p>The <code>Storage</code> component,</p>
@@ -948,12 +947,12 @@ parses the arguments provided by the user.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/SetAvatarCommandParserSequenceDiagram.png" alt="SetAvatarCommandParserSequenceDiagram">
+<img src="images/SetAvatarCommandParserSequenceDiagram.png" alt="SetAvatarCommandParserSequenceDiagram" width="500">
 </div>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/SetAvatarCommandSequenceDiagram.png" alt="SetAvatarCommandSequenceDiagram" width="800">
+<img src="images/SetAvatarCommandSequenceDiagram.png" alt="SetAvatarCommandSequenceDiagram" width="500">
 </div>
 </div>
 <div class="paragraph">
@@ -970,7 +969,7 @@ object.</p>
 <p>A valid URL OR is empty</p>
 </li>
 <li>
-<p>The image must not be larger than 20KB (due to application slowdowns if the file is too big)</p>
+<p>The image must not be larger than 50KB (due to application slowdowns if the file is too big)</p>
 </li>
 </ol>
 </div>
@@ -985,47 +984,57 @@ Below is the code snippet of <code>SetAvatarCommand</code> for the various check
 
      <span class="comment">// avatar refers to the avatar object created during the construction of SetAvatarCommand</span>
      <span class="keyword">if</span> (<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>.equals(avatar.path) &amp;&amp; !<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>.equals(personToSetAvatarPath)) { <span class="comment">// delete image from storage</span>
-            ProcessImageFromUrlToFileForAvatar.removeImageFromStorage(personToSetAvatarPath);
-         } <span class="keyword">else</span> {
-             <span class="keyword">if</span> (!<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>.equals(personToSetAvatarPath)) {   <span class="comment">// has a previously set avatar, remove first before processing</span>
-                ProcessImageFromUrlToFileForAvatar.removeImageFromStorage(personToSetAvatarPath);
-             }
-         }
+         ProcessImage.removeImageFromStorage(personToSetAvatarPath);
+     } <span class="keyword">else</span> <span class="keyword">if</span> (!<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>.equals(personToSetAvatarPath)) {   <span class="comment">// has a previously set avatar, remove first before processing</span>
+         ProcessImage.removeImageFromStorage(personToSetAvatarPath);
      }
  }</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The utility class <code>ProcessImageFromUrlToFileForAvatar</code> is used to process images retrieved from the Internet. It contains
-two methods&#8201;&#8212;&#8201;<code>writeImageToFile(&#8230;&#8203;)</code> and <code>removeImageFromStorage(&#8230;&#8203;)</code> which stores the image into the
+<p>The utility class <code>ProcessImage</code> is used to process images retrieved from the Internet. It contains
+methods such as&#8201;&#8212;&#8201;<code>writeImageToStorage(&#8230;&#8203;)</code> and <code>removeImageFromStorage(&#8230;&#8203;)</code> which stores the image into the
 <code>DEFAULT_AVATAR_FILE_LOCATION</code> and removes the image respectively.<br>
-Below is the code snippet of the write method:</p>
+Below is the code snippet of the write method, which calls a helper method <code>getUniqueFile()</code> to generate a File with a unique path:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="type">void</span> writeImageToFile(<span class="predefined-type">String</span> path) {
+<pre class="CodeRay highlight"><code data-lang="java"><span class="type">void</span> writeImageToStorage(<span class="predefined-type">String</span> path) {
     <span class="comment">// ... irrelevant ...</span>
 
-    <span class="comment">// Using hashCode() + checking if file exists assures uniqueness of name of created file</span>
-    <span class="predefined-type">File</span> file = <span class="keyword">new</span> <span class="predefined-type">File</span>(DEFAULT_AVATAR_FILE_LOCATION + path.hashCode() + <span class="string"><span class="delimiter">&quot;</span><span class="content">.jpg</span><span class="delimiter">&quot;</span></span>);
-    <span class="keyword">while</span> (file.exists()) {
-        file = <span class="keyword">new</span> <span class="predefined-type">File</span>(DEFAULT_AVATAR_FILE_LOCATION + (path.hashCode() + ++i) + <span class="string"><span class="delimiter">&quot;</span><span class="content">.jpg</span><span class="delimiter">&quot;</span></span>);
-    }
+    <span class="predefined-type">URL</span> url = <span class="keyword">new</span> <span class="predefined-type">URL</span>(path);
+    <span class="predefined-type">BufferedImage</span> image = <span class="predefined-type">ImageIO</span>.read(url);
+
+    <span class="predefined-type">File</span> file = getUniqueFile();
     <span class="predefined-type">ImageIO</span>.write(image, <span class="string"><span class="delimiter">&quot;</span><span class="content">jpg</span><span class="delimiter">&quot;</span></span>, file);
+    logger.info(<span class="string"><span class="delimiter">&quot;</span><span class="content">Image from </span><span class="delimiter">&quot;</span></span> + path + <span class="string"><span class="delimiter">&quot;</span><span class="content"> written to to file: </span><span class="delimiter">&quot;</span></span> + file.getName());
     <span class="keyword">return</span> file.getPath().replace(<span class="string"><span class="delimiter">'</span><span class="char">\\</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">/</span><span class="delimiter">'</span></span>);
+}
+
+<span class="predefined-type">File</span> getUniqueFile() {
+    <span class="predefined-type">Random</span> random = <span class="keyword">new</span> <span class="predefined-type">Random</span>();
+    <span class="comment">// random.nextInt() + checking if file exists assures uniqueness of name of created file</span>
+    <span class="predefined-type">File</span> file = <span class="keyword">new</span> <span class="predefined-type">File</span>(DEFAULT_AVATAR_FILE_LOCATION + random.nextInt() + <span class="string"><span class="delimiter">&quot;</span><span class="content">.jpg</span><span class="delimiter">&quot;</span></span>);
+    <span class="keyword">while</span> (file.exists()) {
+        file = <span class="keyword">new</span> <span class="predefined-type">File</span>(DEFAULT_AVATAR_FILE_LOCATION + random.nextInt() + <span class="string"><span class="delimiter">&quot;</span><span class="content">.jpg</span><span class="delimiter">&quot;</span></span>);
+    }
+    <span class="keyword">return</span> file;
 }</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>As <code>SetAvatarCommand</code> is an <code>UndoableCommand</code>, <code>removeImageFromStorage(&#8230;&#8203;)</code> only deletes the image when the application exits,
-in order to allow the user to undo the command.<br>
+<p>As <code>SetAvatarCommand</code> is an <code>Command</code>, <code>removeImageFromStorage(&#8230;&#8203;)</code> deletes the image once invoked.<br>
 Below is the code snipper of the remove method:</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="java"><span class="type">void</span> removeImageFromStorage(<span class="predefined-type">String</span> path) {
     <span class="predefined-type">File</span> file = <span class="keyword">new</span> <span class="predefined-type">File</span>(path);
-    file.deleteOnExit();    <span class="comment">// so as to allow undoable command</span>
+    <span class="keyword">if</span> (file.delete()) {
+         logger.info(<span class="string"><span class="delimiter">&quot;</span><span class="content">File at path: </span><span class="delimiter">&quot;</span></span> + path + <span class="string"><span class="delimiter">&quot;</span><span class="content"> is deleted</span><span class="delimiter">&quot;</span></span>);
+    } <span class="keyword">else</span> {
+         logger.severe(<span class="string"><span class="delimiter">&quot;</span><span class="content">Failed to delete file at </span><span class="delimiter">&quot;</span></span> + path);
+    }
 }</code></pre>
 </div>
 </div>
@@ -1990,7 +1999,7 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Update the version number in <a href="https://github.com/CS2103AUG2017-F11-B3/iungo/tree/master/src/main/java/seedu/address/MainApp.java"><code>MainApp.java</code></a>.</p>
+<p>Update the version number in <a href="https://github.com/CS2103AUG2017-F11-B3/main/tree/master/src/main/java/seedu/address/MainApp.java"><code>MainApp.java</code></a>.</p>
 </li>
 <li>
 <p>Generate a JAR file <a href="UsingGradle.html#creating-the-jar-file">using Gradle</a>.</p>
@@ -2061,10 +2070,10 @@ Do take a look at the <a href="#logic-component">Design: Logic Component</a> sec
 <div class="ulist">
 <ul>
 <li>
-<p>Just like we store each individual command word constant <code>COMMAND_WORD</code> inside <code>*Command.java</code> (e.g.  <a href="https://github.com/CS2103AUG2017-F11-B3/iungo/tree/master/src/main/java/seedu/address/logic/commands/FindCommand.java"><code>FindCommand#COMMAND_WORD</code></a>, <a href="https://github.com/CS2103AUG2017-F11-B3/iungo/tree/master/src/main/java/seedu/address/logic/commands/DeleteCommand.java"><code>DeleteCommand#COMMAND_WORD</code></a>), you need a new constant for aliases as well (e.g. <code>FindCommand#COMMAND_ALIAS</code>).</p>
+<p>Just like we store each individual command word constant <code>COMMAND_WORD</code> inside <code>*Command.java</code> (e.g.  <a href="https://github.com/CS2103AUG2017-F11-B3/main/tree/master/src/main/java/seedu/address/logic/commands/FindCommand.java"><code>FindCommand#COMMAND_WORD</code></a>, <a href="https://github.com/CS2103AUG2017-F11-B3/main/tree/master/src/main/java/seedu/address/logic/commands/DeleteCommand.java"><code>DeleteCommand#COMMAND_WORD</code></a>), you need a new constant for aliases as well (e.g. <code>FindCommand#COMMAND_ALIAS</code>).</p>
 </li>
 <li>
-<p><a href="https://github.com/CS2103AUG2017-F11-B3/iungo/tree/master/src/main/java/seedu/address/logic/parser/AddressBookParser.java"><code>AddressBookParser</code></a> is responsible for analyzing command words.</p>
+<p><a href="https://github.com/CS2103AUG2017-F11-B3/main/tree/master/src/main/java/seedu/address/logic/parser/AddressBookParser.java"><code>AddressBookParser</code></a> is responsible for analyzing command words.</p>
 </li>
 </ul>
 </div>
@@ -2074,7 +2083,7 @@ Do take a look at the <a href="#logic-component">Design: Logic Component</a> sec
 <div class="ulist">
 <ul>
 <li>
-<p>Modify the switch statement in <a href="https://github.com/CS2103AUG2017-F11-B3/iungo/tree/master/src/main/java/seedu/address/logic/parser/AddressBookParser.java"><code>AddressBookParser#parseCommand(String)</code></a> such that both the proper command word and alias can be used to execute the same intended command.</p>
+<p>Modify the switch statement in <a href="https://github.com/CS2103AUG2017-F11-B3/main/tree/master/src/main/java/seedu/address/logic/parser/AddressBookParser.java"><code>AddressBookParser#parseCommand(String)</code></a> such that both the proper command word and alias can be used to execute the same intended command.</p>
 </li>
 <li>
 <p>See this <a href="https://github.com/se-edu/addressbook-level4/pull/590/files">PR</a> for the full solution.</p>
@@ -2115,10 +2124,10 @@ Do take a look at the <a href="#model-component">Design: Model Component</a> sec
 <div class="ulist">
 <ul>
 <li>
-<p>The <a href="https://github.com/CS2103AUG2017-F11-B3/iungo/tree/master/src/main/java/seedu/address/model/Model.java"><code>Model</code></a> API needs to be updated.</p>
+<p>The <a href="https://github.com/CS2103AUG2017-F11-B3/main/tree/master/src/main/java/seedu/address/model/Model.java"><code>Model</code></a> API needs to be updated.</p>
 </li>
 <li>
-<p>Find out which of the existing API methods in  <a href="https://github.com/CS2103AUG2017-F11-B3/iungo/tree/master/src/main/java/seedu/address/model/AddressBook.java"><code>AddressBook</code></a> and <a href="https://github.com/CS2103AUG2017-F11-B3/iungo/tree/master/src/main/java/seedu/address/model/person/Person.java"><code>Person</code></a> classes can be used to implement the tag removal logic. <a href="https://github.com/CS2103AUG2017-F11-B3/iungo/tree/master/src/main/java/seedu/address/model/AddressBook.java"><code>AddressBook</code></a> allows you to update a person, and <a href="https://github.com/CS2103AUG2017-F11-B3/iungo/tree/master/src/main/java/seedu/address/model/person/Person.java"><code>Person</code></a> allows you to update the tags.</p>
+<p>Find out which of the existing API methods in  <a href="https://github.com/CS2103AUG2017-F11-B3/main/tree/master/src/main/java/seedu/address/model/AddressBook.java"><code>AddressBook</code></a> and <a href="https://github.com/CS2103AUG2017-F11-B3/main/tree/master/src/main/java/seedu/address/model/person/Person.java"><code>Person</code></a> classes can be used to implement the tag removal logic. <a href="https://github.com/CS2103AUG2017-F11-B3/main/tree/master/src/main/java/seedu/address/model/AddressBook.java"><code>AddressBook</code></a> allows you to update a person, and <a href="https://github.com/CS2103AUG2017-F11-B3/main/tree/master/src/main/java/seedu/address/model/person/Person.java"><code>Person</code></a> allows you to update the tags.</p>
 </li>
 </ul>
 </div>
@@ -2128,7 +2137,7 @@ Do take a look at the <a href="#model-component">Design: Model Component</a> sec
 <div class="ulist">
 <ul>
 <li>
-<p>Add the implementation of <code>deleteTag(Tag)</code> method in <a href="https://github.com/CS2103AUG2017-F11-B3/iungo/tree/master/src/main/java/seedu/address/model/ModelManager.java"><code>ModelManager</code></a>. Loop through each person, and remove the <code>tag</code> from each person.</p>
+<p>Add the implementation of <code>deleteTag(Tag)</code> method in <a href="https://github.com/CS2103AUG2017-F11-B3/main/tree/master/src/main/java/seedu/address/model/ModelManager.java"><code>ModelManager</code></a>. Loop through each person, and remove the <code>tag</code> from each person.</p>
 </li>
 <li>
 <p>See this <a href="https://github.com/se-edu/addressbook-level4/pull/591/files">PR</a> for the full solution.</p>
@@ -2185,7 +2194,7 @@ Do take a look at the <a href="#ui-component">Design: UI Component</a> section b
 <div class="ulist">
 <ul>
 <li>
-<p>The tag labels are created inside <a href="https://github.com/CS2103AUG2017-F11-B3/iungo/tree/master/src/main/java/seedu/address/ui/PersonCard.java"><code>PersonCard#initTags(ReadOnlyPerson)</code></a> (<code>new Label(tag.tagName)</code>). <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/Label.html">JavaFX&#8217;s <code>Label</code> class</a> allows you to modify the style of each Label, such as changing its color.</p>
+<p>The tag labels are created inside <a href="https://github.com/CS2103AUG2017-F11-B3/main/tree/master/src/main/java/seedu/address/ui/PersonCard.java"><code>PersonCard#initTags(ReadOnlyPerson)</code></a> (<code>new Label(tag.tagName)</code>). <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/Label.html">JavaFX&#8217;s <code>Label</code> class</a> allows you to modify the style of each Label, such as changing its color.</p>
 </li>
 <li>
 <p>Use the .css attribute <code>-fx-background-color</code> to add a color.</p>
@@ -2209,7 +2218,7 @@ Do take a look at the <a href="#ui-component">Design: UI Component</a> section b
 </div>
 </li>
 <li>
-<p>Modify <a href="https://github.com/CS2103AUG2017-F11-B3/iungo/tree/master/src/main/java/seedu/address/commons/events/ui/NewResultAvailableEvent.java"><code>NewResultAvailableEvent</code></a> such that <a href="https://github.com/CS2103AUG2017-F11-B3/iungo/tree/master/src/main/java/seedu/address/ui/ResultDisplay.java"><code>ResultDisplay</code></a> can show a different style on error (currently it shows the same regardless of errors).</p>
+<p>Modify <a href="https://github.com/CS2103AUG2017-F11-B3/main/tree/master/src/main/java/seedu/address/commons/events/ui/NewResultAvailableEvent.java"><code>NewResultAvailableEvent</code></a> such that <a href="https://github.com/CS2103AUG2017-F11-B3/main/tree/master/src/main/java/seedu/address/ui/ResultDisplay.java"><code>ResultDisplay</code></a> can show a different style on error (currently it shows the same regardless of errors).</p>
 <div class="paragraph">
 <p><strong>Before</strong></p>
 </div>
@@ -2235,10 +2244,10 @@ Do take a look at the <a href="#ui-component">Design: UI Component</a> section b
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://github.com/CS2103AUG2017-F11-B3/iungo/tree/master/src/main/java/seedu/address/commons/events/ui/NewResultAvailableEvent.java"><code>NewResultAvailableEvent</code></a> is raised by <a href="https://github.com/CS2103AUG2017-F11-B3/iungo/tree/master/src/main/java/seedu/address/ui/CommandBox.java"><code>CommandBox</code></a> which also knows whether the result is a success or failure, and is caught by <a href="https://github.com/CS2103AUG2017-F11-B3/iungo/tree/master/src/main/java/seedu/address/ui/ResultDisplay.java"><code>ResultDisplay</code></a> which is where we want to change the style to.</p>
+<p><a href="https://github.com/CS2103AUG2017-F11-B3/main/tree/master/src/main/java/seedu/address/commons/events/ui/NewResultAvailableEvent.java"><code>NewResultAvailableEvent</code></a> is raised by <a href="https://github.com/CS2103AUG2017-F11-B3/main/tree/master/src/main/java/seedu/address/ui/CommandBox.java"><code>CommandBox</code></a> which also knows whether the result is a success or failure, and is caught by <a href="https://github.com/CS2103AUG2017-F11-B3/main/tree/master/src/main/java/seedu/address/ui/ResultDisplay.java"><code>ResultDisplay</code></a> which is where we want to change the style to.</p>
 </li>
 <li>
-<p>Refer to <a href="https://github.com/CS2103AUG2017-F11-B3/iungo/tree/master/src/main/java/seedu/address/ui/CommandBox.java"><code>CommandBox</code></a> for an example on how to display an error.</p>
+<p>Refer to <a href="https://github.com/CS2103AUG2017-F11-B3/main/tree/master/src/main/java/seedu/address/ui/CommandBox.java"><code>CommandBox</code></a> for an example on how to display an error.</p>
 </li>
 </ul>
 </div>
@@ -2248,10 +2257,10 @@ Do take a look at the <a href="#ui-component">Design: UI Component</a> section b
 <div class="ulist">
 <ul>
 <li>
-<p>Modify <a href="https://github.com/CS2103AUG2017-F11-B3/iungo/tree/master/src/main/java/seedu/address/commons/events/ui/NewResultAvailableEvent.java"><code>NewResultAvailableEvent</code></a> 's constructor so that users of the event can indicate whether an error has occurred.</p>
+<p>Modify <a href="https://github.com/CS2103AUG2017-F11-B3/main/tree/master/src/main/java/seedu/address/commons/events/ui/NewResultAvailableEvent.java"><code>NewResultAvailableEvent</code></a> 's constructor so that users of the event can indicate whether an error has occurred.</p>
 </li>
 <li>
-<p>Modify <a href="https://github.com/CS2103AUG2017-F11-B3/iungo/tree/master/src/main/java/seedu/address/ui/ResultDisplay.java"><code>ResultDisplay#handleNewResultAvailableEvent(event)</code></a> to react to this event appropriately.</p>
+<p>Modify <a href="https://github.com/CS2103AUG2017-F11-B3/main/tree/master/src/main/java/seedu/address/ui/ResultDisplay.java"><code>ResultDisplay#handleNewResultAvailableEvent(event)</code></a> to react to this event appropriately.</p>
 </li>
 <li>
 <p>See this <a href="https://github.com/se-edu/addressbook-level4/pull/593/files">PR</a> for the full solution.</p>
@@ -2265,7 +2274,7 @@ Do take a look at the <a href="#ui-component">Design: UI Component</a> section b
 </div>
 </li>
 <li>
-<p>Modify the <a href="https://github.com/CS2103AUG2017-F11-B3/iungo/tree/master/src/main/java/seedu/address/ui/StatusBarFooter.java"><code>StatusBarFooter</code></a> to show the total number of people in the address book.</p>
+<p>Modify the <a href="https://github.com/CS2103AUG2017-F11-B3/main/tree/master/src/main/java/seedu/address/ui/StatusBarFooter.java"><code>StatusBarFooter</code></a> to show the total number of people in the address book.</p>
 <div class="paragraph">
 <p><strong>Before</strong></p>
 </div>
@@ -2291,10 +2300,10 @@ Do take a look at the <a href="#ui-component">Design: UI Component</a> section b
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://github.com/CS2103AUG2017-F11-B3/iungo/tree/master/src/main/resources/view/StatusBarFooter.fxml"><code>StatusBarFooter.fxml</code></a> will need a new <code>StatusBar</code>. Be sure to set the <code>GridPane.columnIndex</code> properly for each <code>StatusBar</code> to avoid misalignment!</p>
+<p><a href="https://github.com/CS2103AUG2017-F11-B3/main/tree/master/src/main/resources/view/StatusBarFooter.fxml"><code>StatusBarFooter.fxml</code></a> will need a new <code>StatusBar</code>. Be sure to set the <code>GridPane.columnIndex</code> properly for each <code>StatusBar</code> to avoid misalignment!</p>
 </li>
 <li>
-<p><a href="https://github.com/CS2103AUG2017-F11-B3/iungo/tree/master/src/main/java/seedu/address/ui/StatusBarFooter.java"><code>StatusBarFooter</code></a> needs to initialize the status bar on application start, and to update it accordingly whenever the address book is updated.</p>
+<p><a href="https://github.com/CS2103AUG2017-F11-B3/main/tree/master/src/main/java/seedu/address/ui/StatusBarFooter.java"><code>StatusBarFooter</code></a> needs to initialize the status bar on application start, and to update it accordingly whenever the address book is updated.</p>
 </li>
 </ul>
 </div>
@@ -2304,10 +2313,10 @@ Do take a look at the <a href="#ui-component">Design: UI Component</a> section b
 <div class="ulist">
 <ul>
 <li>
-<p>Modify the constructor of <a href="https://github.com/CS2103AUG2017-F11-B3/iungo/tree/master/src/main/java/seedu/address/ui/StatusBarFooter.java"><code>StatusBarFooter</code></a> to take in the number of persons when the application just started.</p>
+<p>Modify the constructor of <a href="https://github.com/CS2103AUG2017-F11-B3/main/tree/master/src/main/java/seedu/address/ui/StatusBarFooter.java"><code>StatusBarFooter</code></a> to take in the number of persons when the application just started.</p>
 </li>
 <li>
-<p>Use <a href="https://github.com/CS2103AUG2017-F11-B3/iungo/tree/master/src/main/java/seedu/address/ui/StatusBarFooter.java"><code>StatusBarFooter#handleAddressBookChangedEvent(AddressBookChangedEvent)</code></a> to update the number of persons whenever there are new changes to the addressbook.</p>
+<p>Use <a href="https://github.com/CS2103AUG2017-F11-B3/main/tree/master/src/main/java/seedu/address/ui/StatusBarFooter.java"><code>StatusBarFooter#handleAddressBookChangedEvent(AddressBookChangedEvent)</code></a> to update the number of persons whenever there are new changes to the addressbook.</p>
 </li>
 <li>
 <p>See this <a href="https://github.com/se-edu/addressbook-level4/pull/596/files">PR</a> for the full solution.</p>
@@ -2348,10 +2357,10 @@ Do take a look at the <a href="#storage-component">Design: Storage Component</a>
 <div class="ulist">
 <ul>
 <li>
-<p>Add the API method in <a href="https://github.com/CS2103AUG2017-F11-B3/iungo/tree/master/src/main/java/seedu/address/storage/AddressBookStorage.java"><code>AddressBookStorage</code></a> interface.</p>
+<p>Add the API method in <a href="https://github.com/CS2103AUG2017-F11-B3/main/tree/master/src/main/java/seedu/address/storage/AddressBookStorage.java"><code>AddressBookStorage</code></a> interface.</p>
 </li>
 <li>
-<p>Implement the logic in <a href="https://github.com/CS2103AUG2017-F11-B3/iungo/tree/master/src/main/java/seedu/address/storage/StorageManager.java"><code>StorageManager</code></a> class.</p>
+<p>Implement the logic in <a href="https://github.com/CS2103AUG2017-F11-B3/main/tree/master/src/main/java/seedu/address/storage/StorageManager.java"><code>StorageManager</code></a> class.</p>
 </li>
 </ul>
 </div>
@@ -2414,10 +2423,10 @@ Removes the remark for the first person.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Add a <code>RemarkCommand</code> that extends <a href="https://github.com/CS2103AUG2017-F11-B3/iungo/tree/master/src/main/java/seedu/address/logic/commands/UndoableCommand.java"><code>UndoableCommand</code></a>. Upon execution, it should just throw an <code>Exception</code>.</p>
+<p>Add a <code>RemarkCommand</code> that extends <a href="https://github.com/CS2103AUG2017-F11-B3/main/tree/master/src/main/java/seedu/address/logic/commands/UndoableCommand.java"><code>UndoableCommand</code></a>. Upon execution, it should just throw an <code>Exception</code>.</p>
 </li>
 <li>
-<p>Modify <a href="https://github.com/CS2103AUG2017-F11-B3/iungo/tree/master/src/main/java/seedu/address/logic/parser/AddressBookParser.java"><code>AddressBookParser</code></a> to accept a <code>RemarkCommand</code>.</p>
+<p>Modify <a href="https://github.com/CS2103AUG2017-F11-B3/main/tree/master/src/main/java/seedu/address/logic/parser/AddressBookParser.java"><code>AddressBookParser</code></a> to accept a <code>RemarkCommand</code>.</p>
 </li>
 </ol>
 </div>
@@ -2430,7 +2439,7 @@ Removes the remark for the first person.</p>
 <p>Add <code>RemarkCommandTest</code> that tests that <code>executeUndoableCommand()</code> throws an Exception.</p>
 </li>
 <li>
-<p>Add new test method to <a href="https://github.com/CS2103AUG2017-F11-B3/iungo/tree/master/src/test/java/seedu/address/logic/parser/AddressBookParserTest.java"><code>AddressBookParserTest</code></a>, which tests that typing "remark" returns an instance of <code>RemarkCommand</code>.</p>
+<p>Add new test method to <a href="https://github.com/CS2103AUG2017-F11-B3/main/tree/master/src/test/java/seedu/address/logic/parser/AddressBookParserTest.java"><code>AddressBookParserTest</code></a>, which tests that typing "remark" returns an instance of <code>RemarkCommand</code>.</p>
 </li>
 </ol>
 </div>
@@ -2452,7 +2461,7 @@ Removes the remark for the first person.</p>
 <p>Add <code>RemarkCommandParser</code> that knows how to parse two arguments, one index and one with prefix 'r/'.</p>
 </li>
 <li>
-<p>Modify <a href="https://github.com/CS2103AUG2017-F11-B3/iungo/tree/master/src/main/java/seedu/address/logic/parser/AddressBookParser.java"><code>AddressBookParser</code></a> to use the newly implemented <code>RemarkCommandParser</code>.</p>
+<p>Modify <a href="https://github.com/CS2103AUG2017-F11-B3/main/tree/master/src/main/java/seedu/address/logic/parser/AddressBookParser.java"><code>AddressBookParser</code></a> to use the newly implemented <code>RemarkCommandParser</code>.</p>
 </li>
 </ol>
 </div>
@@ -2469,7 +2478,7 @@ Removes the remark for the first person.</p>
 for <code>RemarkCommandParser</code>.</p>
 </li>
 <li>
-<p>Modify <a href="https://github.com/CS2103AUG2017-F11-B3/iungo/tree/master/src/test/java/seedu/address/logic/parser/AddressBookParserTest.java"><code>AddressBookParserTest</code></a> to test that the correct command is generated according to the user input.</p>
+<p>Modify <a href="https://github.com/CS2103AUG2017-F11-B3/main/tree/master/src/test/java/seedu/address/logic/parser/AddressBookParserTest.java"><code>AddressBookParserTest</code></a> to test that the correct command is generated according to the user input.</p>
 </li>
 </ol>
 </div>
@@ -2477,7 +2486,7 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="sect4">
 <h5 id="step-3-ui-add-a-placeholder-for-remark-in-code-personcard-code"><a class="link" href="#step-3-ui-add-a-placeholder-for-remark-in-code-personcard-code">[Step 3] Ui: Add a placeholder for remark in <code>PersonCard</code></a></h5>
 <div class="paragraph">
-<p>Let&#8217;s add a placeholder on all our <a href="https://github.com/CS2103AUG2017-F11-B3/iungo/tree/master/src/main/java/seedu/address/ui/PersonCard.java"><code>PersonCard</code></a> s to display a remark for each person later.</p>
+<p>Let&#8217;s add a placeholder on all our <a href="https://github.com/CS2103AUG2017-F11-B3/main/tree/master/src/main/java/seedu/address/ui/PersonCard.java"><code>PersonCard</code></a> s to display a remark for each person later.</p>
 </div>
 <div class="paragraph">
 <p><strong>Main:</strong></p>
@@ -2485,10 +2494,10 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Add a <code>Label</code> with any random text inside <a href="https://github.com/CS2103AUG2017-F11-B3/iungo/tree/master/src/main/resources/view/PersonListCard.fxml"><code>PersonListCard.fxml</code></a>.</p>
+<p>Add a <code>Label</code> with any random text inside <a href="https://github.com/CS2103AUG2017-F11-B3/main/tree/master/src/main/resources/view/PersonListCard.fxml"><code>PersonListCard.fxml</code></a>.</p>
 </li>
 <li>
-<p>Add FXML annotation in <a href="https://github.com/CS2103AUG2017-F11-B3/iungo/tree/master/src/main/java/seedu/address/ui/PersonCard.java"><code>PersonCard</code></a> to tie the variable to the actual label.</p>
+<p>Add FXML annotation in <a href="https://github.com/CS2103AUG2017-F11-B3/main/tree/master/src/main/java/seedu/address/ui/PersonCard.java"><code>PersonCard</code></a> to tie the variable to the actual label.</p>
 </li>
 </ol>
 </div>
@@ -2498,7 +2507,7 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Modify <a href="https://github.com/CS2103AUG2017-F11-B3/iungo/tree/master/src/test/java/guitests/guihandles/PersonCardHandle.java"><code>PersonCardHandle</code></a> so that future tests can read the contents of the remark label.</p>
+<p>Modify <a href="https://github.com/CS2103AUG2017-F11-B3/main/tree/master/src/test/java/guitests/guihandles/PersonCardHandle.java"><code>PersonCardHandle</code></a> so that future tests can read the contents of the remark label.</p>
 </li>
 </ol>
 </div>
@@ -2506,7 +2515,7 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="sect4">
 <h5 id="step-4-model-add-code-remark-code-class"><a class="link" href="#step-4-model-add-code-remark-code-class">[Step 4] Model: Add <code>Remark</code> class</a></h5>
 <div class="paragraph">
-<p>We have to properly encapsulate the remark in our <a href="https://github.com/CS2103AUG2017-F11-B3/iungo/tree/master/src/main/java/seedu/address/model/person/ReadOnlyPerson.java"><code>ReadOnlyPerson</code></a> class. Instead of just using a <code>String</code>, let&#8217;s follow the conventional class structure that the codebase already uses by adding a <code>Remark</code> class.</p>
+<p>We have to properly encapsulate the remark in our <a href="https://github.com/CS2103AUG2017-F11-B3/main/tree/master/src/main/java/seedu/address/model/person/ReadOnlyPerson.java"><code>ReadOnlyPerson</code></a> class. Instead of just using a <code>String</code>, let&#8217;s follow the conventional class structure that the codebase already uses by adding a <code>Remark</code> class.</p>
 </div>
 <div class="paragraph">
 <p><strong>Main:</strong></p>
@@ -2514,7 +2523,7 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Add <code>Remark</code> to model component (you can copy from <a href="https://github.com/CS2103AUG2017-F11-B3/iungo/tree/master/src/main/java/seedu/address/model/person/Address.java"><code>Address</code></a>, remove the regex and change the names accordingly).</p>
+<p>Add <code>Remark</code> to model component (you can copy from <a href="https://github.com/CS2103AUG2017-F11-B3/main/tree/master/src/main/java/seedu/address/model/person/Address.java"><code>Address</code></a>, remove the regex and change the names accordingly).</p>
 </li>
 <li>
 <p>Modify <code>RemarkCommand</code> to now take in a <code>Remark</code> instead of a <code>String</code>.</p>
@@ -2535,7 +2544,7 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="sect4">
 <h5 id="step-5-model-modify-code-readonlyperson-code-to-support-a-code-remark-code-field"><a class="link" href="#step-5-model-modify-code-readonlyperson-code-to-support-a-code-remark-code-field">[Step 5] Model: Modify <code>ReadOnlyPerson</code> to support a <code>Remark</code> field</a></h5>
 <div class="paragraph">
-<p>Now we have the <code>Remark</code> class, we need to actually use it inside <a href="https://github.com/CS2103AUG2017-F11-B3/iungo/tree/master/src/main/java/seedu/address/model/person/ReadOnlyPerson.java"><code>ReadOnlyPerson</code></a>.</p>
+<p>Now we have the <code>Remark</code> class, we need to actually use it inside <a href="https://github.com/CS2103AUG2017-F11-B3/main/tree/master/src/main/java/seedu/address/model/person/ReadOnlyPerson.java"><code>ReadOnlyPerson</code></a>.</p>
 </div>
 <div class="paragraph">
 <p><strong>Main:</strong></p>
@@ -2543,13 +2552,13 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Add three methods <code>setRemark(Remark)</code>, <code>getRemark()</code> and <code>remarkProperty()</code>. Be sure to implement these newly created methods in <a href="https://github.com/CS2103AUG2017-F11-B3/iungo/tree/master/src/main/java/seedu/address/model/person/ReadOnlyPerson.java"><code>Person</code></a>, which implements the <a href="https://github.com/CS2103AUG2017-F11-B3/iungo/tree/master/src/main/java/seedu/address/model/person/ReadOnlyPerson.java"><code>ReadOnlyPerson</code></a> interface.</p>
+<p>Add three methods <code>setRemark(Remark)</code>, <code>getRemark()</code> and <code>remarkProperty()</code>. Be sure to implement these newly created methods in <a href="https://github.com/CS2103AUG2017-F11-B3/main/tree/master/src/main/java/seedu/address/model/person/ReadOnlyPerson.java"><code>Person</code></a>, which implements the <a href="https://github.com/CS2103AUG2017-F11-B3/main/tree/master/src/main/java/seedu/address/model/person/ReadOnlyPerson.java"><code>ReadOnlyPerson</code></a> interface.</p>
 </li>
 <li>
 <p>You may assume that the user will not be able to use the <code>add</code> and <code>edit</code> commands to modify the remarks field (i.e. the person will be created without a remark).</p>
 </li>
 <li>
-<p>Modify <a href="https://github.com/CS2103AUG2017-F11-B3/iungo/tree/master/src/main/java/seedu/address/model/util/SampleDataUtil.java/"><code>SampleDataUtil</code></a> to add remarks for the sample data (delete your <code>addressBook.xml</code> so that the application will load the sample data when you launch it.)</p>
+<p>Modify <a href="https://github.com/CS2103AUG2017-F11-B3/main/tree/master/src/main/java/seedu/address/model/util/SampleDataUtil.java/"><code>SampleDataUtil</code></a> to add remarks for the sample data (delete your <code>addressBook.xml</code> so that the application will load the sample data when you launch it.)</p>
 </li>
 </ol>
 </div>
@@ -2557,7 +2566,7 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="sect4">
 <h5 id="step-6-storage-add-code-remark-code-field-to-code-xmladaptedperson-code-class"><a class="link" href="#step-6-storage-add-code-remark-code-field-to-code-xmladaptedperson-code-class">[Step 6] Storage: Add <code>Remark</code> field to <code>XmlAdaptedPerson</code> class</a></h5>
 <div class="paragraph">
-<p>We now have <code>Remark</code> s for <code>Person</code> s, but they will be gone when we exit the application. Let&#8217;s modify <a href="https://github.com/CS2103AUG2017-F11-B3/iungo/tree/master/src/main/java/seedu/address/storage/XmlAdaptedPerson.java"><code>XmlAdaptedPerson</code></a> to include a <code>Remark</code> field so that it will be saved.</p>
+<p>We now have <code>Remark</code> s for <code>Person</code> s, but they will be gone when we exit the application. Let&#8217;s modify <a href="https://github.com/CS2103AUG2017-F11-B3/main/tree/master/src/main/java/seedu/address/storage/XmlAdaptedPerson.java"><code>XmlAdaptedPerson</code></a> to include a <code>Remark</code> field so that it will be saved.</p>
 </div>
 <div class="paragraph">
 <p><strong>Main:</strong></p>
@@ -2568,7 +2577,7 @@ for <code>RemarkCommandParser</code>.</p>
 <p>Add a new Xml field for <code>Remark</code>.</p>
 </li>
 <li>
-<p>Be sure to modify the logic of the constructor and <code>toModelType()</code>, which handles the conversion to/from  <a href="https://github.com/CS2103AUG2017-F11-B3/iungo/tree/master/src/main/java/seedu/address/model/person/ReadOnlyPerson.java"><code>ReadOnlyPerson</code></a>.</p>
+<p>Be sure to modify the logic of the constructor and <code>toModelType()</code>, which handles the conversion to/from  <a href="https://github.com/CS2103AUG2017-F11-B3/main/tree/master/src/main/java/seedu/address/model/person/ReadOnlyPerson.java"><code>ReadOnlyPerson</code></a>.</p>
 </li>
 </ol>
 </div>
@@ -2586,7 +2595,7 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="sect4">
 <h5 id="step-7-ui-connect-code-remark-code-field-to-code-personcard-code"><a class="link" href="#step-7-ui-connect-code-remark-code-field-to-code-personcard-code">[Step 7] Ui: Connect <code>Remark</code> field to <code>PersonCard</code></a></h5>
 <div class="paragraph">
-<p>Our remark label in <a href="https://github.com/CS2103AUG2017-F11-B3/iungo/tree/master/src/main/java/seedu/address/ui/PersonCard.java"><code>PersonCard</code></a> is still a placeholder. Let&#8217;s bring it to life by binding it with the actual <code>remark</code> field.</p>
+<p>Our remark label in <a href="https://github.com/CS2103AUG2017-F11-B3/main/tree/master/src/main/java/seedu/address/ui/PersonCard.java"><code>PersonCard</code></a> is still a placeholder. Let&#8217;s bring it to life by binding it with the actual <code>remark</code> field.</p>
 </div>
 <div class="paragraph">
 <p><strong>Main:</strong></p>
@@ -2594,7 +2603,7 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Modify <a href="https://github.com/CS2103AUG2017-F11-B3/iungo/tree/master/src/main/java/seedu/address/ui/PersonCard.java"><code>PersonCard#bindListeners()</code></a> to add the binding for <code>remark</code>.</p>
+<p>Modify <a href="https://github.com/CS2103AUG2017-F11-B3/main/tree/master/src/main/java/seedu/address/ui/PersonCard.java"><code>PersonCard#bindListeners()</code></a> to add the binding for <code>remark</code>.</p>
 </li>
 </ol>
 </div>
@@ -2604,10 +2613,10 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Modify <a href="https://github.com/CS2103AUG2017-F11-B3/iungo/tree/master/src/test/java/seedu/address/ui/testutil/GuiTestAssert.java"><code>GuiTestAssert#assertCardDisplaysPerson(&#8230;&#8203;)</code></a> so that it will compare the remark label.</p>
+<p>Modify <a href="https://github.com/CS2103AUG2017-F11-B3/main/tree/master/src/test/java/seedu/address/ui/testutil/GuiTestAssert.java"><code>GuiTestAssert#assertCardDisplaysPerson(&#8230;&#8203;)</code></a> so that it will compare the remark label.</p>
 </li>
 <li>
-<p>In <a href="https://github.com/CS2103AUG2017-F11-B3/iungo/tree/master/src/test/java/seedu/address/ui/PersonCardTest.java"><code>PersonCardTest</code></a>, call <code>personWithTags.setRemark(ALICE.getRemark())</code> to test that changes in the <a href="https://github.com/CS2103AUG2017-F11-B3/iungo/tree/master/src/main/java/seedu/address/model/person/ReadOnlyPerson.java"><code>Person</code></a> 's remark correctly updates the corresponding <a href="https://github.com/CS2103AUG2017-F11-B3/iungo/tree/master/src/main/java/seedu/address/ui/PersonCard.java"><code>PersonCard</code></a>.</p>
+<p>In <a href="https://github.com/CS2103AUG2017-F11-B3/main/tree/master/src/test/java/seedu/address/ui/PersonCardTest.java"><code>PersonCardTest</code></a>, call <code>personWithTags.setRemark(ALICE.getRemark())</code> to test that changes in the <a href="https://github.com/CS2103AUG2017-F11-B3/main/tree/master/src/main/java/seedu/address/model/person/ReadOnlyPerson.java"><code>Person</code></a> 's remark correctly updates the corresponding <a href="https://github.com/CS2103AUG2017-F11-B3/main/tree/master/src/main/java/seedu/address/ui/PersonCard.java"><code>PersonCard</code></a>.</p>
 </li>
 </ol>
 </div>
@@ -2715,13 +2724,6 @@ for <code>RemarkCommandParser</code>.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">be able to set the <a href="#homepage">homepage</a> for a contact</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">able to customize the details of the
-contact</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#tag">tag</a> contacts</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">I can find people with the same tags easily in a listing</p></td>
 </tr>
@@ -2730,6 +2732,13 @@ contact</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">user with many persons in the address book</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">sort persons by name</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">locate a person easily</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">be able to set the <a href="#homepage">homepage</a> for a contact</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">able to customize the details of the
+contact</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
@@ -2748,12 +2757,6 @@ contact</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">add birthday of contact</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">I can be more conscious of my contact&#8217;s birthday</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">export address book to other format</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">I can print out the address book and view it with better program</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
@@ -2789,7 +2792,7 @@ favourite contacts easily</p></td>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">search contact address on google map</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">search contact address on Google Maps</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">see the address of contact</p></td>
 </tr>
 <tr>
@@ -2812,10 +2815,16 @@ favourite contacts easily</p></td>
 increasing security</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">user with many persons in the address book</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">have <a href="#autocomplete">autocomplete</a> search in the find command</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">locate a contact without their full names</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">export address book to other format</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I can print out the address book and view it with better program</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
@@ -2838,8 +2847,8 @@ increasing security</p></td>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">see who create the addressbook</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">let the developer know bugs that I found</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">see the AboutUs page</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">let the developer get feedback from me</p></td>
 </tr>
 </tbody>
 </table>
@@ -3341,39 +3350,6 @@ increasing security</p></td>
 </li>
 </ul>
 </div>
-<h3 id="use-case-recent-contacts-2" class="discrete">Use case: Recent contacts</h3>
-<div class="paragraph">
-<p><strong>Guarantees:</strong> Only contacts that has been returned by <code>FindCommand</code> will be listed.</p>
-</div>
-<div class="paragraph">
-<p><strong>MSS</strong></p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>User requests to list recently found contacts.</p>
-</li>
-<li>
-<p>AddressBook shows a list of contacts recently found.</p>
-<div class="paragraph">
-<p>Use case ends.</p>
-</div>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p><strong>Extensions</strong></p>
-</div>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>1a. The list is empty.</p>
-<div class="paragraph">
-<p>Use case ends.</p>
-</div>
-</li>
-</ul>
-</div>
 <h3 id="use-case-help" class="discrete">Use case: Help</h3>
 <div class="paragraph">
 <p><strong>Guarantees:</strong> User guide will be displayed.</p>
@@ -3571,7 +3547,7 @@ Use case ends.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>3b1. Avatar is set to be deleted on program exit.</p>
+<p>3b1. Avatar will be deleted.</p>
 <div class="paragraph">
 <p>Use case resumes at step 4.</p>
 </div>
@@ -4008,7 +3984,7 @@ Use case ends.</p>
 <p>Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.</p>
 </li>
 <li>
-<p>Search should deliver results within 2 seconds.</p>
+<p>Search should deliver results within 0.5 seconds.</p>
 </li>
 </ol>
 </div>
@@ -4021,7 +3997,7 @@ Use case ends.</p>
 <p>Mean time to recovery: first thing to update to not keep users waiting and changing to another product. Assures users it is only a lapse and the app is reliable.</p>
 </li>
 <li>
-<p>Mean time between failures: 1 hour.</p>
+<p>Mean time between failures: 100 hours.</p>
 </li>
 </ol>
 </div>
@@ -4031,10 +4007,10 @@ Use case ends.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Should auto-save information after user is idling for 5 seconds.</p>
+<p>Should auto-save information after any changes to the backing list.</p>
 </li>
 <li>
-<p>Should be able to stores information in event of crash / internet cut-off.</p>
+<p>Should be able to store information in event of crash / internet cut-off.</p>
 </li>
 </ol>
 </div>
@@ -4044,7 +4020,7 @@ Use case ends.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Should keeping essence of original design whenever making updates. (keeps users who have not used the application in a long time be able to use the application although they may not know the difference in updates)</p>
+<p>Should keep essence of original design whenever making updates. (keeps users who have not used the application in a long time be able to use the application although they may not know the difference in updates)</p>
 </li>
 <li>
 <p>Be able to use old versions of the application although there is a new update.</p>
@@ -4056,9 +4032,6 @@ Use case ends.</p>
 <p>Usability</p>
 <div class="olist arabic">
 <ol class="arabic">
-<li>
-<p>Should enable spell-check</p>
-</li>
 <li>
 <p>Should work with other languages and not restricted to English.</p>
 </li>
@@ -4074,6 +4047,9 @@ Use case ends.</p>
 <ol class="arabic">
 <li>
 <p>Easily locatable 'Help?' section</p>
+</li>
+<li>
+<p>Easily locateble 'AboutUs' section</p>
 </li>
 </ol>
 </div>
@@ -4099,7 +4075,7 @@ Use case ends.</p>
 <p>GUI should not have bright colours to reduce strain on eyes.</p>
 </li>
 <li>
-<p>GUI should have toggling sizes for those with differing eyesight capabilities.</p>
+<p>GUI should be able to be resized for users with different screen sizes.</p>
 </li>
 <li>
 <p>Should keep a log of user actions done (to allow them to keep track of their own actions).</p>
@@ -4108,9 +4084,6 @@ Use case ends.</p>
 </div>
 </li>
 </ul>
-</div>
-<div class="paragraph">
-<p>{More to be added}</p>
 </div>
 </div>
 </div>
@@ -4175,47 +4148,10 @@ Use case ends.</p>
 </div>
 </div>
 </div>
-<div class="sect1">
-<h2 id="product-survey"><a class="link" href="#product-survey">Appendix F: Product Survey</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p><strong>Product Name</strong></p>
-</div>
-<div class="paragraph">
-<p>Author: &#8230;&#8203;</p>
-</div>
-<div class="paragraph">
-<p>Pros:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>&#8230;&#8203;</p>
-</li>
-<li>
-<p>&#8230;&#8203;</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Cons:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>&#8230;&#8203;</p>
-</li>
-<li>
-<p>&#8230;&#8203;</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-09 16:09:20 +00:00
+Last updated 2017-11-11 17:13:39 +00:00
 </div>
 </div>
 </body>

@@ -23,7 +23,8 @@
 it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 6 kLoC.</p>
 </div>
 <div class="paragraph">
-<p><strong>Code contributed</strong>: [<a href="https://github.com">Functional code</a>] [<a href="https://github.com">Test code</a>] {give links to collated code files}</p>
+<p><strong>Code contributed</strong>: [<a href="https://github.com/CS2103AUG2017-F11-B3/main/blob/master/collated/main/karrui.md">Functional code</a>]
+[<a href="https://github.com/CS2103AUG2017-F11-B3/main/blob/master/collated/test/karrui.md">Test code</a>]<br></p>
 </div>
 <div class="sect2">
 <h3 id="enhancement-added-setting-of-homepage"><a class="link" href="#enhancement-added-setting-of-homepage">Enhancement Added: Setting of homepage</a></h3>
@@ -38,8 +39,10 @@ it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and
 <div class="sect2">
 <h3 id="editing-a-person-code-edit-code-code-e-code"><a class="link" href="#editing-a-person-code-edit-code-code-e-code">Editing a person : <code>edit</code>, <code>e</code></a></h3>
 <div class="paragraph">
-<p>Edits an existing person in the address book.<br>
-Format: <code>edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [h/HOMEPAGE] [t/TAG]&#8230;&#8203;</code></p>
+<p><code>UNDOABLE</code><br>
+Edits an existing person in the address book.<br>
+Editable parameters: <code>name</code>, <code>phone</code>, <code>email</code>, <code>address</code>, <code>homepage</code>, <code>remark</code>, <code>tag</code><br>
+Format: <code>edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [h/HOMEPAGE] [re/REMARK] [t/TAG]&#8230;&#8203;</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -80,6 +83,18 @@ If the name is edited and the contact did not previously have a custom homepage 
 </tr>
 </table>
 </div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+There is also another way to edit a <code>remark</code> of a person; refer to the <a href="#remark">Remark</a> section
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>Examples:</p>
 </div>
@@ -90,8 +105,8 @@ If the name is edited and the contact did not previously have a custom homepage 
 Edits the phone number and email address of the 1st person to be <code>91234567</code> and <code>johndoe@example.com</code> respectively.</p>
 </li>
 <li>
-<p><code>e 2 n/Betsy Crower t/</code><br>
-Edits the name of the 2nd person to be <code>Betsy Crower</code> and clears all existing tags.</p>
+<p><code>e 2 n/Betsy Crower h/http://www.google.com t/</code><br>
+Edits the name of the 2nd person to be <code>Betsy Crower</code>, sets the homepage to be <code><a href="http://www.google.com" class="bare">http://www.google.com</a></code>,  and clears all existing tags.</p>
 </li>
 </ul>
 </div>
@@ -99,8 +114,12 @@ Edits the name of the 2nd person to be <code>Betsy Crower</code> and clears all 
 <div class="sect2">
 <h3 id="adding-a-person-code-add-code-code-a-code"><a class="link" href="#adding-a-person-code-add-code-code-a-code">Adding a person: <code>add</code>, <code>a</code></a></h3>
 <div class="paragraph">
+<p><code>UNDOABLE</code></p>
+</div>
+<div class="paragraph">
 <p>Adds a person to the address book<br>
-Format: <code>add n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [h/HOMEPAGE] [t/TAG]&#8230;&#8203;</code></p>
+Addable parameters: <code>name</code>, <code>phone</code>, <code>email</code>, <code>address</code>, <code>homepage</code>, <code>remark</code>, <code>tag</code><br>
+Format: <code>add n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [h/HOMEPAGE] [re/REMARK] [t/TAG]&#8230;&#8203;</code></p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -121,7 +140,19 @@ A person can have any number of tags (including 0)<br>
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-The <code>EMAIL</code>, <code>ADDRESS</code>, <code>HOMEPAGE</code>, and <code>TAG</code> parameters are OPTIONAL
+The <code>EMAIL</code>, <code>ADDRESS</code>, <code>HOMEPAGE</code>, <code>REMARK</code> and <code>TAG</code> parameters are OPTIONAL {since v1.5rc}
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+There is also another way to add a <code>remark</code> to a person; refer to the <a href="#remark">Remark</a> section
 </td>
 </tr>
 </table>
@@ -134,6 +165,30 @@ The <code>EMAIL</code>, <code>ADDRESS</code>, <code>HOMEPAGE</code>, and <code>T
 </td>
 <td class="content">
 A person will have a default homepage of a Google search of his/her name, if <code>/h</code> was not included in the add command
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The <code>HOMEPAGE</code> provided should be a complete URL, including the <code>http://</code> header.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>Avatars</code> cannot be added with this command, they need to be set separately. Refer to the <a href="#avatar">Set avatar</a> section
 </td>
 </tr>
 </table>
@@ -285,9 +340,10 @@ will be confused.<br>
 <div class="sect2">
 <h3 id="sorting-the-contact-list-code-sort-code"><a class="link" href="#sorting-the-contact-list-code-sort-code">Sorting the contact list : <code>sort</code></a></h3>
 <div class="paragraph">
-<p>{since v1.2}<br>
+<p><code>UNDOABLE</code><br>
+{since v1.2}<br>
 Sorts the contact list in either [a]scending or [d]escending order and shows the list.<br>
-Format: <code>sort [a / d]</code></p>
+Format: <code>sort a</code> or <code>sort d</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -360,9 +416,10 @@ The following sequence diagrams shows how the sort mechanism works:</p>
 <h3 id="setting-an-avatar-for-a-contact-code-setavatar-code-code-sa-code"><a class="link" href="#setting-an-avatar-for-a-contact-code-setavatar-code-code-sa-code">Setting an avatar for a contact : <code>setavatar</code>, <code>sa</code></a></h3>
 <div class="paragraph">
 <p>{since v1.3}<br>
-Sets an avatar for a contact referenced by the index number used in the last person listing.<br>
-Format: <code>setavatar INDEX sa/AVATAR_URL</code><br>
-Alias: <code>sa INDEX sa/AVATAR_URL</code></p>
+Sets an avatar for a contact referenced by the index number used in the last person listing.
+If <code>AVATAR_URL</code> is empty; i.e <code>sa INDEX sa/</code>, the current avatar (if any) will be deleted.<br>
+Format: <code>setavatar INDEX sa/[AVATAR_URL]</code><br>
+Alias: <code>sa INDEX sa/[AVATAR_URL]</code></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -372,6 +429,18 @@ Alias: <code>sa INDEX sa/AVATAR_URL</code></p>
 </td>
 <td class="content">
 This requires an active Internet connection to work, as the application requires an URL to retrieve the image.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This command <strong>cannot</strong> be undone, if <code>sa INDEX sa/</code> is invoked, you will need to add the avatar again with an URL.
 </td>
 </tr>
 </table>
@@ -442,12 +511,12 @@ parses the arguments provided by the user.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/SetAvatarCommandParserSequenceDiagram.png" alt="SetAvatarCommandParserSequenceDiagram">
+<img src="../images/SetAvatarCommandParserSequenceDiagram.png" alt="SetAvatarCommandParserSequenceDiagram" width="500">
 </div>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/SetAvatarCommandSequenceDiagram.png" alt="SetAvatarCommandSequenceDiagram" width="800">
+<img src="../images/SetAvatarCommandSequenceDiagram.png" alt="SetAvatarCommandSequenceDiagram" width="500">
 </div>
 </div>
 <div class="paragraph">
@@ -464,7 +533,7 @@ object.</p>
 <p>A valid URL OR is empty</p>
 </li>
 <li>
-<p>The image must not be larger than 20KB (due to application slowdowns if the file is too big)</p>
+<p>The image must not be larger than 50KB (due to application slowdowns if the file is too big)</p>
 </li>
 </ol>
 </div>
@@ -479,47 +548,57 @@ Below is the code snippet of <code>SetAvatarCommand</code> for the various check
 
      <span class="comment">// avatar refers to the avatar object created during the construction of SetAvatarCommand</span>
      <span class="keyword">if</span> (<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>.equals(avatar.path) &amp;&amp; !<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>.equals(personToSetAvatarPath)) { <span class="comment">// delete image from storage</span>
-            ProcessImageFromUrlToFileForAvatar.removeImageFromStorage(personToSetAvatarPath);
-         } <span class="keyword">else</span> {
-             <span class="keyword">if</span> (!<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>.equals(personToSetAvatarPath)) {   <span class="comment">// has a previously set avatar, remove first before processing</span>
-                ProcessImageFromUrlToFileForAvatar.removeImageFromStorage(personToSetAvatarPath);
-             }
-         }
+         ProcessImage.removeImageFromStorage(personToSetAvatarPath);
+     } <span class="keyword">else</span> <span class="keyword">if</span> (!<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>.equals(personToSetAvatarPath)) {   <span class="comment">// has a previously set avatar, remove first before processing</span>
+         ProcessImage.removeImageFromStorage(personToSetAvatarPath);
      }
  }</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The utility class <code>ProcessImageFromUrlToFileForAvatar</code> is used to process images retrieved from the Internet. It contains
-two methods&#8201;&#8212;&#8201;<code>writeImageToFile(&#8230;&#8203;)</code> and <code>removeImageFromStorage(&#8230;&#8203;)</code> which stores the image into the
+<p>The utility class <code>ProcessImage</code> is used to process images retrieved from the Internet. It contains
+methods such as&#8201;&#8212;&#8201;<code>writeImageToStorage(&#8230;&#8203;)</code> and <code>removeImageFromStorage(&#8230;&#8203;)</code> which stores the image into the
 <code>DEFAULT_AVATAR_FILE_LOCATION</code> and removes the image respectively.<br>
-Below is the code snippet of the write method:</p>
+Below is the code snippet of the write method, which calls a helper method <code>getUniqueFile()</code> to generate a File with a unique path:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="type">void</span> writeImageToFile(<span class="predefined-type">String</span> path) {
+<pre class="CodeRay highlight"><code data-lang="java"><span class="type">void</span> writeImageToStorage(<span class="predefined-type">String</span> path) {
     <span class="comment">// ... irrelevant ...</span>
 
-    <span class="comment">// Using hashCode() + checking if file exists assures uniqueness of name of created file</span>
-    <span class="predefined-type">File</span> file = <span class="keyword">new</span> <span class="predefined-type">File</span>(DEFAULT_AVATAR_FILE_LOCATION + path.hashCode() + <span class="string"><span class="delimiter">&quot;</span><span class="content">.jpg</span><span class="delimiter">&quot;</span></span>);
-    <span class="keyword">while</span> (file.exists()) {
-        file = <span class="keyword">new</span> <span class="predefined-type">File</span>(DEFAULT_AVATAR_FILE_LOCATION + (path.hashCode() + ++i) + <span class="string"><span class="delimiter">&quot;</span><span class="content">.jpg</span><span class="delimiter">&quot;</span></span>);
-    }
+    <span class="predefined-type">URL</span> url = <span class="keyword">new</span> <span class="predefined-type">URL</span>(path);
+    <span class="predefined-type">BufferedImage</span> image = <span class="predefined-type">ImageIO</span>.read(url);
+
+    <span class="predefined-type">File</span> file = getUniqueFile();
     <span class="predefined-type">ImageIO</span>.write(image, <span class="string"><span class="delimiter">&quot;</span><span class="content">jpg</span><span class="delimiter">&quot;</span></span>, file);
+    logger.info(<span class="string"><span class="delimiter">&quot;</span><span class="content">Image from </span><span class="delimiter">&quot;</span></span> + path + <span class="string"><span class="delimiter">&quot;</span><span class="content"> written to to file: </span><span class="delimiter">&quot;</span></span> + file.getName());
     <span class="keyword">return</span> file.getPath().replace(<span class="string"><span class="delimiter">'</span><span class="char">\\</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">/</span><span class="delimiter">'</span></span>);
+}
+
+<span class="predefined-type">File</span> getUniqueFile() {
+    <span class="predefined-type">Random</span> random = <span class="keyword">new</span> <span class="predefined-type">Random</span>();
+    <span class="comment">// random.nextInt() + checking if file exists assures uniqueness of name of created file</span>
+    <span class="predefined-type">File</span> file = <span class="keyword">new</span> <span class="predefined-type">File</span>(DEFAULT_AVATAR_FILE_LOCATION + random.nextInt() + <span class="string"><span class="delimiter">&quot;</span><span class="content">.jpg</span><span class="delimiter">&quot;</span></span>);
+    <span class="keyword">while</span> (file.exists()) {
+        file = <span class="keyword">new</span> <span class="predefined-type">File</span>(DEFAULT_AVATAR_FILE_LOCATION + random.nextInt() + <span class="string"><span class="delimiter">&quot;</span><span class="content">.jpg</span><span class="delimiter">&quot;</span></span>);
+    }
+    <span class="keyword">return</span> file;
 }</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>As <code>SetAvatarCommand</code> is an <code>UndoableCommand</code>, <code>removeImageFromStorage(&#8230;&#8203;)</code> only deletes the image when the application exits,
-in order to allow the user to undo the command.<br>
+<p>As <code>SetAvatarCommand</code> is an <code>Command</code>, <code>removeImageFromStorage(&#8230;&#8203;)</code> deletes the image once invoked.<br>
 Below is the code snipper of the remove method:</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="java"><span class="type">void</span> removeImageFromStorage(<span class="predefined-type">String</span> path) {
     <span class="predefined-type">File</span> file = <span class="keyword">new</span> <span class="predefined-type">File</span>(path);
-    file.deleteOnExit();    <span class="comment">// so as to allow undoable command</span>
+    <span class="keyword">if</span> (file.delete()) {
+         logger.info(<span class="string"><span class="delimiter">&quot;</span><span class="content">File at path: </span><span class="delimiter">&quot;</span></span> + path + <span class="string"><span class="delimiter">&quot;</span><span class="content"> is deleted</span><span class="delimiter">&quot;</span></span>);
+    } <span class="keyword">else</span> {
+         logger.severe(<span class="string"><span class="delimiter">&quot;</span><span class="content">Failed to delete file at </span><span class="delimiter">&quot;</span></span> + path);
+    }
 }</code></pre>
 </div>
 </div>
@@ -620,10 +699,8 @@ Below is the code snippet for the relevant code flow:</p>
 <div class="sect2">
 <h3 id="display-recently-searched-contacts-code-recent-code-code-rc-code"><a class="link" href="#display-recently-searched-contacts-code-recent-code-code-rc-code">Display recently searched contacts : <code>recent</code>, <code>rc</code></a></h3>
 <div class="paragraph">
-<p>{since v1.4)</p>
-</div>
-<div class="paragraph">
-<p>Shows a list of all contacts that was returned by <code>find</code> command since application was started.<br>
+<p>{since v1.4)<br>
+Shows a list of all contacts that was returned by <code>find</code> command since application was started.<br>
 Format: <code>recent</code></p>
 </div>
 <div class="paragraph">
@@ -734,8 +811,12 @@ returning the list in order user searched for contacts.<br>
 <div class="sect2">
 <h3 id="adding-a-person-code-add-code-code-a-code-2"><a class="link" href="#adding-a-person-code-add-code-code-a-code-2">Adding a person: <code>add</code>, <code>a</code></a></h3>
 <div class="paragraph">
+<p><code>UNDOABLE</code></p>
+</div>
+<div class="paragraph">
 <p>Adds a person to the address book<br>
-Format: <code>add n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [h/HOMEPAGE] [t/TAG]&#8230;&#8203;</code></p>
+Addable parameters: <code>name</code>, <code>phone</code>, <code>email</code>, <code>address</code>, <code>homepage</code>, <code>remark</code>, <code>tag</code><br>
+Format: <code>add n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [h/HOMEPAGE] [re/REMARK] [t/TAG]&#8230;&#8203;</code></p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -756,7 +837,19 @@ A person can have any number of tags (including 0)<br>
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-The <code>EMAIL</code>, <code>ADDRESS</code>, <code>HOMEPAGE</code>, and <code>TAG</code> parameters are OPTIONAL
+The <code>EMAIL</code>, <code>ADDRESS</code>, <code>HOMEPAGE</code>, <code>REMARK</code> and <code>TAG</code> parameters are OPTIONAL {since v1.5rc}
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+There is also another way to add a <code>remark</code> to a person; refer to the <a href="#remark">Remark</a> section
 </td>
 </tr>
 </table>
@@ -769,6 +862,30 @@ The <code>EMAIL</code>, <code>ADDRESS</code>, <code>HOMEPAGE</code>, and <code>T
 </td>
 <td class="content">
 A person will have a default homepage of a Google search of his/her name, if <code>/h</code> was not included in the add command
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The <code>HOMEPAGE</code> provided should be a complete URL, including the <code>http://</code> header.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>Avatars</code> cannot be added with this command, they need to be set separately. Refer to the <a href="#avatar">Set avatar</a> section
 </td>
 </tr>
 </table>
@@ -892,7 +1009,7 @@ Bugs discovered in Planno: [<a href="https://github.com/CS2103AUG2017-W14-B4/mai
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-09 16:09:20 +00:00
+Last updated 2017-11-11 17:13:39 +00:00
 </div>
 </div>
 </body>

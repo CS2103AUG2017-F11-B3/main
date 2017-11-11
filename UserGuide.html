@@ -37,14 +37,14 @@
 <li><a href="#locating-persons-by-partial-keyword-code-findany-code-code-fa-code">2.8. Locating persons by partial keyword: <code>findany</code>, <code>fa</code></a></li>
 <li><a href="#deleting-a-person-code-delete-code-code-d-code">2.9. Deleting a person : <code>delete</code>, <code>d</code></a></li>
 <li><a href="#selecting-a-person-code-select-code-code-s-code">2.10. Selecting a person : <code>select</code>, <code>s</code></a></li>
-<li><a href="#making-a-remark-to-a-person-code-remark-code-code-re-code">2.11. Making a Remark to a person : <code>remark</code>, <code>re</code></a></li>
-<li><a href="#setting-an-avatar-for-a-contact-code-setavatar-code-code-sa-code">2.12. Setting an avatar for a contact : <code>setavatar</code>, <code>sa</code></a></li>
+<li><a href="#remark">2.11. Adding a Remark to a person : <code>remark</code>, <code>re</code></a></li>
+<li><a href="#avatar">2.12. Setting an avatar for a contact : <code>setavatar</code>, <code>sa</code></a></li>
 <li><a href="#listing-entered-commands-code-history-code-code-h-code">2.13. Listing entered commands : <code>history</code>, <code>h</code></a></li>
 <li><a href="#undoing-previous-command-code-undo-code-code-u-code">2.14. Undoing previous command : <code>undo</code>, <code>u</code></a></li>
 <li><a href="#redoing-the-previously-undone-command-code-redo-code-code-r-code">2.15. Redoing the previously undone command : <code>redo</code>, <code>r</code></a></li>
 <li><a href="#selecting-a-theme-code-theme-code-code-t-code">2.16. Selecting a theme : <code>theme</code>, <code>t</code></a></li>
 <li><a href="#display-recently-searched-contacts-code-recent-code-code-rc-code">2.17. Display recently searched contacts : <code>recent</code>, <code>rc</code></a></li>
-<li><a href="#selecting-a-person-code-gmap-code-code-gm-code">2.18. Selecting a person : <code>gmap</code>, <code>gm</code></a></li>
+<li><a href="#viewing-the-address-of-a-contact-code-gmap-code-code-gm-code">2.18. Viewing the address of a contact : <code>gmap</code>, <code>gm</code></a></li>
 <li><a href="#clearing-all-entries-code-clear-code-code-c-code">2.19. Clearing all entries : <code>clear</code>, <code>c</code></a></li>
 <li><a href="#exiting-the-program-code-exit-code">2.20. Exiting the program : <code>exit</code></a></li>
 <li><a href="#saving-the-data">2.21. Saving the data</a></li>
@@ -82,17 +82,24 @@ This app will not work with earlier versions of Java 8.
 </div>
 </li>
 <li>
-<p>Download the latest <code>addressbook.jar</code> <a href="https://github.com/se-edu/addressbook-level4/releases">here</a>.</p>
+<p>Download the latest <code>addressbook.jar</code> <a href="https://github.com/CS2103AUG2017-F11-B3/main/releases">here</a>.</p>
 </li>
 <li>
 <p>Copy the file to the folder you want to use as the home folder for your Address Book.</p>
 </li>
 <li>
 <p>Double-click the file to start the app. The GUI should appear in a few seconds.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>The application will be preloaded with sample contacts. Type <code>clear</code> in the command box to reset the addressbook. For more information, look at 5.</p>
 <div class="imageblock">
 <div class="content">
 <img src="images/Ui.png" alt="Ui" width="790">
 </div>
+</div>
+</li>
+</ol>
 </div>
 </li>
 <li>
@@ -165,6 +172,18 @@ E.g. Adding a person : <code>add</code>, <code>a</code>
 </tr>
 </table>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Some commands can be <code>undone</code>. If they exist, an <code>UNDOABLE</code> will be positioned below the full command in the header.
+</td>
+</tr>
+</table>
+</div>
 <div class="sect2">
 <h3 id="viewing-help-code-help-code"><a class="link" href="#viewing-help-code-help-code">2.1. Viewing help : <code>help</code></a></h3>
 <div class="paragraph">
@@ -180,8 +199,12 @@ E.g. Adding a person : <code>add</code>, <code>a</code>
 <div class="sect2">
 <h3 id="adding-a-person-code-add-code-code-a-code"><a class="link" href="#adding-a-person-code-add-code-code-a-code">2.3. Adding a person: <code>add</code>, <code>a</code></a></h3>
 <div class="paragraph">
+<p><code>UNDOABLE</code></p>
+</div>
+<div class="paragraph">
 <p>Adds a person to the address book<br>
-Format: <code>add n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [h/HOMEPAGE] [t/TAG]&#8230;&#8203;</code></p>
+Addable parameters: <code>name</code>, <code>phone</code>, <code>email</code>, <code>address</code>, <code>homepage</code>, <code>remark</code>, <code>tag</code><br>
+Format: <code>add n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [h/HOMEPAGE] [re/REMARK] [t/TAG]&#8230;&#8203;</code></p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -202,7 +225,19 @@ A person can have any number of tags (including 0)<br>
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-The <code>EMAIL</code>, <code>ADDRESS</code>, <code>HOMEPAGE</code>, and <code>TAG</code> parameters are OPTIONAL
+The <code>EMAIL</code>, <code>ADDRESS</code>, <code>HOMEPAGE</code>, <code>REMARK</code> and <code>TAG</code> parameters are OPTIONAL {since v1.5rc}
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+There is also another way to add a <code>remark</code> to a person; refer to the <a href="#remark">Remark</a> section
 </td>
 </tr>
 </table>
@@ -215,6 +250,30 @@ The <code>EMAIL</code>, <code>ADDRESS</code>, <code>HOMEPAGE</code>, and <code>T
 </td>
 <td class="content">
 A person will have a default homepage of a Google search of his/her name, if <code>/h</code> was not included in the add command
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The <code>HOMEPAGE</code> provided should be a complete URL, including the <code>http://</code> header.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>Avatars</code> cannot be added with this command, they need to be set separately. Refer to the <a href="#avatar">Set avatar</a> section
 </td>
 </tr>
 </table>
@@ -246,9 +305,10 @@ Format: <code>list</code></p>
 <div class="sect2">
 <h3 id="sorting-the-contact-list-code-sort-code"><a class="link" href="#sorting-the-contact-list-code-sort-code">2.5. Sorting the contact list : <code>sort</code></a></h3>
 <div class="paragraph">
-<p>{since v1.2}<br>
+<p><code>UNDOABLE</code><br>
+{since v1.2}<br>
 Sorts the contact list in either [a]scending or [d]escending order and shows the list.<br>
-Format: <code>sort [a / d]</code></p>
+Format: <code>sort a</code> or <code>sort d</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -265,8 +325,10 @@ Format: <code>sort [a / d]</code></p>
 <div class="sect2">
 <h3 id="editing-a-person-code-edit-code-code-e-code"><a class="link" href="#editing-a-person-code-edit-code-code-e-code">2.6. Editing a person : <code>edit</code>, <code>e</code></a></h3>
 <div class="paragraph">
-<p>Edits an existing person in the address book.<br>
-Format: <code>edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [h/HOMEPAGE] [t/TAG]&#8230;&#8203;</code></p>
+<p><code>UNDOABLE</code><br>
+Edits an existing person in the address book.<br>
+Editable parameters: <code>name</code>, <code>phone</code>, <code>email</code>, <code>address</code>, <code>homepage</code>, <code>remark</code>, <code>tag</code><br>
+Format: <code>edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [h/HOMEPAGE] [re/REMARK] [t/TAG]&#8230;&#8203;</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -307,6 +369,18 @@ If the name is edited and the contact did not previously have a custom homepage 
 </tr>
 </table>
 </div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+There is also another way to edit a <code>remark</code> of a person; refer to the <a href="#remark">Remark</a> section
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>Examples:</p>
 </div>
@@ -317,8 +391,8 @@ If the name is edited and the contact did not previously have a custom homepage 
 Edits the phone number and email address of the 1st person to be <code>91234567</code> and <code>johndoe@example.com</code> respectively.</p>
 </li>
 <li>
-<p><code>e 2 n/Betsy Crower t/</code><br>
-Edits the name of the 2nd person to be <code>Betsy Crower</code> and clears all existing tags.</p>
+<p><code>e 2 n/Betsy Crower h/http://www.google.com t/</code><br>
+Edits the name of the 2nd person to be <code>Betsy Crower</code>, sets the homepage to be <code><a href="http://www.google.com" class="bare">http://www.google.com</a></code>,  and clears all existing tags.</p>
 </li>
 </ul>
 </div>
@@ -326,7 +400,8 @@ Edits the name of the 2nd person to be <code>Betsy Crower</code> and clears all 
 <div class="sect2">
 <h3 id="locating-persons-by-full-keyword-code-find-code-code-f-code"><a class="link" href="#locating-persons-by-full-keyword-code-find-code-code-f-code">2.7. Locating persons by full keyword: <code>find</code>, <code>f</code></a></h3>
 <div class="paragraph">
-<p>Finds persons whose details contain any of the given specified keywords. <strong>Keyword must be exact</strong><br>
+<p>{find by parameters available since v1.2}<br>
+Finds persons whose details contain any of the given specified keywords. <strong>Keyword must be exact</strong><br>
 Format: <code>find KEYWORD [MORE_KEYWORDS]</code><br>
 <code>[p/PHONE] KEYWORD [MORE_KEYWORDS]</code><br>
 <code>[e/EMAIL] KEYWORD [MORE_KEYWORDS]</code><br>
@@ -394,7 +469,8 @@ Returns any person having phone <code>9123456</code>, <code>8123456</code></p>
 <div class="sect2">
 <h3 id="locating-persons-by-partial-keyword-code-findany-code-code-fa-code"><a class="link" href="#locating-persons-by-partial-keyword-code-findany-code-code-fa-code">2.8. Locating persons by partial keyword: <code>findany</code>, <code>fa</code></a></h3>
 <div class="paragraph">
-<p>Finds persons whose details contain any of the given specified keywords. <strong>Keyword can be partial.</strong><br>
+<p>{since v1.2}<br>
+Finds persons whose details contain any of the given specified keywords. <strong>Keyword can be partial.</strong><br>
 Format: <code>findany KEYWORD [MORE_KEYWORDS]</code><br>
 <code>[p/PHONE] KEYWORD [MORE_KEYWORDS]</code><br>
 <code>[e/EMAIL] KEYWORD [MORE_KEYWORDS]</code><br>
@@ -423,11 +499,11 @@ Format: <code>findany KEYWORD [MORE_KEYWORDS]</code><br>
 <ul>
 <li>
 <p><code>findany john</code><br>
-Returns <code>Johnson</code> and <code>John Doe</code></p>
+Can return <code>Johnson</code> and <code>John Doe</code></p>
 </li>
 <li>
-<p><code>fa Betsy Tim John</code><br>
-Returns any person having names <code>Betsy</code>, <code>Timothy</code>, or <code>Johnson</code></p>
+<p><code>fa Bets Tim John</code><br>
+Returns any person having names containing <code>Bets</code>, <code>Tim</code>, or <code>John</code>, i.e. <code>Betsy</code>, <code>Timothy</code>, or <code>Johnson</code>.</p>
 </li>
 </ul>
 </div>
@@ -450,7 +526,8 @@ Returns any person having phone <code>9123456</code>, <code>8123456</code>, <cod
 <div class="sect2">
 <h3 id="deleting-a-person-code-delete-code-code-d-code"><a class="link" href="#deleting-a-person-code-delete-code-code-d-code">2.9. Deleting a person : <code>delete</code>, <code>d</code></a></h3>
 <div class="paragraph">
-<p>Deletes the specified person from the address book.<br>
+<p><code>UNDOABLE</code><br>
+Deletes the specified person from the address book.<br>
 Format: <code>delete INDEX</code></p>
 </div>
 <div class="sidebarblock">
@@ -530,9 +607,11 @@ Selects the 1st person in the results of the <code>find</code> command.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="making-a-remark-to-a-person-code-remark-code-code-re-code"><a class="link" href="#making-a-remark-to-a-person-code-remark-code-code-re-code">2.11. Making a Remark to a person : <code>remark</code>, <code>re</code></a></h3>
+<h3 id="remark"><a class="link" href="#remark">2.11. Adding a Remark to a person : <code>remark</code>, <code>re</code></a></h3>
 <div class="paragraph">
-<p>Give a person a remark by the index number used in the last person listing.<br>
+<p><code>UNDOABLE</code><br>
+{since v1.1}<br>
+Give a person a remark by the index number used in the last person listing.<br>
 Format: <code>remark INDEX re/REMARK</code></p>
 </div>
 <div class="sidebarblock">
@@ -574,12 +653,13 @@ Gives the 1st person in the results of the <code>find</code> command a remark.</
 </div>
 </div>
 <div class="sect2">
-<h3 id="setting-an-avatar-for-a-contact-code-setavatar-code-code-sa-code"><a class="link" href="#setting-an-avatar-for-a-contact-code-setavatar-code-code-sa-code">2.12. Setting an avatar for a contact : <code>setavatar</code>, <code>sa</code></a></h3>
+<h3 id="avatar"><a class="link" href="#avatar">2.12. Setting an avatar for a contact : <code>setavatar</code>, <code>sa</code></a></h3>
 <div class="paragraph">
 <p>{since v1.3}<br>
-Sets an avatar for a contact referenced by the index number used in the last person listing.<br>
-Format: <code>setavatar INDEX sa/AVATAR_URL</code><br>
-Alias: <code>sa INDEX sa/AVATAR_URL</code></p>
+Sets an avatar for a contact referenced by the index number used in the last person listing.
+If <code>AVATAR_URL</code> is empty; i.e <code>sa INDEX sa/</code>, the current avatar (if any) will be deleted.<br>
+Format: <code>setavatar INDEX sa/[AVATAR_URL]</code><br>
+Alias: <code>sa INDEX sa/[AVATAR_URL]</code></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -589,6 +669,18 @@ Alias: <code>sa INDEX sa/AVATAR_URL</code></p>
 </td>
 <td class="content">
 This requires an active Internet connection to work, as the application requires an URL to retrieve the image.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This command <strong>cannot</strong> be undone, if <code>sa INDEX sa/</code> is invoked, you will need to add the avatar again with an URL.
 </td>
 </tr>
 </table>
@@ -729,7 +821,8 @@ The <code>redo</code> command fails as there are no <code>undo</code> commands e
 <div class="sect2">
 <h3 id="selecting-a-theme-code-theme-code-code-t-code"><a class="link" href="#selecting-a-theme-code-theme-code-code-t-code">2.16. Selecting a theme : <code>theme</code>, <code>t</code></a></h3>
 <div class="paragraph">
-<p>Selects the theme identified by the index number.<br>
+<p>{since v1.3}<br>
+Selects the theme identified by the index number.<br>
 Format: <code>theme INDEX</code></p>
 </div>
 <div class="sidebarblock">
@@ -770,17 +863,16 @@ Select and load the second theme in the results of the <code>themelist</code> co
 <div class="sect2">
 <h3 id="display-recently-searched-contacts-code-recent-code-code-rc-code"><a class="link" href="#display-recently-searched-contacts-code-recent-code-code-rc-code">2.17. Display recently searched contacts : <code>recent</code>, <code>rc</code></a></h3>
 <div class="paragraph">
-<p>{since v1.4)</p>
-</div>
-<div class="paragraph">
-<p>Shows a list of all contacts that was returned by <code>find</code> command since application was started.<br>
+<p>{since v1.4)<br>
+Shows a list of all contacts that was returned by <code>find</code> command since application was started.<br>
 Format: <code>recent</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="selecting-a-person-code-gmap-code-code-gm-code"><a class="link" href="#selecting-a-person-code-gmap-code-code-gm-code">2.18. Selecting a person : <code>gmap</code>, <code>gm</code></a></h3>
+<h3 id="viewing-the-address-of-a-contact-code-gmap-code-code-gm-code"><a class="link" href="#viewing-the-address-of-a-contact-code-gmap-code-code-gm-code">2.18. Viewing the address of a contact : <code>gmap</code>, <code>gm</code></a></h3>
 <div class="paragraph">
-<p>Selects the person identified by the index number used in the last person listing and map the address to Google Map.<br>
+<p>{since v1.4}<br>
+Selects the person identified by the index number used in the last person listing and displays the address found in a webpage using Google Map.<br>
 Format: <code>gmap INDEX</code></p>
 </div>
 <div class="sidebarblock">
@@ -796,6 +888,9 @@ Format: <code>gmap INDEX</code></p>
 <li>
 <p>The index <strong>must be a positive integer</strong> <code>1, 2, 3, &#8230;&#8203;</code></p>
 </li>
+<li>
+<p>If the address was not inputted correctly, Google Maps may display an incorrect listing as this command supplies the address field as an input to Google Maps.</p>
+</li>
 </ul>
 </div>
 </div>
@@ -808,12 +903,12 @@ Format: <code>gmap INDEX</code></p>
 <li>
 <p><code>list</code><br>
 <code>gmap 2</code><br>
-Selects the 2nd person in the address book and map its address to Google Map.</p>
+Selects the 2nd person in the address book and displays the address in a webpage using Google Maps.</p>
 </li>
 <li>
 <p><code>find Betsy</code><br>
 <code>gm 1</code><br>
-Selects the 1st person in the results of the <code>find</code> command and map its address to Google Map.</p>
+Selects the 1st person in the results of the <code>find</code> command and displays the address in a webpage using Google Maps.</p>
 </li>
 </ul>
 </div>
@@ -846,7 +941,7 @@ There is no need to save manually.</p>
 <div class="sectionbody">
 <div class="paragraph">
 <p><strong>Q</strong>: How do I transfer my data to another Computer?<br>
-<strong>A</strong>: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Address Book folder.</p>
+<strong>A</strong>: Install the app in the other computer and overwrite the sample data file it creates with the file that contains the data of your previous Address Book folder.</p>
 </div>
 </div>
 </div>
@@ -858,11 +953,11 @@ There is no need to save manually.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Add</strong> : <code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]&#8230;&#8203;</code><br>
+<p><strong>Add</strong> : <code>add n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [h/HOMEPAGE] [t/TAG]&#8230;&#8203;</code><br>
 e.g. <code>add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague</code></p>
 </li>
 <li>
-<p><strong>Sort</strong> : <code>sort [a]/[d]</code></p>
+<p><strong>Sort</strong> : <code>sort [a]</code> or <code>sort [d]</code></p>
 </li>
 <li>
 <p><strong>Clear</strong> : <code>clear</code></p>
@@ -872,11 +967,11 @@ e.g. <code>add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1
 e.g. <code>delete 3</code></p>
 </li>
 <li>
-<p><strong>Edit</strong> : <code>edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]&#8230;&#8203;</code><br>
+<p><strong>Edit</strong> : <code>edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [h/HOMEPAGE] [t/TAG]&#8230;&#8203;</code><br>
 e.g. <code>edit 2 n/James Lee e/jameslee@example.com</code></p>
 </li>
 <li>
-<p><strong>Find exact</strong> : <code>find KEYWORD or [p/PHONE],[e/EMAIL], [a/ADDRESS], [h/HOMEPAGE], [t/TAG] KEYWORD [MORE_KEYWORDS]</code><br></p>
+<p><strong>Find whole word</strong> : <code>find KEYWORD or [p/PHONE],[e/EMAIL], [a/ADDRESS], [h/HOMEPAGE], [t/TAG] [MORE_KEYWORDS]</code><br></p>
 <div class="paragraph">
 <p>e.g. <code>find John</code><br>
 Returns <code>john</code> and <code>John Doe</code> but does not return <code>Johnson</code></p>
@@ -887,7 +982,7 @@ Returns <code>example@example.com</code> only</p>
 </div>
 </li>
 <li>
-<p><strong>Find any</strong> : <code>findany KEYWORD or [p/PHONE],[e/EMAIL], [a/ADDRESS], [h/HOMEPAGE], [t/TAG] KEYWORD [MORE_KEYWORDS]</code><br></p>
+<p><strong>Find any</strong> : <code>findany KEYWORD or [p/PHONE],[e/EMAIL], [a/ADDRESS], [h/HOMEPAGE], [t/TAG] [MORE_KEYWORDS]</code><br></p>
 <div class="paragraph">
 <p>e.g. <code>findany john</code><br>
 Returns <code>Johnson</code> and <code>John Doe</code></p>
@@ -923,13 +1018,13 @@ e.g.<code>select 2</code></p>
 <p><strong>Recent</strong> : <code>recent</code></p>
 </li>
 <li>
-<p><strong>Remark</strong> : <code>remark INDEX [re/REMARK]</code></p>
+<p><strong>Remark</strong> : <code>remark INDEX re/REMARK</code></p>
 </li>
 <li>
-<p><strong>Set avatar</strong> : <code>setavatar</code></p>
+<p><strong>Set avatar</strong> : <code>setavatar INDEX sa/AVATAR_URL</code></p>
 </li>
 <li>
-<p><strong>Change theme</strong> : <code>theme</code></p>
+<p><strong>Change theme</strong> : <code>theme INDEX</code></p>
 </li>
 </ul>
 </div>
@@ -984,7 +1079,7 @@ e.g.<code>select 2</code></p>
 <p><strong>Recent</strong> : <code>rc</code></p>
 </li>
 <li>
-<p><strong>Remark</strong> : <code>re INDEX [re/REMARK]</code></p>
+<p><strong>Remark</strong> : <code>re</code></p>
 </li>
 <li>
 <p><strong>Set avatar</strong> : <code>sa</code></p>
@@ -1000,7 +1095,7 @@ e.g.<code>select 2</code></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-09 16:09:20 +00:00
+Last updated 2017-11-11 17:13:39 +00:00
 </div>
 </div>
 </body>
