@@ -402,12 +402,13 @@ Edits the name of the 2nd person to be <code>Betsy Crower</code>, sets the homep
 <div class="paragraph">
 <p>{find by parameters available since v1.2}<br>
 Finds persons whose details contain any of the given specified keywords. <strong>Keyword must be exact</strong><br>
-Format: <code>find KEYWORD [MORE_KEYWORDS]</code><br>
-<code>[p/PHONE] KEYWORD [MORE_KEYWORDS]</code><br>
-<code>[e/EMAIL] KEYWORD [MORE_KEYWORDS]</code><br>
-<code>[a/ADDRESS] KEYWORD [MORE_KEYWORDS]</code><br>
-<code>[h/HOMEPAGE] KEYWORD [MORE_KEYWORDS]</code><br>
-<code>[t/TAG] KEYWORD [MORE_KEYWORDS]</code></p>
+Format:<br>
+<code>find NAME [MORE_KEYWORDS]</code><br>
+<code>find [p/PHONE] [MORE_KEYWORDS]</code><br>
+<code>find [e/EMAIL] [MORE_KEYWORDS]</code><br>
+<code>find [a/ADDRESS] [MORE_KEYWORDS]</code><br>
+<code>find [h/HOMEPAGE] [MORE_KEYWORDS]</code><br>
+<code>find [t/TAG] [MORE_KEYWORDS]</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -471,12 +472,13 @@ Returns any person having phone <code>9123456</code>, <code>8123456</code></p>
 <div class="paragraph">
 <p>{since v1.2}<br>
 Finds persons whose details contain any of the given specified keywords. <strong>Keyword can be partial.</strong><br>
-Format: <code>findany KEYWORD [MORE_KEYWORDS]</code><br>
-<code>[p/PHONE] KEYWORD [MORE_KEYWORDS]</code><br>
-<code>[e/EMAIL] KEYWORD [MORE_KEYWORDS]</code><br>
-<code>[a/ADDRESS] KEYWORD [MORE_KEYWORDS]</code><br>
-<code>[h/HOMEPAGE] KEYWORD [MORE_KEYWORDS]</code><br>
-<code>[t/TAG] KEYWORD [MORE_KEYWORDS]</code></p>
+Format:<br>
+<code>findany NAME [MORE_KEYWORDS]</code><br>
+<code>findany [p/PHONE] [MORE_KEYWORDS]</code><br>
+<code>findany [e/EMAIL] [MORE_KEYWORDS]</code><br>
+<code>findany [a/ADDRESS] [MORE_KEYWORDS]</code><br>
+<code>findany [h/HOMEPAGE] [MORE_KEYWORDS]</code><br>
+<code>findany [t/TAG] [MORE_KEYWORDS]</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -850,12 +852,12 @@ Format: <code>theme INDEX</code></p>
 <li>
 <p><code>theme</code><br>
 <code>theme 1</code><br>
-Select and load the first theme in the results of the <code>themelist</code> command.</p>
+Select and load the first theme in the results of the <code>theme</code> command.</p>
 </li>
 <li>
 <p><code>t</code><br>
 <code>t 2</code><br>
-Select and load the second theme in the results of the <code>themelist</code> command.</p>
+Select and load the second theme in the results of the <code>theme</code> command.</p>
 </li>
 </ul>
 </div>
@@ -982,10 +984,10 @@ Returns <code>example@example.com</code> only</p>
 </div>
 </li>
 <li>
-<p><strong>Find any</strong> : <code>findany KEYWORD or [p/PHONE],[e/EMAIL], [a/ADDRESS], [h/HOMEPAGE], [t/TAG] [MORE_KEYWORDS]</code><br></p>
+<p><strong>Find portion of word</strong> : <code>findany KEYWORD or [p/PHONE],[e/EMAIL], [a/ADDRESS], [h/HOMEPAGE], [t/TAG] [MORE_KEYWORDS]</code><br></p>
 <div class="paragraph">
-<p>e.g. <code>findany john</code><br>
-Returns <code>Johnson</code> and <code>John Doe</code></p>
+<p>e.g. <code>findany john mic</code><br>
+Returns <code>Johnson</code>, <code>John Doe</code>, <code>Michael Jackson</code></p>
 </div>
 <div class="paragraph">
 <p>e.g. <code>findany p/123</code><br>
@@ -1022,6 +1024,9 @@ e.g.<code>select 2</code></p>
 </li>
 <li>
 <p><strong>Set avatar</strong> : <code>setavatar INDEX sa/AVATAR_URL</code></p>
+</li>
+<li>
+<p><strong>Google Map</strong> : <code>gmap INDEX</code></p>
 </li>
 <li>
 <p><strong>Change theme</strong> : <code>theme INDEX</code></p>
@@ -1085,6 +1090,9 @@ e.g.<code>select 2</code></p>
 <p><strong>Set avatar</strong> : <code>sa</code></p>
 </li>
 <li>
+<p><strong>Google Map</strong> : <code>gm INDEX</code></p>
+</li>
+<li>
 <p><strong>Change theme</strong> : <code>t</code></p>
 </li>
 </ul>
@@ -1095,7 +1103,7 @@ e.g.<code>select 2</code></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-11 19:37:55 +00:00
+Last updated 2017-11-12 02:46:34 +00:00
 </div>
 </div>
 </body>

@@ -1149,7 +1149,7 @@ If no prefixes are present, <code>find</code> command will search for the name o
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>findany</code> command is able to search a portion of the <code>Person</code> details (e.g. <code>findany</code> ohn, returns a list of <code>Person</code> whose contains ohn. Result: John, Fohnny, Johnny).
+<code>findany</code> command is able to search a portion of the <code>Person</code> details (e.g. <code>findany</code> ohn, returns a list of <code>Person</code> whose name contains ohn. Result: John, Fohnny, Johnny).
 </td>
 </tr>
 </table>
@@ -1253,7 +1253,7 @@ By default if no index are present, theme command will return an invalid message
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-When the application is first initialize, <code>BrowserPanel</code> will <code>.setOpacity</code> to 0% and when <code>handlePersonPanelSelectionChangedEvent</code> is triggered, <code>BrowserPanel</code> will <code>.setOpacity</code> to 100% (this is done to prevent <code>WebView</code> from displaying the default background color).
+When the application is first initialize, <code>BrowserPanel</code> will <code>.setOpacity</code> to 0% and when <code>handlePersonPanelSelectionChangedEvent</code> is triggered, <code>BrowserPanel</code> will <code>.setOpacity</code> to 100% (this is done to prevent <code>WebView</code> from displaying the default <code>WebView</code> background color).
 </td>
 </tr>
 </table>
@@ -1490,6 +1490,19 @@ By default if no index are present, gmap command will return an invalid message.
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
+Using <code>select [INDEX]</code> command display the person card panel beside the Web View browser and loads person homepage.<br>
+Using <code>select 0</code> command hides the person card panel beside the Web View browser.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
 Events which triggers <code>PersonSideCardRequestEvent</code> handler, set the visibility of <code>Person</code> side panel card (Allow more display and exposure to the Web Browser).
 </td>
 </tr>
@@ -1589,8 +1602,8 @@ Events which triggers <code>PersonSideCardRequestEvent</code> handler, set the v
 <strong>Pros:</strong> Better user experience. And ensures that the web browser won&#8217;t be obstruct by <code>PersonSideCard</code> panel with another event handler that controls the visibility.<br>
 <strong>Cons:</strong> We could always utilizes library and implement the <code>PersonSideCard</code> panel.<br>
 <strong>Alternative 2:</strong> Load the person address on Google Map on <code>select</code> command. <br>
-<strong>Pros:</strong> Reduce the need of having extra command to load person address<br>
-<strong>Cons:</strong> Only able to do one search feature using the web browser<br></p>
+<strong>Pros:</strong> Reduce the need of having extra command to load person address.<br>
+<strong>Cons:</strong> Only able to do one search feature using the <code>select</code> command.<br></p>
 </div>
 </div>
 </div>
@@ -4151,7 +4164,7 @@ Use case ends.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-11 19:37:55 +00:00
+Last updated 2017-11-12 02:46:34 +00:00
 </div>
 </div>
 </body>

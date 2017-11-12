@@ -41,12 +41,13 @@ it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and
 <div class="paragraph">
 <p>{find by parameters available since v1.2}<br>
 Finds persons whose details contain any of the given specified keywords. <strong>Keyword must be exact</strong><br>
-Format: <code>find KEYWORD [MORE_KEYWORDS]</code><br>
-<code>[p/PHONE] KEYWORD [MORE_KEYWORDS]</code><br>
-<code>[e/EMAIL] KEYWORD [MORE_KEYWORDS]</code><br>
-<code>[a/ADDRESS] KEYWORD [MORE_KEYWORDS]</code><br>
-<code>[h/HOMEPAGE] KEYWORD [MORE_KEYWORDS]</code><br>
-<code>[t/TAG] KEYWORD [MORE_KEYWORDS]</code></p>
+Format:<br>
+<code>find NAME [MORE_KEYWORDS]</code><br>
+<code>find [p/PHONE] [MORE_KEYWORDS]</code><br>
+<code>find [e/EMAIL] [MORE_KEYWORDS]</code><br>
+<code>find [a/ADDRESS] [MORE_KEYWORDS]</code><br>
+<code>find [h/HOMEPAGE] [MORE_KEYWORDS]</code><br>
+<code>find [t/TAG] [MORE_KEYWORDS]</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -110,12 +111,13 @@ Returns any person having phone <code>9123456</code>, <code>8123456</code></p>
 <div class="paragraph">
 <p>{since v1.2}<br>
 Finds persons whose details contain any of the given specified keywords. <strong>Keyword can be partial.</strong><br>
-Format: <code>findany KEYWORD [MORE_KEYWORDS]</code><br>
-<code>[p/PHONE] KEYWORD [MORE_KEYWORDS]</code><br>
-<code>[e/EMAIL] KEYWORD [MORE_KEYWORDS]</code><br>
-<code>[a/ADDRESS] KEYWORD [MORE_KEYWORDS]</code><br>
-<code>[h/HOMEPAGE] KEYWORD [MORE_KEYWORDS]</code><br>
-<code>[t/TAG] KEYWORD [MORE_KEYWORDS]</code></p>
+Format:<br>
+<code>findany NAME [MORE_KEYWORDS]</code><br>
+<code>findany [p/PHONE] [MORE_KEYWORDS]</code><br>
+<code>findany [e/EMAIL] [MORE_KEYWORDS]</code><br>
+<code>findany [a/ADDRESS] [MORE_KEYWORDS]</code><br>
+<code>findany [h/HOMEPAGE] [MORE_KEYWORDS]</code><br>
+<code>findany [t/TAG] [MORE_KEYWORDS]</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -214,7 +216,7 @@ If no prefixes are present, <code>find</code> command will search for the name o
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>findany</code> command is able to search a portion of the <code>Person</code> details (e.g. <code>findany</code> ohn, returns a list of <code>Person</code> whose contains ohn. Result: John, Fohnny, Johnny).
+<code>findany</code> command is able to search a portion of the <code>Person</code> details (e.g. <code>findany</code> ohn, returns a list of <code>Person</code> whose name contains ohn. Result: John, Fohnny, Johnny).
 </td>
 </tr>
 </table>
@@ -336,12 +338,12 @@ Format: <code>theme INDEX</code></p>
 <li>
 <p><code>theme</code><br>
 <code>theme 1</code><br>
-Select and load the first theme in the results of the <code>themelist</code> command.</p>
+Select and load the first theme in the results of the <code>theme</code> command.</p>
 </li>
 <li>
 <p><code>t</code><br>
 <code>t 2</code><br>
-Select and load the second theme in the results of the <code>themelist</code> command.</p>
+Select and load the second theme in the results of the <code>theme</code> command.</p>
 </li>
 </ul>
 </div>
@@ -352,8 +354,8 @@ Select and load the second theme in the results of the <code>themelist</code> co
 <div class="sect3">
 <h4 id="justification-2"><a class="link" href="#justification-2">Justification</a></h4>
 <div class="paragraph">
-<p>The default addressbook application only support one theme which makes the address book looks dull and may not be suitable to be viewed by
-user under certain circumstances (e.g. At certain time or day, user might opt for brighter look and feel on the address book)</p>
+<p>The default address book application only support one theme which makes the address book looks dull and may not be suitable to be viewed by
+user under certain circumstances (e.g. At certain time or day, or user with photophobia (light sensitivity)  might opt for brighter look and feel on the address book)</p>
 </div>
 </div>
 <div class="sect3">
@@ -392,7 +394,7 @@ By default if no index are present, theme command will return an invalid message
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-When the application is first initialize, <code>BrowserPanel</code> will <code>.setOpacity</code> to 0% and when <code>handlePersonPanelSelectionChangedEvent</code> is triggered, <code>BrowserPanel</code> will <code>.setOpacity</code> to 100% (this is done to prevent <code>WebView</code> from displaying the default background color).
+When the application is first initialize, <code>BrowserPanel</code> will <code>.setOpacity</code> to 0% and when <code>handlePersonPanelSelectionChangedEvent</code> is triggered, <code>BrowserPanel</code> will <code>.setOpacity</code> to 100% (this is done to prevent <code>WebView</code> from displaying the default <code>WebView</code> background color).
 </td>
 </tr>
 </table>
@@ -633,6 +635,19 @@ By default if no index are present, gmap command will return an invalid message.
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
+Using <code>select [INDEX]</code> command display the person card panel beside the Web View browser and loads person homepage.<br>
+Using <code>select 0</code> command hides the person card panel beside the Web View browser.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
 Events which triggers <code>PersonSideCardRequestEvent</code> handler, set the visibility of <code>Person</code> side panel card (Allow more display and exposure to the Web Browser).
 </td>
 </tr>
@@ -732,8 +747,8 @@ Events which triggers <code>PersonSideCardRequestEvent</code> handler, set the v
 <strong>Pros:</strong> Better user experience. And ensures that the web browser won&#8217;t be obstruct by <code>PersonSideCard</code> panel with another event handler that controls the visibility.<br>
 <strong>Cons:</strong> We could always utilizes library and implement the <code>PersonSideCard</code> panel.<br>
 <strong>Alternative 2:</strong> Load the person address on Google Map on <code>select</code> command. <br>
-<strong>Pros:</strong> Reduce the need of having extra command to load person address<br>
-<strong>Cons:</strong> Only able to do one search feature using the web browser<br></p>
+<strong>Pros:</strong> Reduce the need of having extra command to load person address.<br>
+<strong>Cons:</strong> Only able to do one search feature using the <code>select</code> command.<br></p>
 </div>
 <div class="paragraph">
 <p><mark>End of Extract</mark>
@@ -763,7 +778,7 @@ Events which triggers <code>PersonSideCardRequestEvent</code> handler, set the v
 <div class="sect3">
 <h4 id="justification-4"><a class="link" href="#justification-4">Justification</a></h4>
 <div class="paragraph">
-<p>Allow user to view the About Us page and contact the developers for bugs and improvement.</p>
+<p>Allow user to view the AboutUs page and suggest feedback, report bugs to developers.</p>
 </div>
 </div>
 <div class="sect3">
@@ -1006,8 +1021,9 @@ the person and add the string of remark to existing person via <code>model.updat
 <div class="sect2">
 <h3 id="justification-6"><a class="link" href="#justification-6">Justification</a></h3>
 <div class="paragraph">
-<p>User might want to print the contacts of addressbook in hardcopy, or export data to switch usage to other computers.</p>
+<p>User might want to print a contacts of address book in hardcopy, or export data to switch usage to other computers.</p>
 </div>
+<hr>
 </div>
 <div class="sect2">
 <h3 id="other-contributions"><a class="link" href="#other-contributions">Other contributions</a></h3>
@@ -1029,7 +1045,7 @@ the person and add the string of remark to existing person via <code>model.updat
 <p>Wrote Target Audience section README.adoc (Pull requests <a href="https://github.com/CS2103AUG2017-F11-B3/main/pull/90">#90</a>)</p>
 </li>
 <li>
-<p>Bug fixing pertaining to find, edit, gmap, tag color feature and window focus (Pull requests <a href="https://github.com/CS2103AUG2017-F11-B3/main/pull/70">#70</a>, <a href="https://github.com/CS2103AUG2017-F11-B3/main/pull/75">#75</a>, <a href="https://github.com/CS2103AUG2017-F11-B3/main/pull/79">#79</a>), <a href="https://github.com/CS2103AUG2017-F11-B3/main/pull/90">#90</a>)</p>
+<p>Bug fixing pertaining to find, edit, gmap, tag color feature and window focus (Pull requests <a href="https://github.com/CS2103AUG2017-F11-B3/main/pull/70">#70</a>, <a href="https://github.com/CS2103AUG2017-F11-B3/main/pull/75">#75</a>, <a href="https://github.com/CS2103AUG2017-F11-B3/main/pull/79">#79</a>, <a href="https://github.com/CS2103AUG2017-F11-B3/main/pull/90">#90</a>)</p>
 </li>
 </ul>
 </div>
@@ -1038,7 +1054,7 @@ the person and add the string of remark to existing person via <code>model.updat
 <div class="ulist">
 <ul>
 <li>
-<p>Bugs reported in other team&#8217;s product (Issues <a href="https://github.com/CS2103AUG2017-W10-B2/main/issues/created_by/yewshengkai">#127</a>, <a href="https://github.com/CS2103AUG2017-W10-B2/main/issues/created_by/yewshengkai">#128</a>, <a href="https://github.com/CS2103AUG2017-W10-B2/main/issues/created_by/yewshengkai">#129</a>, <a href="https://github.com/CS2103AUG2017-W10-B2/main/issues/created_by/yewshengkai">#130</a>, <a href="https://github.com/CS2103AUG2017-W10-B2/main/issues/created_by/yewshengkai">#131</a>)</p>
+<p>Bugs reported in other team&#8217;s product (Issues <a href="https://github.com/CS2103AUG2017-W10-B2/main/issues/127">#127</a>, <a href="https://github.com/CS2103AUG2017-W10-B2/main/issues/128">#128</a>, <a href="https://github.com/CS2103AUG2017-W10-B2/main/issues/129">#129</a>, <a href="https://github.com/CS2103AUG2017-W10-B2/main/issues/130">#130</a>, <a href="https://github.com/CS2103AUG2017-W10-B2/main/issues/131">#131</a>)</p>
 </li>
 </ul>
 </div>
@@ -1052,9 +1068,6 @@ the person and add the string of remark to existing person via <code>model.updat
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>{To be included in the future}</p>
-</div>
 </div>
 </div>
 </div>
@@ -1062,7 +1075,7 @@ the person and add the string of remark to existing person via <code>model.updat
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-11 19:37:55 +00:00
+Last updated 2017-11-12 02:46:34 +00:00
 </div>
 </div>
 </body>
