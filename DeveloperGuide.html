@@ -993,8 +993,8 @@ Below is the code snippet of <code>SetAvatarCommand</code> for the various check
 </div>
 </div>
 <div class="paragraph">
-<p>The utility class <code>ProcessImage</code> is used to process images retrieved from the Internet. It contains
-methods such as&#8201;&#8212;&#8201;<code>writeImageToStorage(&#8230;&#8203;)</code> and <code>removeImageFromStorage(&#8230;&#8203;)</code> which stores the image into the
+<p>The utility class <code>ProcessImageUtil</code> is used to process images retrieved from the Internet. It contains
+methods such as <code>writeImageToStorage(&#8230;&#8203;)</code> and <code>removeImageFromStorage(&#8230;&#8203;)</code> which stores the image into the
 <code>DEFAULT_AVATAR_FILE_LOCATION</code> and removes the image respectively.<br>
 Below is the code snippet of the write method, which calls a helper method <code>getUniqueFile()</code> to generate a File with a unique path:</p>
 </div>
@@ -1024,8 +1024,8 @@ Below is the code snippet of the write method, which calls a helper method <code
 </div>
 </div>
 <div class="paragraph">
-<p>As <code>SetAvatarCommand</code> is an <code>Command</code>, <code>removeImageFromStorage(&#8230;&#8203;)</code> deletes the image once invoked.<br>
-Below is the code snipper of the remove method:</p>
+<p>As <code>SetAvatarCommand</code> is a <code>Command</code>, <code>removeImageFromStorage(&#8230;&#8203;)</code> deletes the image once invoked.<br>
+Below is the code snippet of the remove method:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4224,7 +4224,7 @@ Use case ends.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-12 13:37:31 +00:00
+Last updated 2017-11-12 16:25:41 +00:00
 </div>
 </div>
 </body>
