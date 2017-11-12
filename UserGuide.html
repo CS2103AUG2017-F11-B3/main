@@ -36,18 +36,19 @@
 <li><a href="#locating-persons-by-full-keyword-code-find-code-code-f-code">2.7. Locating persons by full keyword: <code>find</code>, <code>f</code></a></li>
 <li><a href="#locating-persons-by-partial-keyword-code-findany-code-code-fa-code">2.8. Locating persons by partial keyword: <code>findany</code>, <code>fa</code></a></li>
 <li><a href="#deleting-a-person-code-delete-code-code-d-code">2.9. Deleting a person : <code>delete</code>, <code>d</code></a></li>
-<li><a href="#selecting-a-person-code-select-code-code-s-code">2.10. Selecting a person : <code>select</code>, <code>s</code></a></li>
-<li><a href="#remark">2.11. Adding a Remark to a person : <code>remark</code>, <code>re</code></a></li>
-<li><a href="#avatar">2.12. Setting an avatar for a contact : <code>setavatar</code>, <code>sa</code></a></li>
-<li><a href="#listing-entered-commands-code-history-code-code-h-code">2.13. Listing entered commands : <code>history</code>, <code>h</code></a></li>
-<li><a href="#undoing-previous-command-code-undo-code-code-u-code">2.14. Undoing previous command : <code>undo</code>, <code>u</code></a></li>
-<li><a href="#redoing-the-previously-undone-command-code-redo-code-code-r-code">2.15. Redoing the previously undone command : <code>redo</code>, <code>r</code></a></li>
-<li><a href="#selecting-a-theme-code-theme-code-code-t-code">2.16. Selecting a theme : <code>theme</code>, <code>t</code></a></li>
-<li><a href="#display-recently-searched-contacts-code-recent-code-code-rc-code">2.17. Display recently searched contacts : <code>recent</code>, <code>rc</code></a></li>
-<li><a href="#viewing-the-address-of-a-contact-code-gmap-code-code-gm-code">2.18. Viewing the address of a contact : <code>gmap</code>, <code>gm</code></a></li>
-<li><a href="#clearing-all-entries-code-clear-code-code-c-code">2.19. Clearing all entries : <code>clear</code>, <code>c</code></a></li>
-<li><a href="#exiting-the-program-code-exit-code">2.20. Exiting the program : <code>exit</code></a></li>
-<li><a href="#saving-the-data">2.21. Saving the data</a></li>
+<li><a href="#removing-a-tag-from-every-person-code-removetag-code-code-rt-code">2.10. Removing a tag from every person : <code>removetag</code>, <code>rt</code></a></li>
+<li><a href="#selecting-a-person-code-select-code-code-s-code">2.11. Selecting a person : <code>select</code>, <code>s</code></a></li>
+<li><a href="#remark">2.12. Adding a Remark to a person : <code>remark</code>, <code>re</code></a></li>
+<li><a href="#avatar">2.13. Setting an avatar for a contact : <code>setavatar</code>, <code>sa</code></a></li>
+<li><a href="#listing-entered-commands-code-history-code-code-h-code">2.14. Listing entered commands : <code>history</code>, <code>h</code></a></li>
+<li><a href="#undoing-previous-command-code-undo-code-code-u-code">2.15. Undoing previous command : <code>undo</code>, <code>u</code></a></li>
+<li><a href="#redoing-the-previously-undone-command-code-redo-code-code-r-code">2.16. Redoing the previously undone command : <code>redo</code>, <code>r</code></a></li>
+<li><a href="#selecting-a-theme-code-theme-code-code-t-code">2.17. Selecting a theme : <code>theme</code>, <code>t</code></a></li>
+<li><a href="#display-recently-searched-contacts-code-recent-code-code-rc-code">2.18. Display recently searched contacts : <code>recent</code>, <code>rc</code></a></li>
+<li><a href="#viewing-the-address-of-a-contact-code-gmap-code-code-gm-code">2.19. Viewing the address of a contact : <code>gmap</code>, <code>gm</code></a></li>
+<li><a href="#clearing-all-entries-code-clear-code-code-c-code">2.20. Clearing all entries : <code>clear</code>, <code>c</code></a></li>
+<li><a href="#exiting-the-program-code-exit-code">2.21. Exiting the program : <code>exit</code></a></li>
+<li><a href="#saving-the-data">2.22. Saving the data</a></li>
 </ul>
 </li>
 <li><a href="#faq">3. FAQ</a></li>
@@ -568,7 +569,28 @@ Deletes the 1st person in the results of the <code>find</code> command.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="selecting-a-person-code-select-code-code-s-code"><a class="link" href="#selecting-a-person-code-select-code-code-s-code">2.10. Selecting a person : <code>select</code>, <code>s</code></a></h3>
+<h3 id="removing-a-tag-from-every-person-code-removetag-code-code-rt-code"><a class="link" href="#removing-a-tag-from-every-person-code-removetag-code-code-rt-code">2.10. Removing a tag from every person : <code>removetag</code>, <code>rt</code></a></h3>
+<div class="paragraph">
+<p>Removes the specified tag from the address book.<br>
+Format: <code>removetag TAG</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Removes the tag <code>TAG</code> from the address book.</p>
+</li>
+<li>
+<p>The removetag function is case-sensitive.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="selecting-a-person-code-select-code-code-s-code"><a class="link" href="#selecting-a-person-code-select-code-code-s-code">2.11. Selecting a person : <code>select</code>, <code>s</code></a></h3>
 <div class="paragraph">
 <p>Selects the person identified by the index number used in the last person listing.<br>
 Format: <code>select INDEX</code></p>
@@ -609,7 +631,7 @@ Selects the 1st person in the results of the <code>find</code> command.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="remark"><a class="link" href="#remark">2.11. Adding a Remark to a person : <code>remark</code>, <code>re</code></a></h3>
+<h3 id="remark"><a class="link" href="#remark">2.12. Adding a Remark to a person : <code>remark</code>, <code>re</code></a></h3>
 <div class="paragraph">
 <p><code>UNDOABLE</code><br>
 {since v1.1}<br>
@@ -655,7 +677,7 @@ Gives the 1st person in the results of the <code>find</code> command a remark.</
 </div>
 </div>
 <div class="sect2">
-<h3 id="avatar"><a class="link" href="#avatar">2.12. Setting an avatar for a contact : <code>setavatar</code>, <code>sa</code></a></h3>
+<h3 id="avatar"><a class="link" href="#avatar">2.13. Setting an avatar for a contact : <code>setavatar</code>, <code>sa</code></a></h3>
 <div class="paragraph">
 <p>{since v1.3}<br>
 Sets an avatar for a contact referenced by the index number used in the last person listing.
@@ -723,7 +745,7 @@ Sets the avatar of the 1st person listed to be the image as referenced by <a hre
 </div>
 </div>
 <div class="sect2">
-<h3 id="listing-entered-commands-code-history-code-code-h-code"><a class="link" href="#listing-entered-commands-code-history-code-code-h-code">2.13. Listing entered commands : <code>history</code>, <code>h</code></a></h3>
+<h3 id="listing-entered-commands-code-history-code-code-h-code"><a class="link" href="#listing-entered-commands-code-history-code-code-h-code">2.14. Listing entered commands : <code>history</code>, <code>h</code></a></h3>
 <div class="paragraph">
 <p>Lists all the commands that you have entered in reverse chronological order.<br>
 Format: <code>history</code></p>
@@ -744,7 +766,7 @@ Format: <code>history</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="undoing-previous-command-code-undo-code-code-u-code"><a class="link" href="#undoing-previous-command-code-undo-code-code-u-code">2.14. Undoing previous command : <code>undo</code>, <code>u</code></a></h3>
+<h3 id="undoing-previous-command-code-undo-code-code-u-code"><a class="link" href="#undoing-previous-command-code-undo-code-code-u-code">2.15. Undoing previous command : <code>undo</code>, <code>u</code></a></h3>
 <div class="paragraph">
 <p>Restores the address book to the state before the previous <em>undoable</em> command was executed.<br>
 Format: <code>undo</code></p>
@@ -789,7 +811,7 @@ The <code>undo</code> command fails as there are no undoable commands executed p
 </div>
 </div>
 <div class="sect2">
-<h3 id="redoing-the-previously-undone-command-code-redo-code-code-r-code"><a class="link" href="#redoing-the-previously-undone-command-code-redo-code-code-r-code">2.15. Redoing the previously undone command : <code>redo</code>, <code>r</code></a></h3>
+<h3 id="redoing-the-previously-undone-command-code-redo-code-code-r-code"><a class="link" href="#redoing-the-previously-undone-command-code-redo-code-code-r-code">2.16. Redoing the previously undone command : <code>redo</code>, <code>r</code></a></h3>
 <div class="paragraph">
 <p>Reverses the most recent <code>undo</code> command.<br>
 Format: <code>redo</code></p>
@@ -821,7 +843,7 @@ The <code>redo</code> command fails as there are no <code>undo</code> commands e
 </div>
 </div>
 <div class="sect2">
-<h3 id="selecting-a-theme-code-theme-code-code-t-code"><a class="link" href="#selecting-a-theme-code-theme-code-code-t-code">2.16. Selecting a theme : <code>theme</code>, <code>t</code></a></h3>
+<h3 id="selecting-a-theme-code-theme-code-code-t-code"><a class="link" href="#selecting-a-theme-code-theme-code-code-t-code">2.17. Selecting a theme : <code>theme</code>, <code>t</code></a></h3>
 <div class="paragraph">
 <p>{since v1.3}<br>
 Selects the theme identified by the index number.<br>
@@ -863,7 +885,7 @@ Select and load the second theme in the results of the <code>theme</code> comman
 </div>
 </div>
 <div class="sect2">
-<h3 id="display-recently-searched-contacts-code-recent-code-code-rc-code"><a class="link" href="#display-recently-searched-contacts-code-recent-code-code-rc-code">2.17. Display recently searched contacts : <code>recent</code>, <code>rc</code></a></h3>
+<h3 id="display-recently-searched-contacts-code-recent-code-code-rc-code"><a class="link" href="#display-recently-searched-contacts-code-recent-code-code-rc-code">2.18. Display recently searched contacts : <code>recent</code>, <code>rc</code></a></h3>
 <div class="paragraph">
 <p>{since v1.4)<br>
 Shows a list of all contacts that was returned by <code>find</code> command since application was started.<br>
@@ -871,7 +893,7 @@ Format: <code>recent</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="viewing-the-address-of-a-contact-code-gmap-code-code-gm-code"><a class="link" href="#viewing-the-address-of-a-contact-code-gmap-code-code-gm-code">2.18. Viewing the address of a contact : <code>gmap</code>, <code>gm</code></a></h3>
+<h3 id="viewing-the-address-of-a-contact-code-gmap-code-code-gm-code"><a class="link" href="#viewing-the-address-of-a-contact-code-gmap-code-code-gm-code">2.19. Viewing the address of a contact : <code>gmap</code>, <code>gm</code></a></h3>
 <div class="paragraph">
 <p>{since v1.4}<br>
 Selects the person identified by the index number used in the last person listing and displays the address found in a webpage using Google Map.<br>
@@ -916,21 +938,21 @@ Selects the 1st person in the results of the <code>find</code> command and displ
 </div>
 </div>
 <div class="sect2">
-<h3 id="clearing-all-entries-code-clear-code-code-c-code"><a class="link" href="#clearing-all-entries-code-clear-code-code-c-code">2.19. Clearing all entries : <code>clear</code>, <code>c</code></a></h3>
+<h3 id="clearing-all-entries-code-clear-code-code-c-code"><a class="link" href="#clearing-all-entries-code-clear-code-code-c-code">2.20. Clearing all entries : <code>clear</code>, <code>c</code></a></h3>
 <div class="paragraph">
 <p>Clears all entries from the address book.<br>
 Format: <code>clear</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">2.20. Exiting the program : <code>exit</code></a></h3>
+<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">2.21. Exiting the program : <code>exit</code></a></h3>
 <div class="paragraph">
 <p>Exits the program.<br>
 Format: <code>exit</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-the-data"><a class="link" href="#saving-the-data">2.21. Saving the data</a></h3>
+<h3 id="saving-the-data"><a class="link" href="#saving-the-data">2.22. Saving the data</a></h3>
 <div class="paragraph">
 <p>Address book data are saved in the hard disk automatically after any command that changes the data.<br>
 There is no need to save manually.</p>
@@ -1023,6 +1045,10 @@ e.g.<code>select 2</code></p>
 <p><strong>Remark</strong> : <code>remark INDEX re/REMARK</code></p>
 </li>
 <li>
+<p><strong>Remove tag</strong> : <code>removetag [TAG]</code>
+e.g. <code>removetag friend</code></p>
+</li>
+<li>
 <p><strong>Set avatar</strong> : <code>setavatar INDEX sa/AVATAR_URL</code></p>
 </li>
 <li>
@@ -1084,6 +1110,9 @@ e.g.<code>select 2</code></p>
 <p><strong>Recent</strong> : <code>rc</code></p>
 </li>
 <li>
+<p><strong>Remove tag</strong> : <code>rt</code></p>
+</li>
+<li>
 <p><strong>Remark</strong> : <code>re</code></p>
 </li>
 <li>
@@ -1103,7 +1132,7 @@ e.g.<code>select 2</code></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-12 02:46:34 +00:00
+Last updated 2017-11-12 03:03:19 +00:00
 </div>
 </div>
 </body>

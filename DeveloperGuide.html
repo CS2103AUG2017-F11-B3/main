@@ -57,6 +57,7 @@
 <li><a href="#about-mechanism">3.11. About mechanism</a></li>
 <li><a href="#remark-mechanism">3.12. Remark mechanism</a></li>
 <li><a href="#optional-add-mechanism">3.13. Optional Add mechanism</a></li>
+<li><a href="#remove-tag-mechanism">3.14. Remove Tag mechanism</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -1796,6 +1797,19 @@ mandatory.</p>
 <p>The relevant parameters are then passed to create a <code>Person</code> object.</p>
 </div>
 </div>
+<div class="sect2">
+<h3 id="remove-tag-mechanism"><a class="link" href="#remove-tag-mechanism">3.14. Remove Tag mechanism</a></h3>
+<div class="paragraph">
+<p>The removetag command is facilitated by the <code>RemoveTag</code> class and is an <code>UndoableCommand</code>.
+<code>RemoveTag</code> checks for the specified tag from all the entries and calls the relevant
+<code>CommandResult</code>.
+The specified tag is then removed from the AddressBook.</p>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the find <code>RemoveTag</code> operation works:
+image::RemoveTagSequenceDiagram.png[]</p>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -2768,6 +2782,12 @@ contact</p></td>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">remove a tag</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I can easily control the tags of my contacts.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">add birthday of contact</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">I can be more conscious of my contact&#8217;s birthday</p></td>
 </tr>
@@ -3115,7 +3135,7 @@ increasing security</p></td>
 </div>
 <h3 id="use-case-sort-contacts" class="discrete">Use case: Sort contacts</h3>
 <div class="paragraph">
-<p><strong>Guarentees:</strong> List will be sorted in alphabetical order.</p>
+<p><strong>Guarantees:</strong> List will be sorted in alphabetical order.</p>
 </div>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
@@ -3495,12 +3515,52 @@ Use case ends.</p>
 </li>
 </ul>
 </div>
+<h3 id="use-case-remove-tags" class="discrete">Use case: Remove tags</h3>
+<div class="paragraph">
+<p><strong>Guarantees:</strong> Specified TAG will be removed from address book.</p>
+</div>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User request to remove tag</p>
+</li>
+<li>
+<p>Tag is removed from AddressBook.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a. Tag is not removed due to incorrect upper/lower case of <code>TAG</code>.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a1.AddressBook shows <code>TAG</code> has been removed from AddressBook.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
 <h3 id="use-case-set-avatar" class="discrete">Use case: Set avatar</h3>
 <div class="paragraph">
 <p><strong>Preconditions:</strong> AddressBook is not empty.</p>
 </div>
 <div class="paragraph">
-<p><strong>Guarentees:</strong> Avatar will be added to specified contact at index.</p>
+<p><strong>Guarantees:</strong> Avatar will be added to specified contact at index.</p>
 </div>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
@@ -4164,7 +4224,7 @@ Use case ends.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-12 02:46:34 +00:00
+Last updated 2017-11-12 03:03:19 +00:00
 </div>
 </div>
 </body>
