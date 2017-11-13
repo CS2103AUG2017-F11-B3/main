@@ -23,13 +23,87 @@
 it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 6 kLoC.</p>
 </div>
 <div class="paragraph">
-<p><strong>Code contributed</strong>:</p>
+<p><strong>Code contributed</strong>:  [<a href="https://github.com/CS2103AUG2017-F11-B3/main/blob/master/collated/main/basyiro.md">Functional code</a>]
+                    [<a href="https://github.com/CS2103AUG2017-F11-B3/main/blob/master/collated/test/basyiro.md">Test code</a>]<br></p>
 </div>
 <div class="sect2">
-<h3 id="enhancement-added"><a class="link" href="#enhancement-added">Enhancement Added:</a></h3>
+<h3 id="enhancement-added-remove-tags-from-the-addressbook"><a class="link" href="#enhancement-added-remove-tags-from-the-addressbook">Enhancement Added: Remove tags from the AddressBook.</a></h3>
 <div class="sect3">
 <h4 id="external-behavior"><a class="link" href="#external-behavior">External behavior</a></h4>
-
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: User Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="removing-a-tag-from-every-person-code-removetag-code-code-rt-code"><a class="link" href="#removing-a-tag-from-every-person-code-removetag-code-code-rt-code">Removing a tag from every person : <code>removetag</code>, <code>rt</code></a></h3>
+<div class="paragraph">
+<p>Removes the specified tag from the address book.<br>
+Format: <code>removetag TAG</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Removes the tag <code>TAG</code> from the address book.</p>
+</li>
+<li>
+<p>The removetag function is case-sensitive.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+<div class="sect3">
+<h4 id="justification"><a class="link" href="#justification">Justification</a></h4>
+<div class="paragraph">
+<p>User had to delete the entry if they had keyed in a wrong tag and remade a whole other entry with the same parameters
+to change the tags.</p>
+</div>
+<div class="paragraph">
+<p>This implementation enhances the usability of the application by allowing the user to update necessary tags and
+removing them when it becomes obsolete.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation"><a class="link" href="#implementation">Implementation</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="remove-tag-mechanism"><a class="link" href="#remove-tag-mechanism">Remove Tag mechanism</a></h3>
+<div class="paragraph">
+<p>The removetag command is facilitated by the <code>RemoveTag</code> class and is an <code>UndoableCommand</code>.
+<code>RemoveTag</code> checks for the specified tag from all the entries and calls the relevant
+<code>CommandResult</code>.
+The specified tag is then removed from the AddressBook.</p>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the find <code>RemoveTag</code> operation works:
+image::RemoveTagSequenceDiagram.png[]</p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+<div class="sect2">
+<h3 id="other-contributions"><a class="link" href="#other-contributions">Other contributions</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Wrote non-functional requirements</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -37,7 +111,7 @@ it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-13 14:05:18 +00:00
+Last updated 2017-11-13 15:39:41 +00:00
 </div>
 </div>
 </body>
